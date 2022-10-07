@@ -2,7 +2,12 @@
 
 ### 環境構築
 
-Hardhatインストール
+Hardhat インストール
 ```shell
 yarn add --dev hardhat
+```
+
+Hardhat Too-box インストール
+```shell
+yarn add --dev @nomicfoundation/hardhat-toolbox
 ```
