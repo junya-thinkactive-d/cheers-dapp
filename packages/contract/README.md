@@ -1,13 +1,13 @@
-# Sample Hardhat Project
+## コントラクト
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+### 環境構築
 
-Try running some of the following tasks:
-
+Hardhat インストール
 ```shell
-npx hardhat help
-npx hardhat test
-GAS_REPORT=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
+yarn add --dev hardhat
+```
+
+Hardhat Too-box インストール
+```shell
+yarn add --dev @nomicfoundation/hardhat-toolbox
 ```
