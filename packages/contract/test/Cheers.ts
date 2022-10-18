@@ -5,7 +5,6 @@ import { ethers } from 'hardhat';
 describe('Cheers', function () {
   async function fixture() {
     const [deployer, user1] = await ethers.getSigners();
-
     const cheersFactory = await ethers.getContractFactory('Cheers');
     const cheers = await cheersFactory.deploy();
 
@@ -14,7 +13,14 @@ describe('Cheers', function () {
 
   describe('Run test', function () {
     it('Should run test', async () => {
-      console.log('run test');
+    });
+  });
+
+  describe('Run test', function () {
+    it('Should run test', async () => {
+      const [deployer, user1] = await ethers.getSigners();
+      const cheersFactory = await ethers.getContractFactory('Cheers');
+      const cheers = await cheersFactory.deploy();
     });
   });
 });
