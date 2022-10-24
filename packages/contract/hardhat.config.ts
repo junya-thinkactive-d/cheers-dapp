@@ -3,6 +3,7 @@ import '@typechain/hardhat';
 import 'hardhat-contract-sizer';
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
+import 'solidity-coverage'
 
 const config: HardhatUserConfig = {
   solidity: {
