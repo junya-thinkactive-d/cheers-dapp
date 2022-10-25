@@ -24,9 +24,10 @@ jobs:
       - run: yarn contract compile
       - run: yarn contract coverage
 
-      # https://github.com/marketplace/actions/test-reporter
-      - name: Test Report
-        uses: dorny/test-reporter@v1
+      # https://github.com/marketplace/actions/test-reporting
+      - name: Test Reporting
+        uses: phoenix-actions/test-reporting@v8
+        id: test-report
         if: success() || failure()    # run this step even if previous step failed
         with:
           name: Contract Tests Result # Name of the check run which will be created
