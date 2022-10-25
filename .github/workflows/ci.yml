@@ -7,29 +7,39 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '16.x'
       - run: yarn install
       - run: yarn contract compile
+
+      # 静的解析
+      - name: Run Slither
+        uses: crytic/slither-action@v0.2.0
+        id: slither
+        with:
+          node-version: 16
+          target: ./packages/contracts/
+          fail-on: none
+#          sarif: results.sarif
+
+
+      # テスト＆カバレッジ出力
       - run: yarn contract coverage
 
       # https://github.com/marketplace/actions/test-reporting
-      - name: Test Reporting
-        uses: phoenix-actions/test-reporting@v8
-        id: test-report
-        if: success() || failure()    # run this step even if previous step failed
-        with:
-          name: Contract Tests Result # Name of the check run which will be created
-          path: packages/contract/coverage.json    # Path to test results
-          reporter: mocha-json
+#      - name: Test Reporting
+#        uses: phoenix-actions/test-reporting@v8
+#        id: test-report
+#        if: success() || failure()    # run this step even if previous step failed
+#        with:
+#          name: Contract Tests Result # Name of the check run which will be created
+#          path: packages/contract/coverage.json    # Path to test results
+#          reporter: mocha-json
