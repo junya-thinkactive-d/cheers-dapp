@@ -20,6 +20,5 @@ cache
 .next
 
 
-# compile files
-/packages/client/src/libs/
-/packages/contract/types/
+/packages/client/src/libs/hardhat/artifacts/*
+!/packages/client/src/libs/hardhat/artifacts/contracts
