@@ -1,0 +1,85 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IProjectsData",
+  "sourceName": "contracts/interfaces/IProjectsData.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_projectOwnerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_belongDaoAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_projectName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_projectContents",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_projectReword",
+          "type": "string"
+        }
+      ],
+      "name": "addProjects",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_projectOwnerAdress",
+          "type": "address"
+        }
+      ],
+      "name": "getEachProjectList",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "belongDaoAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "projectName",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "projectContents",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "projectReword",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct SharedStruct.Project[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
