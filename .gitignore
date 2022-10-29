@@ -16,7 +16,10 @@ yarn-error.log
 
 # hardhat
 cache
-/packages/client/src/libs/hardhat/artifacts/*
-!/packages/client/src/libs/hardhat/artifacts/contracts
+
 # client
 .next
+
+# compile files
+/packages/client/src/libs/
+/packages/contract/types/
