@@ -33,4 +33,12 @@ contract UserPoolFactory {
 
     return poolListData.getMyPoolAddress(msg.sender);
   }
+
+  function setPoolListData(address poolListDataAddress) public {
+    poolListData = IPoolListData(poolListDataAddress);
+  }
+
+  function setUsersData(address usersDataAddress) public {
+    usersData = IUsersData(usersDataAddress);
+  }
 }

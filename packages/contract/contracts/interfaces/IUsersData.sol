@@ -11,5 +11,5 @@ interface IUsersData {
     string memory _userIcon
   ) external;
 
-  function getAlluserList() external view returns (SharedStruct.User[] memory);
+  function getAllUserList() external view returns (SharedStruct.User[] memory);
 }

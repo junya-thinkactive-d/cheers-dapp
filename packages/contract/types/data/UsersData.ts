@@ -42,12 +42,12 @@ export declare namespace SharedStruct {
 export interface UsersDataInterface extends utils.Interface {
   functions: {
     "addUsers(address,string,string,string)": FunctionFragment;
-    "getAlluserList()": FunctionFragment;
+    "getAllUserList()": FunctionFragment;
     "users(uint256)": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: "addUsers" | "getAlluserList" | "users"
+    nameOrSignatureOrTopic: "addUsers" | "getAllUserList" | "users"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -60,7 +60,7 @@ export interface UsersDataInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "getAlluserList",
+    functionFragment: "getAllUserList",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -70,7 +70,7 @@ export interface UsersDataInterface extends utils.Interface {
 
   decodeFunctionResult(functionFragment: "addUsers", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getAlluserList",
+    functionFragment: "getAllUserList",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "users", data: BytesLike): Result;
@@ -113,7 +113,7 @@ export interface UsersData extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    getAlluserList(
+    getAllUserList(
       overrides?: CallOverrides
     ): Promise<[SharedStruct.UserStructOutput[]]>;
 
@@ -138,7 +138,7 @@ export interface UsersData extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  getAlluserList(
+  getAllUserList(
     overrides?: CallOverrides
   ): Promise<SharedStruct.UserStructOutput[]>;
 
@@ -163,7 +163,7 @@ export interface UsersData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    getAlluserList(
+    getAllUserList(
       overrides?: CallOverrides
     ): Promise<SharedStruct.UserStructOutput[]>;
 
@@ -191,7 +191,7 @@ export interface UsersData extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    getAlluserList(overrides?: CallOverrides): Promise<BigNumber>;
+    getAllUserList(overrides?: CallOverrides): Promise<BigNumber>;
 
     users(
       arg0: PromiseOrValue<BigNumberish>,
@@ -208,7 +208,7 @@ export interface UsersData extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    getAlluserList(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getAllUserList(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     users(
       arg0: PromiseOrValue<BigNumberish>,

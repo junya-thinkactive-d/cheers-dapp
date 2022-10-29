@@ -44,7 +44,7 @@ contract UserPool is IUserPool {
     // CHERコントラクト接続
     cher = IERC20(CHER_CONTRACT_ADDRESS);
     // poolのowner設定
-    owner = _poolOwnerAddress;
+    userAddress = _poolOwnerAddress;
     userName = _userName;
     userProfile = _userProfile;
     userIcon = _userIcon;

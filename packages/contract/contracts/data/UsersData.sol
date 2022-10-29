@@ -22,7 +22,7 @@ contract UsersData is IUsersData {
   }
 
   // 全User取得
-  function getAlluserList() public view returns (SharedStruct.User[] memory) {
+  function getAllUserList() public view returns (SharedStruct.User[] memory) {
     return users;
   }
 }

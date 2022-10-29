@@ -31,10 +31,22 @@ hardhat.config.ts に設定しているclient側にコンパイルされると�
 $ yarn contract compile
 ```
 #### hardhat test
-test用コマンド
+
+Contract テスト実行
+
 ```bash
+// テスト実行のみ
 $ yarn contract test
 ```
+
+Contract test & coverage出力
+```bash
+$ yarn contract coverage
+```
+結果出力は2形式
+- JSON `packages/contract/coverage.json`
+- HTML `coverages/contract/coverage/*`
+
 ### client
 #### dev
 開発モードで実行 localhost:8080

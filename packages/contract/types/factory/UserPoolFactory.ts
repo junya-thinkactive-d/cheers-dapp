@@ -26,11 +26,18 @@ export interface UserPoolFactoryInterface extends utils.Interface {
   functions: {
     "newUserPoolFactory(string,string,string)": FunctionFragment;
     "poolListData()": FunctionFragment;
+    "setPoolListData(address)": FunctionFragment;
+    "setUsersData(address)": FunctionFragment;
     "usersData()": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: "newUserPoolFactory" | "poolListData" | "usersData"
+    nameOrSignatureOrTopic:
+      | "newUserPoolFactory"
+      | "poolListData"
+      | "setPoolListData"
+      | "setUsersData"
+      | "usersData"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -45,6 +52,14 @@ export interface UserPoolFactoryInterface extends utils.Interface {
     functionFragment: "poolListData",
     values?: undefined
   ): string;
+  encodeFunctionData(
+    functionFragment: "setPoolListData",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setUsersData",
+    values: [PromiseOrValue<string>]
+  ): string;
   encodeFunctionData(functionFragment: "usersData", values?: undefined): string;
 
   decodeFunctionResult(
@@ -53,6 +68,14 @@ export interface UserPoolFactoryInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "poolListData",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setPoolListData",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setUsersData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "usersData", data: BytesLike): Result;
@@ -96,6 +119,16 @@ export interface UserPoolFactory extends BaseContract {
 
     poolListData(overrides?: CallOverrides): Promise<[string]>;
 
+    setPoolListData(
+      poolListDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    setUsersData(
+      usersDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     usersData(overrides?: CallOverrides): Promise<[string]>;
   };
 
@@ -108,6 +141,16 @@ export interface UserPoolFactory extends BaseContract {
 
   poolListData(overrides?: CallOverrides): Promise<string>;
 
+  setPoolListData(
+    poolListDataAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  setUsersData(
+    usersDataAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   usersData(overrides?: CallOverrides): Promise<string>;
 
   callStatic: {
@@ -119,6 +162,16 @@ export interface UserPoolFactory extends BaseContract {
     ): Promise<string>;
 
     poolListData(overrides?: CallOverrides): Promise<string>;
+
+    setPoolListData(
+      poolListDataAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setUsersData(
+      usersDataAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     usersData(overrides?: CallOverrides): Promise<string>;
   };
@@ -135,6 +188,16 @@ export interface UserPoolFactory extends BaseContract {
 
     poolListData(overrides?: CallOverrides): Promise<BigNumber>;
 
+    setPoolListData(
+      poolListDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    setUsersData(
+      usersDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     usersData(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
@@ -147,6 +210,16 @@ export interface UserPoolFactory extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     poolListData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    setPoolListData(
+      poolListDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setUsersData(
+      usersDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
 
     usersData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };

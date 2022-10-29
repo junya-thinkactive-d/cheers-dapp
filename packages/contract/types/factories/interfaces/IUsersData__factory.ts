@@ -40,7 +40,7 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "getAlluserList",
+    name: "getAllUserList",
     outputs: [
       {
         components: [

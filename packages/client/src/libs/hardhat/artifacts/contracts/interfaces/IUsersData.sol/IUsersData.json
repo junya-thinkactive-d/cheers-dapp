@@ -33,7 +33,7 @@
     },
     {
       "inputs": [],
-      "name": "getAlluserList",
+      "name": "getAllUserList",
       "outputs": [
         {
           "components": [
