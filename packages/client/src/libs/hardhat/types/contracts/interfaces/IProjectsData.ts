@@ -112,7 +112,7 @@ export interface IProjectsData extends BaseContract {
     ): Promise<ContractTransaction>;
 
     getEachProjectList(
-      _projectOwnerAdress: PromiseOrValue<string>,
+      _projectOwnerAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[SharedStruct.ProjectStructOutput[]]>;
   };
@@ -127,7 +127,7 @@ export interface IProjectsData extends BaseContract {
   ): Promise<ContractTransaction>;
 
   getEachProjectList(
-    _projectOwnerAdress: PromiseOrValue<string>,
+    _projectOwnerAddress: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<SharedStruct.ProjectStructOutput[]>;
 
@@ -142,7 +142,7 @@ export interface IProjectsData extends BaseContract {
     ): Promise<void>;
 
     getEachProjectList(
-      _projectOwnerAdress: PromiseOrValue<string>,
+      _projectOwnerAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<SharedStruct.ProjectStructOutput[]>;
   };
@@ -160,7 +160,7 @@ export interface IProjectsData extends BaseContract {
     ): Promise<BigNumber>;
 
     getEachProjectList(
-      _projectOwnerAdress: PromiseOrValue<string>,
+      _projectOwnerAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
@@ -176,7 +176,7 @@ export interface IProjectsData extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     getEachProjectList(
-      _projectOwnerAdress: PromiseOrValue<string>,
+      _projectOwnerAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
