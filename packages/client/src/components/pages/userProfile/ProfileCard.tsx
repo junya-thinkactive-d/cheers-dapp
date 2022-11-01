@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Level } from '@/components/shared/parts';
 
-const UserProfileCard = () => {
+const ProfileCard = () => {
   return (
     <div className="flex justify-center items-center w-full">
       <div className="w-[800px] h-[500px] my-12">
@@ -63,4 +63,4 @@ const UserProfileCard = () => {
   );
 };
 
-export default UserProfileCard;
+export default ProfileCard;

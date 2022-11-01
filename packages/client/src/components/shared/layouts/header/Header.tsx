@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import { InputSearch as InputSearch } from '@/components/shared/parts';
+// import { InputSearch as InputSearch } from '@/components/shared/parts';
 import { useWalletContext } from '@/context/state';
 
 import ConnectedWalletButton from './ConnectedWalletButton';
@@ -18,7 +18,7 @@ const Header = () => {
           <div className="px-4 py-2 bg-gradient-to-r from-cherGreen to-cherBlue cursor-pointer">CHEERS</div>
         </Link>
         <div>
-          <InputSearch />
+          <div>{walletContext?.currentAccount}</div>
         </div>
         <div>
           {!walletContext?.currentAccount ? (

@@ -13,7 +13,7 @@ const UserProfile = () => {
         <BeforeLogin />
       ) : (
         <>
-          <PageTitle title="USER PROFILE" />
+          <PageTitle title="DAO PROFILE" />
           <ProfileCard />
           <ChallengeProjects />
           <CheerProjects />
