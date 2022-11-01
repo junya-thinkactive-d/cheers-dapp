@@ -35,10 +35,12 @@ contract UserPoolFactory {
   }
 
   function setPoolListData(address poolListDataAddress) public {
+    POOLLISTDATA_CONTRACT_ADDRESS = poolListDataAddress;
     poolListData = IPoolListData(poolListDataAddress);
   }
 
   function setUsersData(address usersDataAddress) public {
+    USERS_DATA_CONTRACT_ADDRESS = usersDataAddress;
     usersData = IUsersData(usersDataAddress);
   }
 }

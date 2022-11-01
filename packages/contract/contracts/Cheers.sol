@@ -37,10 +37,12 @@ contract Cheers is ICheers {
   }
 
   function setDaoPoolFactory(address daoPoolFactoryAddress) public {
+    DAO_POOL_FACTORY_CONTRACT_ADDRESS = daoPoolFactoryAddress;
     daoPoolFactory = IDaoPoolFactory(daoPoolFactoryAddress);
   }
 
   function setUserPoolFactory(address userPoolFactoryAddress) public {
+    USER_POOL_FACTORY_CONTRACT_ADDRESS = userPoolFactoryAddress;
     userPoolFactory = IUserPoolFactory(userPoolFactoryAddress);
   }
 }

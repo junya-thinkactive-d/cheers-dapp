@@ -6,6 +6,10 @@ export * as factory from "./factory";
 export * as interfaces from "./interfaces";
 export * as mock from "./mock";
 export { Cheers__factory } from "./Cheers__factory";
+<<<<<<< HEAD
+=======
+export { CherFaucet__factory } from "./CherFaucet__factory";
+>>>>>>> 474e84f58ea972ada3ae248b236d7bd84d88f26f
 export { DaoPool__factory } from "./DaoPool__factory";
 export { ProjectPool__factory } from "./ProjectPool__factory";
 export { UserPool__factory } from "./UserPool__factory";

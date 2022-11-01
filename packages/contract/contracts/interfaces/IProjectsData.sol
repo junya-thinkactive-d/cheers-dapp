@@ -7,6 +7,7 @@ interface IProjectsData {
   // PROJECT追加
   function addProjects(
     address _projectOwnerAddress,
+    address _projectPoolAddress,
     address _belongDaoAddress,
     string memory _projectName,
     string memory _projectContents,

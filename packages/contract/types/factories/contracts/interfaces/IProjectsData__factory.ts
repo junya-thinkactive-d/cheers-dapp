@@ -19,6 +19,11 @@ const _abi = [
       },
       {
         internalType: "address",
+        name: "_projectPoolAddress",
+        type: "address",
+      },
+      {
+        internalType: "address",
         name: "_belongDaoAddress",
         type: "address",
       },
@@ -55,6 +60,11 @@ const _abi = [
     outputs: [
       {
         components: [
+          {
+            internalType: "address",
+            name: "projectAddress",
+            type: "address",
+          },
           {
             internalType: "address",
             name: "belongDaoAddress",

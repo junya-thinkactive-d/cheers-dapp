@@ -33,6 +33,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Cheers__factory>;
     getContractFactory(
+      name: "CherFaucet",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.CherFaucet__factory>;
+    getContractFactory(
       name: "DaoPool",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DaoPool__factory>;
@@ -130,6 +134,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.Cheers>;
+    getContractAt(
+      name: "CherFaucet",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.CherFaucet>;
     getContractAt(
       name: "DaoPool",
       address: string,

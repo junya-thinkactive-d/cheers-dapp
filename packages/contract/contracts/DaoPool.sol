@@ -27,7 +27,8 @@ contract DaoPool is IDaoPool {
   // cheerProjectリスト
   address[] cheerProjectList;
   // cheerしているかないか
-  mapping(address => bool) isCheer;
+  mapping(address => bool) public isCheer;
+
   modifier onlyOwner() {
     require(owner == msg.sender);
     _;
@@ -82,14 +83,12 @@ contract DaoPool is IDaoPool {
   // DAOウォレットからDAOプールにCHERチャージ
   function chargeCher(uint256 _cherAmount) public onlyOwner {
     require(cher.balanceOf(daoAddress) >= _cherAmount, 'not insufficient');
-    cher.approve(daoAddress, _cherAmount);
     cher.transferFrom(daoAddress, address(this), _cherAmount);
   }
 
   // DAOプールからDAOウォレットにCHER引出し
   function withdrawCher(uint256 _cherAmount) public onlyOwner {
     require(cher.balanceOf(address(this)) >= _cherAmount, 'not insufficient');
-    cher.approve(address(this), _cherAmount);
     cher.transfer(daoAddress, _cherAmount);
   }
 
@@ -106,17 +105,25 @@ contract DaoPool is IDaoPool {
       _projectContents,
       _projectReword
     );
-    addChallengeProjects(address(this), _projectName, _projectContents, _projectReword);
+    addChallengeProjects(address(projectPool), address(this), _projectName, _projectContents, _projectReword);
     return address(projectPool);
   }
 
   function addChallengeProjects(
+    address projectAddress,
     address _belongDaoAddress,
     string memory _projectName,
     string memory _projectContents,
     string memory _projectReword
   ) private {
-    projectsData.addProjects(address(this), _belongDaoAddress, _projectName, _projectContents, _projectReword);
+    projectsData.addProjects(
+      address(this),
+      projectAddress,
+      _belongDaoAddress,
+      _projectName,
+      _projectContents,
+      _projectReword
+    );
   }
 
   // このDAOのChallenge全プロジェクトを取得
@@ -125,23 +132,44 @@ contract DaoPool is IDaoPool {
   }
 
   // このDAOがCheerしているプロジェクトを追加 ProjectPoolから叩く
-  function addCheerProject(address _cheerProjectPoolAddress) public returns (bool) {
+  function addCheerProject(address _cheerProjectPoolAddress) external returns (bool) {
     require(!isCheer[_cheerProjectPoolAddress], 'already cheer');
-    for (uint256 i = 0; i < cheerProjectList.length; i++) {
-      if (cheerProjectList[i] == _cheerProjectPoolAddress) {
-        isCheer[_cheerProjectPoolAddress] = true;
-      } else {
-        cheerProjectList.push(_cheerProjectPoolAddress);
-        isCheer[_cheerProjectPoolAddress] = true;
+
+    if (cheerProjectList.length == 0) {
+      cheerProjectList.push(_cheerProjectPoolAddress);
+      isCheer[_cheerProjectPoolAddress] = true;
+    } else {
+      for (uint256 i = 0; i < cheerProjectList.length; i++) {
+        if (cheerProjectList[i] == _cheerProjectPoolAddress) {
+          isCheer[_cheerProjectPoolAddress] = true;
+        } else {
+          cheerProjectList.push(_cheerProjectPoolAddress);
+          isCheer[_cheerProjectPoolAddress] = true;
+        }
       }
     }
     return isCheer[_cheerProjectPoolAddress];
   }
 
   // Cheerしているプロジェクトを脱退 ProjectPoolから叩く
-  function removeCheerProject(address _cheerProjectPoolAddress) public returns (bool) {
+  function removeCheerProject(address _cheerProjectPoolAddress) external returns (bool) {
     require(isCheer[_cheerProjectPoolAddress], 'already not cheer');
     isCheer[_cheerProjectPoolAddress] = false;
     return isCheer[_cheerProjectPoolAddress];
+  }
+
+  function setCHER(address CHERAddress) public {
+    CHER_CONTRACT_ADDRESS = CHERAddress;
+    cher = IERC20(CHERAddress);
+  }
+
+  function setProjectsData(address projectsDataAddress) public {
+    PROJECTSDATA_CONTRACT_ADDRESS = projectsDataAddress;
+    projectsData = IProjectsData(projectsDataAddress);
+  }
+
+  function approveCherToProjectPool(address _projectPoolAddress, uint256 _cherAmount) external onlyOwner {
+    require(cher.balanceOf(address(this)) >= _cherAmount, 'not insufficient');
+    cher.approve(_projectPoolAddress, _cherAmount);
   }
 }

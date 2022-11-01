@@ -35,10 +35,12 @@ contract DaoPoolFactory {
   }
 
   function setPoolListData(address poolListDataAddress) public {
+    POOLLISTDATA_CONTRACT_ADDRESS = poolListDataAddress;
     poolListData = IPoolListData(poolListDataAddress);
   }
 
   function setDaosData(address daosDataAddress) public {
+    DAOS_DATA_CONTRACT_ADDRESS = daosDataAddress;
     daosData = IDaosData(daosDataAddress);
   }
 }

@@ -24,13 +24,15 @@ import type {
 
 export declare namespace SharedStruct {
   export type ProjectStruct = {
+    projectAddress: PromiseOrValue<string>;
     belongDaoAddress: PromiseOrValue<string>;
     projectName: PromiseOrValue<string>;
     projectContents: PromiseOrValue<string>;
     projectReword: PromiseOrValue<string>;
   };
 
-  export type ProjectStructOutput = [string, string, string, string] & {
+  export type ProjectStructOutput = [string, string, string, string, string] & {
+    projectAddress: string;
     belongDaoAddress: string;
     projectName: string;
     projectContents: string;
@@ -40,7 +42,7 @@ export declare namespace SharedStruct {
 
 export interface IProjectsDataInterface extends utils.Interface {
   functions: {
-    "addProjects(address,address,string,string,string)": FunctionFragment;
+    "addProjects(address,address,address,string,string,string)": FunctionFragment;
     "getEachProjectList(address)": FunctionFragment;
   };
 
@@ -51,6 +53,7 @@ export interface IProjectsDataInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "addProjects",
     values: [
+      PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>,
@@ -104,6 +107,7 @@ export interface IProjectsData extends BaseContract {
   functions: {
     addProjects(
       _projectOwnerAddress: PromiseOrValue<string>,
+      _projectPoolAddress: PromiseOrValue<string>,
       _belongDaoAddress: PromiseOrValue<string>,
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
@@ -119,6 +123,7 @@ export interface IProjectsData extends BaseContract {
 
   addProjects(
     _projectOwnerAddress: PromiseOrValue<string>,
+    _projectPoolAddress: PromiseOrValue<string>,
     _belongDaoAddress: PromiseOrValue<string>,
     _projectName: PromiseOrValue<string>,
     _projectContents: PromiseOrValue<string>,
@@ -134,6 +139,7 @@ export interface IProjectsData extends BaseContract {
   callStatic: {
     addProjects(
       _projectOwnerAddress: PromiseOrValue<string>,
+      _projectPoolAddress: PromiseOrValue<string>,
       _belongDaoAddress: PromiseOrValue<string>,
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
@@ -152,6 +158,7 @@ export interface IProjectsData extends BaseContract {
   estimateGas: {
     addProjects(
       _projectOwnerAddress: PromiseOrValue<string>,
+      _projectPoolAddress: PromiseOrValue<string>,
       _belongDaoAddress: PromiseOrValue<string>,
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
@@ -168,6 +175,7 @@ export interface IProjectsData extends BaseContract {
   populateTransaction: {
     addProjects(
       _projectOwnerAddress: PromiseOrValue<string>,
+      _projectPoolAddress: PromiseOrValue<string>,
       _belongDaoAddress: PromiseOrValue<string>,
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
