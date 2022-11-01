@@ -1,8 +1,9 @@
 import { ethers } from "hardhat";
-import { CHERToken, UsersData, DaosData, ProjectsData, PoolListData } from '../types';
+import { CHERToken, CherFaucet, UsersData, DaosData, ProjectsData, PoolListData } from '../types';
 
 async function main() {
   let cherToken: CHERToken;
+  let cherFaucet: CherFaucet;
   let usersData: UsersData;
   let daosData: DaosData;
   let projectsData: ProjectsData;
@@ -12,6 +13,11 @@ async function main() {
   cherToken = await cherTokenFactory.deploy(1000);
   await cherToken.deployed();
   console.log("CHERToken deployed to:", cherToken.address);
+
+  const cherFaucetFactory = await ethers.getContractFactory("CherFaucet");
+  cherFaucet = await cherFaucetFactory.deploy();
+  await cherFaucet.deployed();
+  console.log("CherFaucet deployed to:", cherFaucet.address);
 
   const usersDataFactory = await ethers.getContractFactory("UsersData");
   usersData = await usersDataFactory.deploy();
