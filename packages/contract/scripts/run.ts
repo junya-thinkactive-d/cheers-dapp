@@ -1,13 +1,19 @@
 import { ethers } from "hardhat";
-import { CHERToken, CherFaucet, UsersData, DaosData, ProjectsData, PoolListData } from '../types';
+import { CHERToken, CherFaucet, UsersData, DaosData, ProjectsData, PoolListData, UserPoolFactory, DaoPoolFactory, Cheers } from '../types';
 
 async function main() {
   let cherToken: CHERToken;
   let cherFaucet: CherFaucet;
+
   let usersData: UsersData;
   let daosData: DaosData;
   let projectsData: ProjectsData;
   let poolListData: PoolListData;
+  
+  let userPoolFactory: UserPoolFactory;
+  let daoPoolFactory: DaoPoolFactory;
+  let cheers: Cheers;
+
 
   const cherTokenFactory = await ethers.getContractFactory("CHERToken");
   cherToken = await cherTokenFactory.deploy(1000);
@@ -18,6 +24,7 @@ async function main() {
   cherFaucet = await cherFaucetFactory.deploy();
   await cherFaucet.deployed();
   console.log("CherFaucet deployed to:", cherFaucet.address);
+
 
   const usersDataFactory = await ethers.getContractFactory("UsersData");
   usersData = await usersDataFactory.deploy();
@@ -40,6 +47,20 @@ async function main() {
   console.log("PoolListData deployed to:", poolListData.address);
 
 
+  const userPoolFactoryFactory = await ethers.getContractFactory('UserPoolFactory');
+  userPoolFactory = await userPoolFactoryFactory.deploy();
+  await userPoolFactory.deployed();
+  console.log("UserPoolFactory deployed to:", userPoolFactory.address);
+
+  const daoPoolFactoryFactory = await ethers.getContractFactory('DaoPoolFactory');
+  daoPoolFactory = await daoPoolFactoryFactory.deploy();
+  await daoPoolFactory.deployed();
+  console.log("DaoPoolFactory deployed to:", daoPoolFactory.address);
+  
+  const cheersFactory = await ethers.getContractFactory('Cheers');
+  cheers = await cheersFactory.deploy();
+  await cheers.deployed();
+  console.log("Cheers deployed to:", cheers.address);
 }
 
 main().catch((error) => {
