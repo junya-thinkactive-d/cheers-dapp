@@ -6,16 +6,16 @@ import './interfaces/IDaoPoolFactory.sol';
 import './interfaces/IUserPoolFactory.sol';
 
 contract Cheers is ICheers {
-  // DAOPOOLFACTORY
-  address DAOPOOLFACTORY_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdepoloy
+  // DAO_POOL_FACTORY
+  address DAO_POOL_FACTORY_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IDaoPoolFactory public daoPoolFactory;
-  // USERPOOLFACTORY
-  address USERPOOLFACTORY_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdepoloy
+  // USER_POOL_FACTORY
+  address USER_POOL_FACTORY_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IUserPoolFactory public userPoolFactory;
 
   constructor() {
-    daoPoolFactory = IDaoPoolFactory(DAOPOOLFACTORY_CONTRACT_ADDRESS);
-    userPoolFactory = IUserPoolFactory(USERPOOLFACTORY_CONTRACT_ADDRESS);
+    daoPoolFactory = IDaoPoolFactory(DAO_POOL_FACTORY_CONTRACT_ADDRESS);
+    userPoolFactory = IUserPoolFactory(USER_POOL_FACTORY_CONTRACT_ADDRESS);
   }
 
   // DAOプール作成

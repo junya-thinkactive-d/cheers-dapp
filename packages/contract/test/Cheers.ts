@@ -21,7 +21,7 @@ describe('Cheers', function () {
     cheers = await cheersFactory.deploy();
     await cheers.deployed();
 
-    
+
     const daoPoolFactoryFactory = await ethers.getContractFactory('DaoPoolFactory');
     daoPoolFactory = await daoPoolFactoryFactory.deploy();
     await daoPoolFactory.deployed();

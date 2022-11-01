@@ -11,12 +11,12 @@ contract UserPoolFactory {
   IPoolListData public poolListData;
 
   // USER
-  address USERSDATA_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdepoloy
+  address USERS_DATA_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IUsersData public usersData;
 
   constructor() {
     poolListData = IPoolListData(POOLLISTDATA_CONTRACT_ADDRESS);
-    usersData = IUsersData(USERSDATA_CONTRACT_ADDRESS);
+    usersData = IUsersData(USERS_DATA_CONTRACT_ADDRESS);
   }
 
   // Userプール作成
@@ -25,7 +25,7 @@ contract UserPoolFactory {
     string memory _userProfile,
     string memory _userIcon
   ) external returns (address) {
-    require(address(poolListData.getMyPoolAddress(msg.sender)) == address(0), 'alredy created!');
+    require(address(poolListData.getMyPoolAddress(msg.sender)) == address(0), 'already created!');
 
     UserPool userPool = new UserPool(msg.sender, _userName, _userProfile, _userIcon, address(this));
     usersData.addUsers(msg.sender, _userName, _userProfile, _userIcon);

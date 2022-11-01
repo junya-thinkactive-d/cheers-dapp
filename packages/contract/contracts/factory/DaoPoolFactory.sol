@@ -11,12 +11,12 @@ contract DaoPoolFactory {
   IPoolListData public poolListData;
 
   // USER
-  address DAOSDATA_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdepoloy
+  address DAOS_DATA_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IDaosData public daosData;
 
   constructor() {
     poolListData = IPoolListData(POOLLISTDATA_CONTRACT_ADDRESS);
-    daosData = IDaosData(DAOSDATA_CONTRACT_ADDRESS);
+    daosData = IDaosData(DAOS_DATA_CONTRACT_ADDRESS);
   }
 
   // Daoプール作成
@@ -25,7 +25,7 @@ contract DaoPoolFactory {
     string memory _daoProfile,
     string memory _daoIcon
   ) external returns (address) {
-    require(address(poolListData.getMyPoolAddress(msg.sender)) == address(0), 'alredy created!');
+    require(address(poolListData.getMyPoolAddress(msg.sender)) == address(0), 'already created!');
 
     DaoPool daoPool = new DaoPool(msg.sender, _daoName, _daoProfile, _daoIcon, address(this));
     daosData.addDaos(msg.sender, _daoName, _daoProfile, _daoIcon);

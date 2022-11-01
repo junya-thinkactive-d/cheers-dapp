@@ -4,7 +4,7 @@ pragma solidity ^0.8.17;
 
 library SharedStruct {
   struct Dao {
-    address daoAddres;
+    address daoAddress;
     string daoName;
     string daoProfile;
     string daoIcon;
