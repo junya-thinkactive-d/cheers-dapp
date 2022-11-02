@@ -158,6 +158,7 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
       const getAllChallengeProjects = await userPoolContract.getAllChallengeProjects();
       const allChallengeProjectsOrganize = getAllChallengeProjects.map((challengeProject) => {
         return {
+          projectAddress: challengeProject.projectAddress,
           belongDaoAddress: challengeProject.belongDaoAddress,
           projectName: challengeProject.projectName,
           projectContents: challengeProject.projectContents,
