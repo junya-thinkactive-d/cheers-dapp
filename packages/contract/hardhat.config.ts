@@ -24,12 +24,12 @@ const config: HardhatUserConfig = {
   paths: {
     artifacts: '../client/src/libs/hardhat/artifacts',
   },
-  // networks: {
-  //   rinkeby: {
-  //     url: process.env.RINKEBY_INFURA,
-  //     accounts: [process.env.PRIVATE_KEY],
-  //   },
-  // },
+  networks: {
+    rinkeby: {
+      url: process.env.API_URL,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+    },
+  },
 };
 
 export default config;
