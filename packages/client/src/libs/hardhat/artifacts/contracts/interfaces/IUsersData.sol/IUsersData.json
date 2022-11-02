@@ -1,0 +1,79 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IUsersData",
+  "sourceName": "contracts/interfaces/IUsersData.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_userAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_userName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_userProfile",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_userIcon",
+          "type": "string"
+        }
+      ],
+      "name": "addUsers",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllUserList",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "userAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "userName",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "userProfile",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "userIcon",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "creationTime",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct SharedStruct.User[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

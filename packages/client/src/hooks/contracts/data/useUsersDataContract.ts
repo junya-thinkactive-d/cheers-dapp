@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 
 import UsersDataContractABI from '@/libs/hardhat/artifacts/contracts/data/UsersData.sol/UsersData.json';
 import type { UsersData as UsersDataType } from '@/libs/hardhat/types';
-import { SharedStruct } from '@/libs/hardhat/types/contracts/data/UsersData';
+import { UserType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
 const CONTRACT_ADDRESS = '';
@@ -12,11 +12,11 @@ const CONTRACT_ABI = UsersDataContractABI.abi;
 
 type Props = {};
 type ReturnUsersDataContract = {
-  allUserList: SharedStruct.UserStruct[] | undefined;
+  allUserList: UserType[] | undefined;
 };
 
 export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
-  const [allUserList, setAllUserList] = useState<SharedStruct.UserStruct[]>();
+  const [allUserList, setAllUserList] = useState<UserType[]>();
   const ethereum = getEthereumSafety();
 
   const usersDataContract: UsersDataType | null = useMemo(() => {
@@ -37,6 +37,7 @@ export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
           userName: user.userName,
           userProfile: user.userProfile,
           userIcon: user.userIcon,
+          timestamp: new Date(user.creationTime.toNumber() * 1000),
         };
       });
       setAllUserList(allUserListOrganize);

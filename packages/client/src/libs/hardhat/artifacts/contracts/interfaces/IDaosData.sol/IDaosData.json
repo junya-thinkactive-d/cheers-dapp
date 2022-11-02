@@ -1,0 +1,79 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IDaosData",
+  "sourceName": "contracts/interfaces/IDaosData.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_daoAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_daoName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_daoProfile",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_daoIcon",
+          "type": "string"
+        }
+      ],
+      "name": "addDaos",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllDaoList",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "daoAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "daoName",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "daoProfile",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "daoIcon",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "creationTime",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct SharedStruct.Dao[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

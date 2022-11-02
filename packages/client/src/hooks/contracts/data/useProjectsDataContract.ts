@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 
 import ProjectsDataContractABI from '@/libs/hardhat/artifacts/contracts/data/ProjectsData.sol/ProjectsData.json';
 import type { ProjectsData as ProjectsDataType } from '@/libs/hardhat/types';
-import { SharedStruct } from '@/libs/hardhat/types/contracts/data/ProjectsData';
+import { ProjectType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
 const CONTRACT_ADDRESS = '';
@@ -14,11 +14,11 @@ type Props = {};
 
 type ReturnProjectsDataContract = {
   handleGetEachProjectList: (_projectOwnerAddress: string) => void;
-  allProjectList: SharedStruct.ProjectStruct[] | undefined;
+  allProjectList: ProjectType[] | undefined;
 };
 
 export const useProjectsDataContract = ({}: Props): ReturnProjectsDataContract => {
-  const [allProjectList, setAllProjectList] = useState<SharedStruct.ProjectStruct[]>();
+  const [allProjectList, setAllProjectList] = useState<ProjectType[]>();
   const ethereum = getEthereumSafety();
 
   const projectsDataContract: ProjectsDataType | null = useMemo(() => {
@@ -62,6 +62,7 @@ export const useProjectsDataContract = ({}: Props): ReturnProjectsDataContract =
           projectName: project.projectName,
           projectContents: project.projectContents,
           projectReword: project.projectReword,
+          timestamp: new Date(project.creationTime.toNumber() * 1000),
         };
       });
       setAllProjectList(allProjectListOrganize);

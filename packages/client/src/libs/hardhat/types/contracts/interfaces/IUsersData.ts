@@ -4,6 +4,7 @@
 import type {
   BaseContract,
   BigNumber,
+  BigNumberish,
   BytesLike,
   CallOverrides,
   ContractTransaction,
@@ -28,13 +29,15 @@ export declare namespace SharedStruct {
     userName: PromiseOrValue<string>;
     userProfile: PromiseOrValue<string>;
     userIcon: PromiseOrValue<string>;
+    creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type UserStructOutput = [string, string, string, string] & {
+  export type UserStructOutput = [string, string, string, string, BigNumber] & {
     userAddress: string;
     userName: string;
     userProfile: string;
     userIcon: string;
+    creationTime: BigNumber;
   };
 }
 

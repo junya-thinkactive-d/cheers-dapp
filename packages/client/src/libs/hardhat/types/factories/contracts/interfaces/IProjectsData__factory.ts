@@ -85,6 +85,11 @@ const _abi = [
             name: "projectReword",
             type: "string",
           },
+          {
+            internalType: "uint256",
+            name: "creationTime",
+            type: "uint256",
+          },
         ],
         internalType: "struct SharedStruct.Project[]",
         name: "",

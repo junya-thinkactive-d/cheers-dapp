@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 
 import DaosDataContractABI from '@/libs/hardhat/artifacts/contracts/data/DaosData.sol/DaosData.json';
 import type { DaosData as DaosDataType } from '@/libs/hardhat/types';
-import { SharedStruct } from '@/libs/hardhat/types/contracts/data/DaosData';
+import { DaoType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
 const CONTRACT_ADDRESS = '';
@@ -13,11 +13,11 @@ const CONTRACT_ABI = DaosDataContractABI.abi;
 type Props = {};
 
 type ReturnUseDaosDataContract = {
-  allDaoList: SharedStruct.DaoStruct[] | undefined;
+  allDaoList: DaoType[] | undefined;
 };
 
 export const useDaosDataContract = ({}: Props): ReturnUseDaosDataContract => {
-  const [allDaoList, setAllDaoList] = useState<SharedStruct.DaoStruct[]>();
+  const [allDaoList, setAllDaoList] = useState<DaoType[]>();
   const ethereum = getEthereumSafety();
 
   const daosDataContract: DaosDataType | null = useMemo(() => {
@@ -38,6 +38,7 @@ export const useDaosDataContract = ({}: Props): ReturnUseDaosDataContract => {
           daoName: dao.daoName,
           daoProfile: dao.daoProfile,
           daoIcon: dao.daoIcon,
+          timestamp: new Date(dao.creationTime.toNumber() * 1000),
         };
       });
       setAllDaoList(allDaoListOrganize);

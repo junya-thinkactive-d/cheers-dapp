@@ -3,7 +3,7 @@ export type UserType = {
   userName:string;
   userProfile:string;
   userIcon:string;
-  timestamp:string;
+  timestamp:Date;
 };
 
 export type DaoType = {
@@ -11,7 +11,7 @@ export type DaoType = {
   daoName:string;
   daoProfile:string;
   daoIcon:string;
-  timestamp:string;
+  timestamp:Date;
 };
 
 export type ProjectType = {
@@ -20,12 +20,12 @@ export type ProjectType = {
   projectName:string;
   projectContents:string;
   projectReword:string;
-  timestamp:string;
+  timestamp:Date;
 }
 
 export type CheerType = {
   cheerPoolAddress:string;
-  timestamp:string;
+  timestamp:Date;
   message:string;
   cher:string;
 }

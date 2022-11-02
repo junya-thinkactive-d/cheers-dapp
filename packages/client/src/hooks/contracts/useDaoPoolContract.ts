@@ -4,8 +4,8 @@ import { ethers } from 'ethers';
 
 import DaoPoolContractABI from '@/libs/hardhat/artifacts/contracts/DaoPool.sol/DaoPool.json';
 import type { DaoPool as DaoPoolTypes } from '@/libs/hardhat/types';
-import { SharedStruct } from '@/libs/hardhat/types/contracts/DaoPool';
 import { DaoProjectFactory } from '@/types/contractTypes';
+import { ProjectType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
 import { usePoolListDataContract } from './data/usePoolListDataContract';
@@ -22,7 +22,7 @@ type ReturnUseDaoPoolContract = {
   daoName: string | undefined;
   daoProfile: string | undefined;
   daoIcon: string | undefined;
-  allChallengeProjects: SharedStruct.ProjectStruct[] | undefined;
+  allChallengeProjects: ProjectType[] | undefined;
   mining: boolean;
   handleChargeCher: (_amount: string) => Promise<void>;
   handleWithdrawCher: (_mount: string) => Promise<void>;
@@ -39,7 +39,7 @@ export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolCon
   const [daoName, setDaoName] = useState<string>();
   const [daoProfile, setDaoProfile] = useState<string>();
   const [daoIcon, setDaoIcon] = useState<string>();
-  const [allChallengeProjects, setAllChallengeProjects] = useState<SharedStruct.ProjectStruct[]>();
+  const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>();
   const [mining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
@@ -162,6 +162,7 @@ export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolCon
           projectName: challengeProject.projectName,
           projectContents: challengeProject.projectContents,
           projectReword: challengeProject.projectReword,
+          timestamp: new Date(challengeProject.creationTime.toNumber() * 1000),
         };
       });
       setAllChallengeProjects(allChallengeProjectsOrganize);

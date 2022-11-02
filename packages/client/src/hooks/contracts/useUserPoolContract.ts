@@ -4,8 +4,8 @@ import { ethers } from 'ethers';
 
 import UserPoolContractABI from '@/libs/hardhat/artifacts/contracts/UserPool.sol/UserPool.json';
 import type { UserPool as UserPoolTypes } from '@/libs/hardhat/types';
-import { SharedStruct } from '@/libs/hardhat/types/contracts/UserPool';
 import { UserProjectFactory } from '@/types/contractTypes';
+import { ProjectType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
 import { usePoolListDataContract } from './data/usePoolListDataContract';
@@ -22,7 +22,7 @@ type ReturnUseUserPoolContract = {
   userName: string | undefined;
   userProfile: string | undefined;
   userIcon: string | undefined;
-  allChallengeProjects: SharedStruct.ProjectStruct[] | undefined;
+  allChallengeProjects: ProjectType[] | undefined;
   mining: boolean;
   handleChargeCher: (_amount: string) => Promise<void>;
   handleWithdrawCher: (_mount: string) => Promise<void>;
@@ -39,7 +39,7 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
   const [userName, setUserName] = useState<string>();
   const [userProfile, setUserProfile] = useState<string>();
   const [userIcon, setUserIcon] = useState<string>();
-  const [allChallengeProjects, setAllChallengeProjects] = useState<SharedStruct.ProjectStruct[]>();
+  const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>();
   const [mining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
@@ -163,6 +163,7 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
           projectName: challengeProject.projectName,
           projectContents: challengeProject.projectContents,
           projectReword: challengeProject.projectReword,
+          timestamp: new Date(challengeProject.creationTime.toNumber() * 1000),
         };
       });
       setAllChallengeProjects(allChallengeProjectsOrganize);

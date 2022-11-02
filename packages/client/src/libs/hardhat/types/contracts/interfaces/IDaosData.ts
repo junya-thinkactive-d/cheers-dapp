@@ -4,6 +4,7 @@
 import type {
   BaseContract,
   BigNumber,
+  BigNumberish,
   BytesLike,
   CallOverrides,
   ContractTransaction,
@@ -28,13 +29,15 @@ export declare namespace SharedStruct {
     daoName: PromiseOrValue<string>;
     daoProfile: PromiseOrValue<string>;
     daoIcon: PromiseOrValue<string>;
+    creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type DaoStructOutput = [string, string, string, string] & {
+  export type DaoStructOutput = [string, string, string, string, BigNumber] & {
     daoAddress: string;
     daoName: string;
     daoProfile: string;
     daoIcon: string;
+    creationTime: BigNumber;
   };
 }
 
