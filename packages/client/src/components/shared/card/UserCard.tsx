@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Level } from '@/components/shared/parts';
-import { UserType } from '@/types/registration';
+import { UserType } from '@/types/struct';
 
 type Props = {
   userData: UserType;

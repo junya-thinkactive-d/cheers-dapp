@@ -11,7 +11,9 @@ const CONTRACT_ADDRESS = '';
 const CONTRACT_ABI = UsersDataContractABI.abi;
 
 type Props = {};
-type ReturnUsersDataContract = {};
+type ReturnUsersDataContract = {
+  allUserList: SharedStruct.UserStruct[] | undefined;
+};
 
 export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
   const [allUserList, setAllUserList] = useState<SharedStruct.UserStruct[]>();

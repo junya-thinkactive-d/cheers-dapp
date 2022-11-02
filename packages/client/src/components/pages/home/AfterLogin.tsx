@@ -3,6 +3,7 @@ import React from 'react';
 import { DaosInfo, UsersInfo } from '@/components/pages/home';
 
 const AfterLogin = () => {
+  const {}
   return (
     <div className="w-full min-h-screen">
       <DaosInfo />
