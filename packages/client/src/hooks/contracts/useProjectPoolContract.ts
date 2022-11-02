@@ -15,9 +15,9 @@ type Props = {
 
 type ReturnProjectPoolDataContract = {
   mining: boolean;
+  handleMintCheer: (_cher: number, _message: string) => Promise<void>;
   allCheers: ProjectCheer[] | undefined;
   totalCher: string | undefined;
-  handleMintCheer: (_cher: number, _message: string) => Promise<void>;
 };
 
 export const useProjectPoolContract = ({ projectPoolAddress }: Props): ReturnProjectPoolDataContract => {
@@ -87,8 +87,8 @@ export const useProjectPoolContract = ({ projectPoolAddress }: Props): ReturnPro
 
   return {
     mining,
+    handleMintCheer,
     allCheers,
     totalCher,
-    handleMintCheer,
   };
 };

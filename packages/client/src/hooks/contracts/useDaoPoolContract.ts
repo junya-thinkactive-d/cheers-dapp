@@ -157,6 +157,7 @@ export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolCon
       const getAllChallengeProjects = await daoPoolContract.getAllChallengeProjects();
       const allChallengeProjectsOrganize = getAllChallengeProjects.map((challengeProject) => {
         return {
+          projectAddress: challengeProject.projectAddress,
           belongDaoAddress: challengeProject.belongDaoAddress,
           projectName: challengeProject.projectName,
           projectContents: challengeProject.projectContents,
