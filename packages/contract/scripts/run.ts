@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 import { CherFaucet, UsersData, DaosData, ProjectsData, PoolListData, UserPoolFactory, DaoPoolFactory, Cheers } from '../types';
 
 async function main() {
-  
+    
   let cherFaucet: CherFaucet;
 
   let usersData: UsersData;
@@ -14,7 +14,7 @@ async function main() {
   let daoPoolFactory: DaoPoolFactory;
   let cheers: Cheers;
         
-  
+
   const cherFaucetFactory = await ethers.getContractFactory("CherFaucet");
   cherFaucet = await cherFaucetFactory.deploy();
   await cherFaucet.deployed();
