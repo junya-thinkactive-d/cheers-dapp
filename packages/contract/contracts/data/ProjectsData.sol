@@ -19,12 +19,28 @@ contract ProjectsData is IProjectsData {
     string memory _projectContents,
     string memory _projectReword
   ) external {
+    uint256 _creationTime = block.timestamp;
+
     eachProjectsList[_projectOwnerAddress].push(
-      SharedStruct.Project(_projectPoolAddress, _belongDaoAddress, _projectName, _projectContents, _projectReword)
+      SharedStruct.Project(
+        _projectPoolAddress,
+        _belongDaoAddress,
+        _projectName,
+        _projectContents,
+        _projectReword,
+        _creationTime
+      )
     );
 
     allProjectsList.push(
-      SharedStruct.Project(_projectPoolAddress, _belongDaoAddress, _projectName, _projectContents, _projectReword)
+      SharedStruct.Project(
+        _projectPoolAddress,
+        _belongDaoAddress,
+        _projectName,
+        _projectContents,
+        _projectReword,
+        _creationTime
+      )
     );
   }
 

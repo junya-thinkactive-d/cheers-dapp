@@ -29,13 +29,15 @@ export declare namespace SharedStruct {
     daoName: PromiseOrValue<string>;
     daoProfile: PromiseOrValue<string>;
     daoIcon: PromiseOrValue<string>;
+    creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type DaoStructOutput = [string, string, string, string] & {
+  export type DaoStructOutput = [string, string, string, string, BigNumber] & {
     daoAddress: string;
     daoName: string;
     daoProfile: string;
     daoIcon: string;
+    creationTime: BigNumber;
   };
 }
 
@@ -117,11 +119,12 @@ export interface DaosData extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, string, string] & {
+      [string, string, string, string, BigNumber] & {
         daoAddress: string;
         daoName: string;
         daoProfile: string;
         daoIcon: string;
+        creationTime: BigNumber;
       }
     >;
 
@@ -142,11 +145,12 @@ export interface DaosData extends BaseContract {
     arg0: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<
-    [string, string, string, string] & {
+    [string, string, string, string, BigNumber] & {
       daoAddress: string;
       daoName: string;
       daoProfile: string;
       daoIcon: string;
+      creationTime: BigNumber;
     }
   >;
 
@@ -167,11 +171,12 @@ export interface DaosData extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, string, string] & {
+      [string, string, string, string, BigNumber] & {
         daoAddress: string;
         daoName: string;
         daoProfile: string;
         daoIcon: string;
+        creationTime: BigNumber;
       }
     >;
 

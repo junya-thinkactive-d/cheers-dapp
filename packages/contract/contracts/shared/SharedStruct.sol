@@ -8,6 +8,7 @@ library SharedStruct {
     string daoName;
     string daoProfile;
     string daoIcon;
+    uint256 creationTime;
   }
 
   struct User {
@@ -15,6 +16,7 @@ library SharedStruct {
     string userName;
     string userProfile;
     string userIcon;
+    uint256 creationTime;
   }
 
   struct Project {
@@ -23,6 +25,7 @@ library SharedStruct {
     string projectName;
     string projectContents;
     string projectReword;
+    uint256 creationTime;
   }
 
   struct Cheer {

@@ -64,6 +64,11 @@ const _abi = [
             name: "daoIcon",
             type: "string",
           },
+          {
+            internalType: "uint256",
+            name: "creationTime",
+            type: "uint256",
+          },
         ],
         internalType: "struct SharedStruct.Dao[]",
         name: "",

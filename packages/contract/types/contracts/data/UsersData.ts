@@ -29,13 +29,15 @@ export declare namespace SharedStruct {
     userName: PromiseOrValue<string>;
     userProfile: PromiseOrValue<string>;
     userIcon: PromiseOrValue<string>;
+    creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type UserStructOutput = [string, string, string, string] & {
+  export type UserStructOutput = [string, string, string, string, BigNumber] & {
     userAddress: string;
     userName: string;
     userProfile: string;
     userIcon: string;
+    creationTime: BigNumber;
   };
 }
 
@@ -121,11 +123,12 @@ export interface UsersData extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, string, string] & {
+      [string, string, string, string, BigNumber] & {
         userAddress: string;
         userName: string;
         userProfile: string;
         userIcon: string;
+        creationTime: BigNumber;
       }
     >;
   };
@@ -146,11 +149,12 @@ export interface UsersData extends BaseContract {
     arg0: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<
-    [string, string, string, string] & {
+    [string, string, string, string, BigNumber] & {
       userAddress: string;
       userName: string;
       userProfile: string;
       userIcon: string;
+      creationTime: BigNumber;
     }
   >;
 
@@ -171,11 +175,12 @@ export interface UsersData extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, string, string] & {
+      [string, string, string, string, BigNumber] & {
         userAddress: string;
         userName: string;
         userProfile: string;
         userIcon: string;
+        creationTime: BigNumber;
       }
     >;
   };

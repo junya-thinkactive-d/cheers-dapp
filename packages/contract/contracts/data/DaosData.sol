@@ -18,7 +18,7 @@ contract DaosData is IDaosData {
     string memory _daoProfile,
     string memory _daoIcon
   ) external {
-    daos.push(SharedStruct.Dao(_daoAddress, _daoName, _daoProfile, _daoIcon));
+    daos.push(SharedStruct.Dao(_daoAddress, _daoName, _daoProfile, _daoIcon, block.timestamp));
   }
 
   // 全DAO取得

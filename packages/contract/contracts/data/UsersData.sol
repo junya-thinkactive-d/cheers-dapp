@@ -18,7 +18,7 @@ contract UsersData is IUsersData {
     string memory _userProfile,
     string memory _userIcon
   ) external {
-    users.push(SharedStruct.User(_userAddress, _userName, _userProfile, _userIcon));
+    users.push(SharedStruct.User(_userAddress, _userName, _userProfile, _userIcon, block.timestamp));
   }
 
   // 全User取得

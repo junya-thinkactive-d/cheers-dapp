@@ -30,14 +30,23 @@ export declare namespace SharedStruct {
     projectName: PromiseOrValue<string>;
     projectContents: PromiseOrValue<string>;
     projectReword: PromiseOrValue<string>;
+    creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type ProjectStructOutput = [string, string, string, string, string] & {
+  export type ProjectStructOutput = [
+    string,
+    string,
+    string,
+    string,
+    string,
+    BigNumber
+  ] & {
     projectAddress: string;
     belongDaoAddress: string;
     projectName: string;
     projectContents: string;
     projectReword: string;
+    creationTime: BigNumber;
   };
 }
 
