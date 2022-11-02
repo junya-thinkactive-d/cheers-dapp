@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { HardhatUserConfig } from 'hardhat/config';
 import '@typechain/hardhat';
 import 'hardhat-contract-sizer';
@@ -23,6 +24,12 @@ const config: HardhatUserConfig = {
   paths: {
     artifacts: '../client/src/libs/hardhat/artifacts',
   },
+  // networks: {
+  //   rinkeby: {
+  //     url: process.env.RINKEBY_INFURA,
+  //     accounts: [process.env.PRIVATE_KEY],
+  //   },
+  // },
 };
 
 export default config;
