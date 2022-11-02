@@ -1,17 +1,23 @@
-import { ethers } from "hardhat";
-import { CHERToken, CherFaucet, UsersData, DaosData, ProjectsData, PoolListData, UserPoolFactory, DaoPoolFactory, Cheers } from '../types';
+import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
+import { expect } from 'chai';
+import { ethers } from 'hardhat';
+import { CherFaucet, UsersData, DaosData, ProjectsData, PoolListData, UserPoolFactory, DaoPoolFactory, Cheers } from '../types';
 
-async function main() {
-  let cherFaucet: CherFaucet;
-
-  let usersData: UsersData;
-  let daosData: DaosData;
-  let projectsData: ProjectsData;
-  let poolListData: PoolListData;
+describe('deployTest', function () {
+    let cherFaucet: CherFaucet;
   
-  let userPoolFactory: UserPoolFactory;
-  let daoPoolFactory: DaoPoolFactory;
-  let cheers: Cheers;
+    let usersData: UsersData;
+    let daosData: DaosData;
+    let projectsData: ProjectsData;
+    let poolListData: PoolListData;
+    
+    let userPoolFactory: UserPoolFactory;
+    let daoPoolFactory: DaoPoolFactory;
+    let cheers: Cheers;
+
+  async function fixture() {
+    const [deployer] = await ethers.getSigners();
+  
 
   const cherFaucetFactory = await ethers.getContractFactory("CherFaucet");
   cherFaucet = await cherFaucetFactory.deploy();
@@ -65,9 +71,31 @@ async function main() {
 
   const setUserPoolFactory = await cheers.setUserPoolFactory(userPoolFactory.address);
   await setUserPoolFactory.wait();
-}
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
+
+    return { cherFaucet, usersData, daosData, projectsData, poolListData, userPoolFactory, daoPoolFactory, cheers, deployer };
+  }
+
+  describe('Deploy test', async () => {
+    it('Should deploy', async () => {
+      const { cherFaucet, usersData, daosData, projectsData, poolListData, userPoolFactory, daoPoolFactory, cheers, deployer } = await loadFixture(fixture);
+    });
+  });
+
+  describe('removeCheerProject test', async () => {
+
+    const { cherFaucet, usersData, daosData, projectsData, poolListData, userPoolFactory, daoPoolFactory, cheers, deployer } = await loadFixture(fixture);
+
+    it('Should remove a CheerProject by DaoPool', async () => {
+
+      const addCheerProject = await daoPool.addCheerProject(projectPool1.address);
+      await addCheerProject.wait();
+
+      const removeCheerProject = await daoPool.removeCheerProject(projectPool1.address);
+      await removeCheerProject.wait();
+
+      const isCheer = await daoPool.isCheer(projectPool1.address);
+      expect(isCheer).to.equal(false);
+    });
+  });
 });
