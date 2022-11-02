@@ -25,8 +25,8 @@ const config: HardhatUserConfig = {
     artifacts: '../client/src/libs/hardhat/artifacts',
   },
   networks: {
-    rinkeby: {
-      url: process.env.API_URL,
+    mumbai: {
+      url: `${process.env.API_URL}`,
       accounts: [`${process.env.PRIVATE_KEY}`],
     },
   },
