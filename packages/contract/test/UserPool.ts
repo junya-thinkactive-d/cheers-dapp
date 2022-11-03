@@ -233,4 +233,14 @@ describe('UserPool', function () {
       expect(balanceOf).to.equal(10);
     });
   });
+
+  describe('getTotalCher test', function () {
+    it("Should get total Cher owned by UserPool", async () => {
+      const { userPool, CHER } = await loadFixture(fixture);
+
+      const getTotalCher = await userPool.getTotalCher();
+      const balanceOf = await CHER.balanceOf(userPool.address);
+      expect(getTotalCher).to.deep.equal(balanceOf);
+    });
+  });
 });
