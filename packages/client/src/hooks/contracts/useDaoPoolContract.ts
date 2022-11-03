@@ -23,6 +23,7 @@ type ReturnUseDaoPoolContract = {
   daoProfile: string | undefined;
   daoIcon: string | undefined;
   allChallengeProjects: ProjectType[] | undefined;
+  totalCher: string | undefined;
   mining: boolean;
   handleChargeCher: (_amount: string) => Promise<void>;
   handleWithdrawCher: (_mount: string) => Promise<void>;
@@ -40,6 +41,7 @@ export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolCon
   const [daoProfile, setDaoProfile] = useState<string>();
   const [daoIcon, setDaoIcon] = useState<string>();
   const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>();
+  const [totalCher,setTotalCher] =useState<string>();
   const [mining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
@@ -171,13 +173,25 @@ export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolCon
     }
   }, [daoPoolContract]);
 
+  const handleGetTotalCher = useCallback(async () => {
+    try {
+      if (!daoPoolContract) return;
+      const getTotalCher = await daoPoolContract.getTotalCher();
+      const getTotalCherOrganize = ethers.utils.formatEther(getTotalCher);
+      setTotalCher(getTotalCherOrganize);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [daoPoolContract]);
+
   useEffect(() => {
-    handleGetDaoPoolAddress;
-    handleGetDaoAddress;
-    handleGetDaoName;
-    handleGetDaoProfile;
-    handleGetDaoIcon;
-    handleGetAllChallengeProjects;
+    handleGetDaoPoolAddress();
+    handleGetDaoAddress();
+    handleGetDaoName();
+    handleGetDaoProfile();
+    handleGetDaoIcon();
+    handleGetAllChallengeProjects();
+    handleGetTotalCher();
   }, [
     handleGetAllChallengeProjects,
     handleGetDaoAddress,
@@ -185,6 +199,7 @@ export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolCon
     handleGetDaoName,
     handleGetDaoPoolAddress,
     handleGetDaoProfile,
+    handleGetTotalCher
   ]);
 
   return {
@@ -194,6 +209,7 @@ export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolCon
     daoProfile,
     daoIcon,
     allChallengeProjects,
+    totalCher,
     mining,
     handleChargeCher,
     handleWithdrawCher,

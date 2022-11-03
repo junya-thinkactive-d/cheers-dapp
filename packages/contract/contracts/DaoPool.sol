@@ -158,6 +158,11 @@ contract DaoPool is IDaoPool {
     return isCheer[_cheerProjectPoolAddress];
   }
 
+  // このプールのcher総量
+  function getTotalCher() public view returns (uint256) {
+    return cher.balanceOf(address(this));
+  }
+
   function setCHER(address CHERAddress) public {
     CHER_CONTRACT_ADDRESS = CHERAddress;
     cher = IERC20(CHERAddress);

@@ -1,4 +1,7 @@
+import { DaoType } from '@/types/struct';
+
 import type { CheerType, ProjectType, UserType } from '../types/struct';
+
 export const usersData: UserType[] = [
   {
     userAddress: '0x9Ce7042FBf0595775913Cca1D71501fEA1fA2C18',
@@ -19,6 +22,29 @@ export const usersData: UserType[] = [
     userName: 'junya',
     userProfile: '楽観的でとりあえず特攻でいくCheersの零戦',
     userIcon: 'https://pbs.twimg.com/profile_images/1503885298194792450/RM0bAxAQ_400x400.png',
+    timestamp: new Date(2022, 10 - 1, 31),
+  },
+];
+export const daosData: DaoType[] = [
+  {
+    daoAddress: '0x9Ce7042FBf0595775913Cca1D71501fEA1fA2C18',
+    daoName: 'junya',
+    daoProfile: '楽観的でとりあえず特攻でいくCheersの零戦',
+    daoIcon: 'https://pbs.twimg.com/profile_images/1503885298194792450/RM0bAxAQ_400x400.png',
+    timestamp: new Date(2022, 10 - 1, 31),
+  },
+  {
+    daoAddress: '0x9Ce7042FBf0595775913Cca1D71501fEA1fA2C18',
+    daoName: 'junya',
+    daoProfile: '楽観的でとりあえず特攻でいくCheersの零戦',
+    daoIcon: 'https://pbs.twimg.com/profile_images/1503885298194792450/RM0bAxAQ_400x400.png',
+    timestamp: new Date(2022, 10 - 1, 31),
+  },
+  {
+    daoAddress: '0x9Ce7042FBf0595775913Cca1D71501fEA1fA2C18',
+    daoName: 'junya',
+    daoProfile: '楽観的でとりあえず特攻でいくCheersの零戦',
+    daoIcon: 'https://pbs.twimg.com/profile_images/1503885298194792450/RM0bAxAQ_400x400.png',
     timestamp: new Date(2022, 10 - 1, 31),
   },
 ];

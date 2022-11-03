@@ -1,11 +1,39 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+
 
 import { Level } from '@/components/shared/parts';
+import { useUserPoolContract} from '@/hooks/contracts'
+import { useUsersDataContract } from '@/hooks/contracts/data';
+import { UserType } from '@/types/struct';
 
-const UserProfileCard = () => {
+type Props = {
+  id: string;
+};
+
+const UserProfileCard = ({ id }: Props) => {
+  const ownerAddress = id
+  const { allUserList } = useUsersDataContract({});
+  const {userPoolAddress} = useUserPoolContract({ownerAddress})
+
+  const [userList, setUserList] = useState<UserType>();
+
+  const getUserData = useCallback(async () => {
+    if (!allUserList) return;
+    allUserList.map((user) => {
+      if (id == user.userAddress) {
+        setUserList(user);
+      }
+    });
+  }, [allUserList, id]);
+
+  useEffect(() => {
+    getUserData();
+  }, [getUserData]);
+
   return (
     <div className="flex justify-center items-center w-full">
-      <div className="w-[800px] h-[500px] my-12">
+      {userList && (
+         <div className="w-[800px] h-[500px] my-12">
         <div className="w-full h-full rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px]">
           <div className="w-full h-full bg-secondary rounded-xl grid grid-cols-4 grid-rows-4">
             <div className="col-span-2 row-span-2 py-8 px-12">
@@ -14,11 +42,11 @@ const UserProfileCard = () => {
             <div className="row-start-3 col-span-2 row-span-2 flex flex-col justify-between py-8 px-12 text-lg">
               <div className=" flex justify-left items-baseline border-b">
                 <div className="text-xl">name:</div>
-                <div className="ml-4 text-2xl">yawn</div>
+                <div className="ml-4 text-2xl">{userList.userName}</div>
               </div>
               <div className=" flex justify-left items-baseline border-b">
                 <div className="text-xl">profile:</div>
-                <div className="ml-4 text-xl">脳に知識の館をもつCheers開発の砦</div>
+                <div className="ml-4 text-xl">{userList.userProfile}</div>
               </div>
               <div className=" flex justify-left items-baseline border-b">
                 <div className="text-xl">total ex:</div>
@@ -59,6 +87,8 @@ const UserProfileCard = () => {
           </div>
         </div>
       </div>
+      )}
+     
     </div>
   );
 };

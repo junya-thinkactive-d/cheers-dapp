@@ -47,9 +47,8 @@ export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
   }, [usersDataContract]);
 
   useEffect(() => {
-    allUserList;
     handleGetAllUserList();
-  }, [allUserList, handleGetAllUserList]);
+  }, [handleGetAllUserList]);
 
   return {
     allUserList,

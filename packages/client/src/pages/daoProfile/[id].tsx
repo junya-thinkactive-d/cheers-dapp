@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 import { BeforeLogin } from '@/components/pages/home';
-import { UserProfileCard } from '@/components/pages/userProfile';
-import { ChallengeProjects, CheerProjects, PageTitle } from '@/components/shared/parts';
+import { MyProfileCard } from '@/components/pages/myProfile';
 import { useWalletContext } from '@/context/state';
 
-const UserProfile = () => {
+const Profile = () => {
   const walletContext = useWalletContext();
   const router = useRouter();
   const id = router.query.id?.toString() || '';
@@ -17,14 +16,19 @@ const UserProfile = () => {
         <BeforeLogin />
       ) : (
         <>
-          <PageTitle title="USER PROFILE" />
-          <UserProfileCard id={id} />
-          <ChallengeProjects />
-          <CheerProjects />
+          {id != walletContext?.currentAccount ? (
+            <>
+              <BeforeLogin />
+            </>
+          ) : (
+            <>
+              <MyProfileCard id={id} />
+            </>
+          )}
         </>
       )}
     </>
   );
 };
 
-export default UserProfile;
+export default Profile;
