@@ -91,7 +91,7 @@ contract ProjectPool is IProjectPool {
     return cheers;
   }
 
-  // このプロジェクトのcher総量
+  // このプールのcher総量
   function getTotalCher() public view returns (uint256) {
     return cher.balanceOf(address(this));
   }

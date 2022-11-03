@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ProjectCard } from '@/components/shared/card';
-import { projectsData } from '@/data';
+import { projectsData } from '@/mock';
 
 const ChallengeProjects = () => {
   return (

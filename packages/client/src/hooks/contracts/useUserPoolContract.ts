@@ -23,6 +23,7 @@ type ReturnUseUserPoolContract = {
   userProfile: string | undefined;
   userIcon: string | undefined;
   allChallengeProjects: ProjectType[] | undefined;
+  totalCheer: string | undefined;
   mining: boolean;
   handleChargeCher: (_amount: string) => Promise<void>;
   handleWithdrawCher: (_mount: string) => Promise<void>;
@@ -40,6 +41,7 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
   const [userProfile, setUserProfile] = useState<string>();
   const [userIcon, setUserIcon] = useState<string>();
   const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>();
+  const [totalCheer, setTotalCher] = useState<string>();
   const [mining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
@@ -172,15 +174,28 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
     }
   }, [userPoolContract]);
 
+  const handleGetTotalCher = useCallback(async () => {
+    try {
+      if (!userPoolContract) return;
+      const getTotalCher = await userPoolContract.getTotalCher();
+      const getTotalCherOrganize = ethers.utils.formatEther(getTotalCher);
+      setTotalCher(getTotalCherOrganize);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [userPoolContract]);
+
   useEffect(() => {
-    handleGetUserPoolAddress;
-    handleGetUserAddress;
-    handleGetUserName;
-    handleGetUserProfile;
-    handleGetUserIcon;
-    handleGetAllChallengeProjects;
+    handleGetUserPoolAddress();
+    handleGetUserAddress();
+    handleGetUserName();
+    handleGetUserProfile();
+    handleGetUserIcon();
+    handleGetAllChallengeProjects();
+    handleGetTotalCher();
   }, [
     handleGetAllChallengeProjects,
+    handleGetTotalCher,
     handleGetUserAddress,
     handleGetUserIcon,
     handleGetUserName,
@@ -195,6 +210,7 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
     userProfile,
     userIcon,
     allChallengeProjects,
+    totalCheer,
     mining,
     handleChargeCher,
     handleWithdrawCher,

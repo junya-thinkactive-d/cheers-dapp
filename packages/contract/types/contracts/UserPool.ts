@@ -58,6 +58,7 @@ export interface UserPoolInterface extends utils.Interface {
     "cheersDapp()": FunctionFragment;
     "cher()": FunctionFragment;
     "getAllChallengeProjects()": FunctionFragment;
+    "getTotalCher()": FunctionFragment;
     "getUserAddress()": FunctionFragment;
     "getUserIcon()": FunctionFragment;
     "getUserName()": FunctionFragment;
@@ -84,6 +85,7 @@ export interface UserPoolInterface extends utils.Interface {
       | "cheersDapp"
       | "cher"
       | "getAllChallengeProjects"
+      | "getTotalCher"
       | "getUserAddress"
       | "getUserIcon"
       | "getUserName"
@@ -121,6 +123,10 @@ export interface UserPoolInterface extends utils.Interface {
   encodeFunctionData(functionFragment: "cher", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "getAllChallengeProjects",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getTotalCher",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -200,6 +206,10 @@ export interface UserPoolInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "cher", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getAllChallengeProjects",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getTotalCher",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -309,6 +319,8 @@ export interface UserPool extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[SharedStruct.ProjectStructOutput[]]>;
 
+    getTotalCher(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     getUserAddress(overrides?: CallOverrides): Promise<[string]>;
 
     getUserIcon(overrides?: CallOverrides): Promise<[string]>;
@@ -387,6 +399,8 @@ export interface UserPool extends BaseContract {
     overrides?: CallOverrides
   ): Promise<SharedStruct.ProjectStructOutput[]>;
 
+  getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
+
   getUserAddress(overrides?: CallOverrides): Promise<string>;
 
   getUserIcon(overrides?: CallOverrides): Promise<string>;
@@ -464,6 +478,8 @@ export interface UserPool extends BaseContract {
     getAllChallengeProjects(
       overrides?: CallOverrides
     ): Promise<SharedStruct.ProjectStructOutput[]>;
+
+    getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
 
     getUserAddress(overrides?: CallOverrides): Promise<string>;
 
@@ -544,6 +560,8 @@ export interface UserPool extends BaseContract {
 
     getAllChallengeProjects(overrides?: CallOverrides): Promise<BigNumber>;
 
+    getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
+
     getUserAddress(overrides?: CallOverrides): Promise<BigNumber>;
 
     getUserIcon(overrides?: CallOverrides): Promise<BigNumber>;
@@ -622,6 +640,8 @@ export interface UserPool extends BaseContract {
     getAllChallengeProjects(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    getTotalCher(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getUserAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
