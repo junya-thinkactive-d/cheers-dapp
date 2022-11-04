@@ -51,7 +51,7 @@ export interface CheerListDataInterface extends utils.Interface {
   functions: {
     "addCheerDataList(address,address,uint256,string,uint256)": FunctionFragment;
     "getMyPoolCheerDataList(address)": FunctionFragment;
-    "getMyProjectCheerList(address)": FunctionFragment;
+    "getMyProjectCheerDataList(address)": FunctionFragment;
     "myPoolCheerDataList(address,uint256)": FunctionFragment;
     "myProjectCheerDataList(address,uint256)": FunctionFragment;
   };
@@ -60,7 +60,7 @@ export interface CheerListDataInterface extends utils.Interface {
     nameOrSignatureOrTopic:
       | "addCheerDataList"
       | "getMyPoolCheerDataList"
-      | "getMyProjectCheerList"
+      | "getMyProjectCheerDataList"
       | "myPoolCheerDataList"
       | "myProjectCheerDataList"
   ): FunctionFragment;
@@ -80,7 +80,7 @@ export interface CheerListDataInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "getMyProjectCheerList",
+    functionFragment: "getMyProjectCheerDataList",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
@@ -101,7 +101,7 @@ export interface CheerListDataInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getMyProjectCheerList",
+    functionFragment: "getMyProjectCheerDataList",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -157,7 +157,7 @@ export interface CheerListData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[SharedStruct.CheerStructOutput[]]>;
 
-    getMyProjectCheerList(
+    getMyProjectCheerDataList(
       _projectPoolAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[SharedStruct.CheerStructOutput[]]>;
@@ -205,7 +205,7 @@ export interface CheerListData extends BaseContract {
     overrides?: CallOverrides
   ): Promise<SharedStruct.CheerStructOutput[]>;
 
-  getMyProjectCheerList(
+  getMyProjectCheerDataList(
     _projectPoolAddress: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<SharedStruct.CheerStructOutput[]>;
@@ -253,7 +253,7 @@ export interface CheerListData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<SharedStruct.CheerStructOutput[]>;
 
-    getMyProjectCheerList(
+    getMyProjectCheerDataList(
       _projectPoolAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<SharedStruct.CheerStructOutput[]>;
@@ -304,7 +304,7 @@ export interface CheerListData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getMyProjectCheerList(
+    getMyProjectCheerDataList(
       _projectPoolAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -337,7 +337,7 @@ export interface CheerListData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getMyProjectCheerList(
+    getMyProjectCheerDataList(
       _projectPoolAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;

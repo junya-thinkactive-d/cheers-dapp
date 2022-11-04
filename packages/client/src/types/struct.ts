@@ -25,6 +25,7 @@ export type ProjectType = {
 }
 
 export type CheerType = {
+  projectAddress:string;
   cheerPoolAddress:string;
   timestamp:Date;
   message:string;

@@ -10,16 +10,25 @@ import { getEthereumSafety } from '@/utils';
 const CONTRACT_ADDRESS = '';
 const CONTRACT_ABI = CheerListDataContractABI.abi;
 
-type Props = {};
+type Props = {
+  _cheerPoolAddress?: string;
+  _projectPoolAddress?: string;
+};
 
-type ReturnCheerListDataContract = {};
+type ReturnCheerListDataContract = {
+  myPoolCheerDataList: CheerType[];
+  myProjectCheerDataList: CheerType[];
+};
 
-export const useCheerListDataContract = ({}: Props): ReturnCheerListDataContract => {
+export const useCheerListDataContract = ({
+  _cheerPoolAddress,
+  _projectPoolAddress,
+}: Props): ReturnCheerListDataContract => {
   const [myPoolCheerDataList, setMyPoolCheerDataList] = useState<CheerType[]>([]);
-  const [myProjectDataList, setMyProjectDataList] = useState<CheerType[]>([]);
+  const [myProjectCheerDataList, setMyProjectCheerDataList] = useState<CheerType[]>([]);
   const ethereum = getEthereumSafety();
 
-  const CheerListDataContract: CheerListDataTypes | null = useMemo(() => {
+  const cheerListDataContract: CheerListDataTypes | null = useMemo(() => {
     if (!ethereum) return null;
     // @ts-ignore: ethereum as ethers.providers.ExternalProvider
     const provider = new ethers.providers.Web3Provider(ethereum);
@@ -27,7 +36,53 @@ export const useCheerListDataContract = ({}: Props): ReturnCheerListDataContract
     return new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer) as CheerListDataTypes;
   }, [ethereum]);
 
-  const handleGet
+  const handleGetMyPoolCheerDataList = useCallback(async () => {
+    try {
+      if (!cheerListDataContract) return;
+      if (!_cheerPoolAddress) return;
+      const getMyProjectCheerDataList = await cheerListDataContract.getMyPoolCheerDataList(_cheerPoolAddress);
+      const myProjectCheerDataListOrganize = getMyProjectCheerDataList.map((cheerData) => {
+        return {
+          projectAddress: cheerData.projectAddress,
+          cheerPoolAddress: cheerData.cheerPoolAddress,
+          timestamp: new Date(cheerData.creationTime.toNumber() * 1000),
+          message: cheerData.message,
+          cher: cheerData.cher.toString(),
+        };
+      });
+      setMyProjectCheerDataList(myProjectCheerDataListOrganize);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [_cheerPoolAddress, cheerListDataContract]);
 
-  return {};
+  const handleGetMyProjectCheerDataList = useCallback(async () => {
+    try {
+      if (!cheerListDataContract) return;
+      if (!_projectPoolAddress) return;
+      const getMyPoolCheerDataList = await cheerListDataContract.getMyProjectCheerDataList(_projectPoolAddress);
+      const myPoolCheerDataListOrganize = getMyPoolCheerDataList.map((cheerData) => {
+        return {
+          projectAddress: cheerData.projectAddress,
+          cheerPoolAddress: cheerData.cheerPoolAddress,
+          timestamp: new Date(cheerData.creationTime.toNumber() * 1000),
+          message: cheerData.message,
+          cher: cheerData.cher.toString(),
+        };
+      });
+      setMyPoolCheerDataList(myPoolCheerDataListOrganize);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [_projectPoolAddress, cheerListDataContract]);
+
+  useEffect(() => {
+    handleGetMyPoolCheerDataList();
+    handleGetMyProjectCheerDataList();
+  }, [handleGetMyPoolCheerDataList, handleGetMyProjectCheerDataList]);
+
+  return {
+    myPoolCheerDataList,
+    myProjectCheerDataList,
+  };
 };

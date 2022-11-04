@@ -51,7 +51,7 @@ const _abi = [
         type: "address",
       },
     ],
-    name: "getMyPoolCheeerDataList",
+    name: "getMyPoolCheerDataList",
     outputs: [
       {
         components: [
@@ -97,7 +97,7 @@ const _abi = [
         type: "address",
       },
     ],
-    name: "getMyProjectCheerList",
+    name: "getMyProjectCheerDataList",
     outputs: [
       {
         components: [

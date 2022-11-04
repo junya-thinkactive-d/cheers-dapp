@@ -21,7 +21,7 @@ contract CheerListData is ICheerListData {
     uint256 _cher
   ) external {
     addMyPoolCheerDataList(_projectPoolAddress, _cheerPoolAddres, _creationTime, _message, _cher);
-    addMyProjectDataList(_projectPoolAddress, _cheerPoolAddres, _creationTime, _message, _cher);
+    addMyProjectCheerDataList(_projectPoolAddress, _cheerPoolAddres, _creationTime, _message, _cher);
   }
 
   function addMyPoolCheerDataList(
@@ -36,7 +36,7 @@ contract CheerListData is ICheerListData {
     );
   }
 
-  function addMyProjectDataList(
+  function addMyProjectCheerDataList(
     address _projectPoolAddress,
     address _cheerPoolAddres,
     uint256 _creationTime,
@@ -52,7 +52,7 @@ contract CheerListData is ICheerListData {
     return myPoolCheerDataList[_cheerPoolAddress];
   }
 
-  function getMyProjectCheerList(address _projectPoolAddress) public view returns (SharedStruct.Cheer[] memory) {
+  function getMyProjectCheerDataList(address _projectPoolAddress) public view returns (SharedStruct.Cheer[] memory) {
     return myPoolCheerDataList[_projectPoolAddress];
   }
 }
