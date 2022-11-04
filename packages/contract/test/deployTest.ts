@@ -35,7 +35,6 @@ describe('DeployTest',  async () => {
         await cheerListData.deployed();
         console.log("CheerListData deployed to:", cheerListData.address);
       
-      
         const usersDataFactory = await ethers.getContractFactory("UsersData");
         usersData = await usersDataFactory.deploy();
         await usersData.deployed();
@@ -74,10 +73,10 @@ describe('DeployTest',  async () => {
     
         await (await cheers.setDaoPoolFactory(daoPoolFactory.address)).wait();
         await (await cheers.setUserPoolFactory(userPoolFactory.address)).wait();
-        await(await daoPoolFactory.setPoolListData(poolListData.address)).wait();
-        await(await daoPoolFactory.setDaosData(daosData.address)).wait();
-        await(await userPoolFactory.setPoolListData(poolListData.address)).wait();
-        await(await userPoolFactory.setUsersData(usersData.address)).wait();
+        // await(await daoPoolFactory.setPoolListData(poolListData.address)).wait();
+        // await(await daoPoolFactory.setDaosData(daosData.address)).wait();
+        // await(await userPoolFactory.setPoolListData(poolListData.address)).wait();
+        // await(await userPoolFactory.setUsersData(usersData.address)).wait();
 
     });
 

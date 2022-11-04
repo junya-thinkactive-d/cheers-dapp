@@ -7,11 +7,12 @@ import '../UserPool.sol';
 
 contract UserPoolFactory {
   // POOl
-  address POOLLISTDATA_CONTRACT_ADDRESS; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  address POOLLISTDATA_CONTRACT_ADDRESS = 0xf244F1d6A605797721f2d000107a4d129996adFa;
+  // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   IPoolListData public poolListData;
 
   // USER
-  address USERS_DATA_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
+  address USERS_DATA_CONTRACT_ADDRESS = 0x56853f3bF537a055FcBFCdE1f784048148440aee; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IUsersData public usersData;
 
   constructor() {

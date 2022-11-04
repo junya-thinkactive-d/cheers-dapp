@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { HardhatUserConfig } from 'hardhat/config';
 import '@typechain/hardhat';
 import 'hardhat-contract-sizer';
@@ -7,12 +8,12 @@ import '@nomiclabs/hardhat-waffle';
 const config: HardhatUserConfig = {
   solidity: {
     version: '0.8.17',
-    settings:{
-      optimizer: {
-        enabled: true,
-        runs: 200,
-      },
-    },
+    // settings:{
+    //   optimizer: {
+    //     enabled: true,
+    //     runs: 200,
+    //   },
+    // },
   },
   typechain: {
     outDir: '../client/src/libs/hardhat/types' && './types',
@@ -23,6 +24,12 @@ const config: HardhatUserConfig = {
   },
   paths: {
     artifacts: '../client/src/libs/hardhat/artifacts',
+  },
+  networks: {
+    mumbai: {
+      url: `${process.env.API_URL}`,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+    },
   },
 };
 
