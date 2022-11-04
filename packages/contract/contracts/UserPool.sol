@@ -10,7 +10,7 @@ import './ProjectPool.sol';
 
 contract UserPool is IUserPool {
   // PROJECT
-  address PROJECTSDATA_CONTRACT_ADDRESS; // = projectsDataコントラクトアドレス 先にDaoDataコントラクトをdeploy
+  address PROJECTSDATA_CONTRACT_ADDRESS = 0xD511eDC5b6F9f6fcd1135cd9F55857fB7cf606A8; // = projectsDataコントラクトアドレス 先にDaoDataコントラクトをdeploy
   IProjectsData public projectsData;
 
   IERC20 public cher;

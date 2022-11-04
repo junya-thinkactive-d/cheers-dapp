@@ -29,9 +29,9 @@ contract ProjectPool is IProjectPool {
   }
 
   // POOl
-  address POOLLISTDATA_CONTRACT_ADDRESS; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  address POOLLISTDATA_CONTRACT_ADDRESS = 0xf244F1d6A605797721f2d000107a4d129996adFa; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   IPoolListData public poolListData;
-  address CHEERLISTDATA_CONTRACT_ADDRESS; // = cheerDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  address CHEERLISTDATA_CONTRACT_ADDRESS = 0x09d290E79Eb6ac7bFb1f779ada680Fbe252b336C; // = cheerDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   ICheerListData public cheerListData;
 
   constructor(
