@@ -32,6 +32,15 @@ describe('PoolListData', function () {
     });
   });
 
+  describe('getSearchWalletAddress test', function () {
+    it("Should initial getSearchWalletAddress be zero address", async () => {
+      const { poolListData, user1 } = await loadFixture(fixture);
+
+      let getSearchWalletAddress = await poolListData.getSearchWalletAddress(user1.address);
+      expect(getSearchWalletAddress).to.equal(ethers.constants.AddressZero);
+    });
+  });
+
   describe('addMyPoolAddress test', function () {
     it("Should add poolAddress", async () => {
       const { poolListData, user1, pool1 } = await loadFixture(fixture);
