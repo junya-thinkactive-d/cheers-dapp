@@ -14,20 +14,7 @@ type Props = {
 };
 
 const CheerProjects = ({ ownerAddress }: Props) => {
-  const [projectOwnerAddressList,setProjectOwnerAddressList] = useState<string[]>([])
-
-  const { allProjectList } = useProjectsDataContract({});
-  const getProjectOwnerAddressList = useCallback((allProjectList: ProjectType[]) => {
-    const projectOwnerAddressList:string[] = [];
-    allProjectList.map((project) => {
-      projectOwnerAddressList.push(project.projectOwnerAddress);
-    });
-    setProjectOwnerAddressList(projectOwnerAddressList)
-  }, []);
-
-  useEffect(() => {
-    getProjectOwnerAddressList(allProjectList);
-  }, [allProjectList, getProjectOwnerAddressList]);
+  
 
   return (
     <div className="p-12">

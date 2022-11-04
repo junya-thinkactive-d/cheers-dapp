@@ -4,7 +4,6 @@ import { ethers } from 'ethers';
 
 import ProjectPoolContractABI from '@/libs/hardhat/artifacts/contracts/ProjectPool.sol/ProjectPool.json';
 import type { ProjectPool as ProjectPoolTypes } from '@/libs/hardhat/types';
-import { ProjectCheer } from '@/types/contractTypes';
 import { getEthereumSafety } from '@/utils';
 
 const CONTRACT_ABI = ProjectPoolContractABI.abi;
@@ -16,13 +15,11 @@ type Props = {
 type ReturnProjectPoolDataContract = {
   mining: boolean;
   handleMintCheer: (_cher: number, _message: string) => Promise<void>;
-  allCheers: ProjectCheer[] | undefined;
   totalCher: string | undefined;
 };
 
 export const useProjectPoolContract = ({ projectPoolAddress }: Props): ReturnProjectPoolDataContract => {
   const [mining, setMining] = useState<boolean>(false);
-  const [allCheers, setAllCheers] = useState<ProjectCheer[]>();
   const [totalCher, setTotalCher] = useState<string>();
   const CONTRACT_ADDRESS = projectPoolAddress;
 
@@ -51,24 +48,6 @@ export const useProjectPoolContract = ({ projectPoolAddress }: Props): ReturnPro
     [projectPoolContract],
   );
 
-  const handleGetAllCheers = useCallback(async () => {
-    try {
-      if (!projectPoolContract) return;
-      const getAllCheers = await projectPoolContract.getAllCheers();
-      const getAllCheersOrganize = getAllCheers.map((cheer) => {
-        return {
-          cheerPoolAddress: cheer.cheerPoolAddress,
-          timestamp: new Date(cheer.creationTime.toNumber() * 1000),
-          message: cheer.message,
-          cher: ethers.utils.formatEther(cheer.cher),
-        };
-      });
-      setAllCheers(getAllCheersOrganize);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [projectPoolContract]);
-
   const handleGetTotalCher = useCallback(async () => {
     try {
       if (!projectPoolContract) return;
@@ -81,14 +60,12 @@ export const useProjectPoolContract = ({ projectPoolAddress }: Props): ReturnPro
   }, [projectPoolContract]);
 
   useEffect(() => {
-    handleGetAllCheers();
     handleGetTotalCher();
-  }, [handleGetAllCheers, handleGetTotalCher]);
+  }, [handleGetTotalCher]);
 
   return {
     mining,
     handleMintCheer,
-    allCheers,
     totalCher,
   };
 };

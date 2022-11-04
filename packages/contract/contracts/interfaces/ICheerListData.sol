@@ -12,7 +12,7 @@ interface ICheerListData {
     uint256 _cher
   ) external;
 
-  function getMyPoolCheeerDataList(address _cheerPoolAddress) external view returns (SharedStruct.Cheer[] memory);
+  function getMyPoolCheerDataList(address _cheerPoolAddress) external view returns (SharedStruct.Cheer[] memory);
 
   function getMyProjectCheerList(address _projectPoolAddress) external view returns (SharedStruct.Cheer[] memory);
 }
