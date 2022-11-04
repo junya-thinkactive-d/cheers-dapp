@@ -57,12 +57,12 @@ describe('CheerListData', function () {
 
       addCheerDataList = await cheerListData.addCheerDataList(project1.address, userPool1.address, 123, "ガンバ！", 100);
 
-      // getMyPoolCheerDataList = await cheerListData.getMyPoolCheerDataList(userPool1.address);
-      // expect(getMyPoolCheerDataList[0][0]).to.equal(project1.address);
-      // expect(getMyPoolCheerDataList[0][1]).to.equal(userPool1.address);
-      // expect(getMyPoolCheerDataList[0][2]).to.equal(123);
-      // expect(getMyPoolCheerDataList[0][3]).to.equal("ガンバ！");
-      // expect(getMyPoolCheerDataList[0][4]).to.equal(100);
+      getMyPoolCheerDataList = await cheerListData.getMyPoolCheerDataList(userPool1.address);
+      expect(getMyPoolCheerDataList[0][0]).to.equal(project1.address);
+      expect(getMyPoolCheerDataList[0][1]).to.equal(userPool1.address);
+      expect(getMyPoolCheerDataList[0][2]).to.equal(123);
+      expect(getMyPoolCheerDataList[0][3]).to.equal("ガンバ！");
+      expect(getMyPoolCheerDataList[0][4]).to.equal(100);
 
       getMyProjectCheerDataList = await cheerListData.getMyProjectCheerDataList(userPool1.address);
       expect(getMyProjectCheerDataList[0][0]).to.equal(project1.address);

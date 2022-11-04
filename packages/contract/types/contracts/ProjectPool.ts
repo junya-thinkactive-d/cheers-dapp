@@ -35,6 +35,7 @@ export interface ProjectPoolInterface extends utils.Interface {
     "projectName()": FunctionFragment;
     "projectReword()": FunctionFragment;
     "setCHER(address)": FunctionFragment;
+    "setCheerListData(address)": FunctionFragment;
     "setPoolListData(address)": FunctionFragment;
     "totalCher()": FunctionFragment;
   };
@@ -51,6 +52,7 @@ export interface ProjectPoolInterface extends utils.Interface {
       | "projectName"
       | "projectReword"
       | "setCHER"
+      | "setCheerListData"
       | "setPoolListData"
       | "totalCher"
   ): FunctionFragment;
@@ -93,6 +95,10 @@ export interface ProjectPoolInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
+    functionFragment: "setCheerListData",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "setPoolListData",
     values: [PromiseOrValue<string>]
   ): string;
@@ -126,6 +132,10 @@ export interface ProjectPoolInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "setCHER", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setCheerListData",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "setPoolListData",
     data: BytesLike
@@ -189,6 +199,11 @@ export interface ProjectPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    setCheerListData(
+      cheerListDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     setPoolListData(
       poolListDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -224,6 +239,11 @@ export interface ProjectPool extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  setCheerListData(
+    cheerListDataAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   setPoolListData(
     poolListDataAddress: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -256,6 +276,11 @@ export interface ProjectPool extends BaseContract {
 
     setCHER(
       CHERAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setCheerListData(
+      cheerListDataAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -297,6 +322,11 @@ export interface ProjectPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    setCheerListData(
+      cheerListDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     setPoolListData(
       poolListDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -330,6 +360,11 @@ export interface ProjectPool extends BaseContract {
 
     setCHER(
       CHERAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setCheerListData(
+      cheerListDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

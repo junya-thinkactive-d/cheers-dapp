@@ -1,13 +1,13 @@
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
-import { ProjectPool, PoolListData, DaoPool, CHERToken, ProjectsData } from '../types'
+import { ProjectPool, PoolListData, DaoPool, CHERToken, CheerListData } from '../types'
 
 describe('ProjectPool', function () {
 
   let projectPool: ProjectPool;
   let poolListData: PoolListData;
-  let projectsData: ProjectsData;
+  let cheerListData: CheerListData;
   let daoPool: DaoPool;
   let daoPool2: DaoPool;
   let daoPool3: DaoPool;
@@ -51,9 +51,9 @@ describe('ProjectPool', function () {
     projectPool = await projectPoolFactory.deploy(user1.address, dao1.address, "Project_Name", "Project_Contents", "Project_Reword");
     await projectPool.deployed();
 
-    const projectsDataFactory = await ethers.getContractFactory('ProjectsData');
-    projectsData = await projectsDataFactory.deploy();
-    await projectsData.deployed();
+    const cheerListDataFactory = await ethers.getContractFactory('CheerListData');
+    cheerListData = await cheerListDataFactory.deploy();
+    await cheerListData.deployed();
 
     let setCHER;
     setCHER = await daoPool.setCHER(CHER.address);
@@ -96,14 +96,14 @@ describe('ProjectPool', function () {
     });
   });
 
-//   describe('getAllCheers test', function () {
-//     it("Should get all cheers", async () => {
-//       const { projectPool } = await loadFixture(fixture);
+  describe('getAllCheers test', function () {
+    it("Should get all cheers", async () => {
+      const { projectPool } = await loadFixture(fixture);
 
-//       const getAllCheers = await projectPool.getAllCheers();
-//       expect(getAllCheers).to.deep.equal([]);
-//     });
-//   });
+      // const getAllCheers = await projectPool.getAllCheers();
+      // expect(getAllCheers).to.deep.equal([]);
+    });
+  });
 
   describe('getTotalCher test', function () {
     it("Should get all cheers", async () => {
@@ -114,90 +114,92 @@ describe('ProjectPool', function () {
     });
   });
 
-//   describe('mintCheer test', function () {
-//     it("Should cheer the project and distribute CHER to supporters", async () => {
-//       const { projectPool, daoPool2, poolListData, user1, dao1, dao2, dao3 } = await loadFixture(fixture);
+  describe('mintCheer test', function () {
+    it("Should cheer the project and distribute CHER to supporters", async () => {
+      const { projectPool, daoPool2, poolListData, user1, dao1, dao2, dao3 } = await loadFixture(fixture);
 
-//       const setProjectsData = await projectPool.setProjectsData(projectsData.address);
-//       await setProjectsData.wait();
+      const setCheerListData = await projectPool.setCheerListData(cheerListData.address);
+      await setCheerListData.wait();
 
-//       let transfer;
-//       transfer = await CHER.connect(dao2).transfer(daoPool2.address, 100);
-//       await transfer.wait();
+      let transfer;
+      transfer = await CHER.connect(dao2).transfer(daoPool2.address, 100);
+      await transfer.wait();
 
-//       let approve;
-//       approve = await daoPool2.connect(dao2).approveCherToProjectPool(projectPool.address, 100);
-//       await approve.wait();
+      let approve;
+      approve = await daoPool2.connect(dao2).approveCherToProjectPool(projectPool.address, 100);
+      await approve.wait();
 
-//       let allowance;
-//       allowance = await CHER.allowance(daoPool2.address, projectPool.address);
-//       expect(allowance).to.equal(100);
+      let allowance;
+      allowance = await CHER.allowance(daoPool2.address, projectPool.address);
+      expect(allowance).to.equal(100);
 
-//       let addMyPoolAddress;
-//       addMyPoolAddress = await poolListData.addMyPoolAddress(dao2.address, daoPool2.address);
-//       await addMyPoolAddress.wait();
-//       expect(await poolListData.getMyPoolAddress(dao2.address)).to.equal(daoPool2.address);
+      let addMyPoolAddress;
+      addMyPoolAddress = await poolListData.addMyPoolAddress(dao2.address, daoPool2.address);
+      await addMyPoolAddress.wait();
+      expect(await poolListData.getMyPoolAddress(dao2.address)).to.equal(daoPool2.address);
 
-//       let mintCheer;
-//       mintCheer = await projectPool.connect(dao2).mintCheer(100, "ガンバッテ！");
-//       await mintCheer.wait();
+      let mintCheer;
+      mintCheer = await projectPool.connect(dao2).mintCheer(100, "ガンバッテ！");
+      await mintCheer.wait();
 
-//       let balanceOf;
-//       balanceOf = await CHER.balanceOf(projectPool.address);
-//       expect(balanceOf).to.equal(0);
+      let balanceOf;
+      balanceOf = await CHER.balanceOf(projectPool.address);
+      expect(balanceOf).to.equal(0);
 
-//       let getEachProjectCheerList;
-//       getEachProjectCheerList = await projectsData.getEachProjectCheerList(projectPool.address);
+      let getMyPoolCheerDataList;
+      getMyPoolCheerDataList = await cheerListData.getMyPoolCheerDataList(daoPool2.address);
 
-//       expect(getEachProjectCheerList.length).to.equal(1);
+      expect(getMyPoolCheerDataList.length).to.equal(1);
 
-//       expect(getEachProjectCheerList[0].cheerPoolAddress).to.equal(daoPool2.address);
-//       expect(getEachProjectCheerList[0].message).to.equal("ガンバッテ！");
-//       expect(getEachProjectCheerList[0].cher).to.equal(100);
+      expect(getMyPoolCheerDataList[0].projectAddress).to.equal(projectPool.address);
+      expect(getMyPoolCheerDataList[0].cheerPoolAddress).to.equal(daoPool2.address);
+      expect(getMyPoolCheerDataList[0].message).to.equal("ガンバッテ！");
+      expect(getMyPoolCheerDataList[0].cher).to.equal(100);
 
-//       let totalCher;
-//       totalCher = await projectPool.totalCher();
-//       expect(totalCher).to.equal(100);
+      let totalCher;
+      totalCher = await projectPool.totalCher();
+      expect(totalCher).to.equal(100);
 
-//       balanceOf = await CHER.balanceOf(daoPool2.address);
-//       expect(balanceOf).to.equal(70);
-//       balanceOf = await CHER.balanceOf(user1.address);
-//       expect(balanceOf).to.equal(25);
-//       balanceOf = await CHER.balanceOf(dao1.address);
-//       expect(balanceOf).to.equal(5);
+      balanceOf = await CHER.balanceOf(daoPool2.address);
+      expect(balanceOf).to.equal(70);
+      balanceOf = await CHER.balanceOf(user1.address);
+      expect(balanceOf).to.equal(25);
+      balanceOf = await CHER.balanceOf(dao1.address);
+      expect(balanceOf).to.equal(5);
 
-//       transfer = await CHER.connect(dao3).transfer(daoPool3.address, 100);
-//       await transfer.wait();
+      transfer = await CHER.connect(dao3).transfer(daoPool3.address, 100);
+      await transfer.wait();
 
-//       approve = await daoPool3.connect(dao3).approveCherToProjectPool(projectPool.address, 100);
-//       await approve.wait();
+      approve = await daoPool3.connect(dao3).approveCherToProjectPool(projectPool.address, 100);
+      await approve.wait();
 
-//       allowance = await CHER.allowance(daoPool3.address, projectPool.address);
-//       expect(allowance).to.equal(100);
+      allowance = await CHER.allowance(daoPool3.address, projectPool.address);
+      expect(allowance).to.equal(100);
 
-//       addMyPoolAddress = await poolListData.addMyPoolAddress(dao3.address, daoPool3.address);
-//       await addMyPoolAddress.wait();
-//       expect(await poolListData.getMyPoolAddress(dao3.address)).to.equal(daoPool3.address);
+      addMyPoolAddress = await poolListData.addMyPoolAddress(dao3.address, daoPool3.address);
+      await addMyPoolAddress.wait();
+      expect(await poolListData.getMyPoolAddress(dao3.address)).to.equal(daoPool3.address);
 
-//       mintCheer = await projectPool.connect(dao3).mintCheer(100, "ファイト！");
-//       await mintCheer.wait();
+      mintCheer = await projectPool.connect(dao3).mintCheer(100, "ファイト！");
+      await mintCheer.wait();
 
-//       totalCher = await projectPool.totalCher();
-//       expect(totalCher).to.equal(200);
+      totalCher = await projectPool.totalCher();
+      expect(totalCher).to.equal(200);
 
-//       balanceOf = await CHER.balanceOf(projectPool.address);
-//       expect(balanceOf).to.equal(0);
+      balanceOf = await CHER.balanceOf(projectPool.address);
+      expect(balanceOf).to.equal(0);
 
 
-//       getEachProjectCheerList = await projectsData.getEachProjectCheerList(projectPool.address);
+      getMyPoolCheerDataList = await cheerListData.getMyPoolCheerDataList(daoPool3.address);
 
-//       expect(getEachProjectCheerList.length).to.equal(2);
+      expect(getMyPoolCheerDataList.length).to.equal(1);
 
-//       expect(getEachProjectCheerList[1].cheerPoolAddress).to.equal(daoPool3.address);
-//       expect(getEachProjectCheerList[1].message).to.equal("ファイト！");
-//       expect(getEachProjectCheerList[1].cher).to.equal(100);
-//     });
-//   });
+      expect(getMyPoolCheerDataList[0].projectAddress).to.equal(projectPool.address);
+      expect(getMyPoolCheerDataList[0].cheerPoolAddress).to.equal(daoPool3.address);
+      expect(getMyPoolCheerDataList[0].message).to.equal("ファイト！");
+      expect(getMyPoolCheerDataList[0].cher).to.equal(100);
+    });
+  });
 
   describe('getTotalCher test', function () {
     it("Should get total Cher owned by ProjectPool", async () => {

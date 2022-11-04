@@ -163,15 +163,15 @@ contract DaoPool is IDaoPool {
     return cher.balanceOf(address(this));
   }
 
-  function setCHER(address CHERAddress) public {
-    CHER_CONTRACT_ADDRESS = CHERAddress;
-    cher = IERC20(CHERAddress);
-  }
+  // function setCHER(address CHERAddress) public {
+  //   CHER_CONTRACT_ADDRESS = CHERAddress;
+  //   cher = IERC20(CHERAddress);
+  // }
 
-  function setProjectsData(address projectsDataAddress) public {
-    PROJECTSDATA_CONTRACT_ADDRESS = projectsDataAddress;
-    projectsData = IProjectsData(projectsDataAddress);
-  }
+  // function setProjectsData(address projectsDataAddress) public {
+  //   PROJECTSDATA_CONTRACT_ADDRESS = projectsDataAddress;
+  //   projectsData = IProjectsData(projectsDataAddress);
+  // }
 
   function approveCherToProjectPool(address _projectPoolAddress, uint256 _cherAmount) external onlyOwner {
     require(cher.balanceOf(address(this)) >= _cherAmount, 'not insufficient');

@@ -2,12 +2,13 @@ import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
-import { CherFaucet, UsersData, DaosData, ProjectsData, PoolListData, UserPoolFactory, DaoPoolFactory, Cheers } from '../types'
+import { CherFaucet, CheerListData, UsersData, DaosData, ProjectsData, PoolListData, UserPoolFactory, DaoPoolFactory, Cheers } from '../types'
 
 describe('DeployTest',  async () => {
 
     let cherFaucet: CherFaucet;
 
+    let cheerListData: CheerListData;
     let usersData: UsersData;
     let daosData: DaosData;
     let projectsData: ProjectsData;
@@ -27,6 +28,12 @@ describe('DeployTest',  async () => {
         cherFaucet = await cherFaucetFactory.deploy();
         await cherFaucet.deployed();
         console.log("CherFaucet deployed to:", cherFaucet.address);
+
+
+        const cheerListDataFactory = await ethers.getContractFactory("CheerListData");
+        cheerListData = await cheerListDataFactory.deploy();
+        await cheerListData.deployed();
+        console.log("CheerListData deployed to:", cheerListData.address);
       
       
         const usersDataFactory = await ethers.getContractFactory("UsersData");

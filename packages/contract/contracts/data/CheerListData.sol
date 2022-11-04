@@ -53,6 +53,6 @@ contract CheerListData is ICheerListData {
   }
 
   function getMyProjectCheerDataList(address _projectPoolAddress) public view returns (SharedStruct.Cheer[] memory) {
-    return myPoolCheerDataList[_projectPoolAddress];
+    return myProjectCheerDataList[_projectPoolAddress];
   }
 }
