@@ -14,18 +14,7 @@ interface IProjectsData {
     string memory _projectReword
   ) external;
 
-  // 各プロジェクトのcheerの追加
-  function addEachProjectCheerList(
-    address _projectPoolAddress,
-    address _cheerPoolAddres,
-    uint256 _creationTime,
-    string memory _message,
-    uint256 _cher
-  ) external;
 
   // アドレスごとのProject取得
   function getEachProjectList(address _projectOwnerAddress) external view returns (SharedStruct.Project[] memory);
-
-  // ProjectごとのCheer取得
-  function getEachProjectCheerList(address _projectPoolAddress) external view returns(SharedStruct.Cheer[] memory);
 }

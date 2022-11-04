@@ -24,28 +24,6 @@ import type {
 } from "../../common";
 
 export declare namespace SharedStruct {
-  export type CheerStruct = {
-    projectAddress: PromiseOrValue<string>;
-    cheerPoolAddress: PromiseOrValue<string>;
-    creationTime: PromiseOrValue<BigNumberish>;
-    message: PromiseOrValue<string>;
-    cher: PromiseOrValue<BigNumberish>;
-  };
-
-  export type CheerStructOutput = [
-    string,
-    string,
-    BigNumber,
-    string,
-    BigNumber
-  ] & {
-    projectAddress: string;
-    cheerPoolAddress: string;
-    creationTime: BigNumber;
-    message: string;
-    cher: BigNumber;
-  };
-
   export type ProjectStruct = {
     projectOwnerAddress: PromiseOrValue<string>;
     projectAddress: PromiseOrValue<string>;
@@ -77,30 +55,14 @@ export declare namespace SharedStruct {
 
 export interface IProjectsDataInterface extends utils.Interface {
   functions: {
-    "addEachProjectCheerList(address,address,uint256,string,uint256)": FunctionFragment;
     "addProjects(address,address,address,string,string,string)": FunctionFragment;
-    "getEachProjectCheerList(address)": FunctionFragment;
     "getEachProjectList(address)": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic:
-      | "addEachProjectCheerList"
-      | "addProjects"
-      | "getEachProjectCheerList"
-      | "getEachProjectList"
+    nameOrSignatureOrTopic: "addProjects" | "getEachProjectList"
   ): FunctionFragment;
 
-  encodeFunctionData(
-    functionFragment: "addEachProjectCheerList",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<string>,
-      PromiseOrValue<BigNumberish>
-    ]
-  ): string;
   encodeFunctionData(
     functionFragment: "addProjects",
     values: [
@@ -113,24 +75,12 @@ export interface IProjectsDataInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "getEachProjectCheerList",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "getEachProjectList",
     values: [PromiseOrValue<string>]
   ): string;
 
   decodeFunctionResult(
-    functionFragment: "addEachProjectCheerList",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "addProjects",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getEachProjectCheerList",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -168,15 +118,6 @@ export interface IProjectsData extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    addEachProjectCheerList(
-      _projectPoolAddress: PromiseOrValue<string>,
-      _cheerPoolAddres: PromiseOrValue<string>,
-      _creationTime: PromiseOrValue<BigNumberish>,
-      _message: PromiseOrValue<string>,
-      _cher: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     addProjects(
       _projectOwnerAddress: PromiseOrValue<string>,
       _projectPoolAddress: PromiseOrValue<string>,
@@ -187,25 +128,11 @@ export interface IProjectsData extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    getEachProjectCheerList(
-      _projectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[SharedStruct.CheerStructOutput[]]>;
-
     getEachProjectList(
       _projectOwnerAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[SharedStruct.ProjectStructOutput[]]>;
   };
-
-  addEachProjectCheerList(
-    _projectPoolAddress: PromiseOrValue<string>,
-    _cheerPoolAddres: PromiseOrValue<string>,
-    _creationTime: PromiseOrValue<BigNumberish>,
-    _message: PromiseOrValue<string>,
-    _cher: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
 
   addProjects(
     _projectOwnerAddress: PromiseOrValue<string>,
@@ -217,26 +144,12 @@ export interface IProjectsData extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  getEachProjectCheerList(
-    _projectPoolAddress: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<SharedStruct.CheerStructOutput[]>;
-
   getEachProjectList(
     _projectOwnerAddress: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<SharedStruct.ProjectStructOutput[]>;
 
   callStatic: {
-    addEachProjectCheerList(
-      _projectPoolAddress: PromiseOrValue<string>,
-      _cheerPoolAddres: PromiseOrValue<string>,
-      _creationTime: PromiseOrValue<BigNumberish>,
-      _message: PromiseOrValue<string>,
-      _cher: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     addProjects(
       _projectOwnerAddress: PromiseOrValue<string>,
       _projectPoolAddress: PromiseOrValue<string>,
@@ -246,11 +159,6 @@ export interface IProjectsData extends BaseContract {
       _projectReword: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
-
-    getEachProjectCheerList(
-      _projectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<SharedStruct.CheerStructOutput[]>;
 
     getEachProjectList(
       _projectOwnerAddress: PromiseOrValue<string>,
@@ -261,15 +169,6 @@ export interface IProjectsData extends BaseContract {
   filters: {};
 
   estimateGas: {
-    addEachProjectCheerList(
-      _projectPoolAddress: PromiseOrValue<string>,
-      _cheerPoolAddres: PromiseOrValue<string>,
-      _creationTime: PromiseOrValue<BigNumberish>,
-      _message: PromiseOrValue<string>,
-      _cher: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     addProjects(
       _projectOwnerAddress: PromiseOrValue<string>,
       _projectPoolAddress: PromiseOrValue<string>,
@@ -278,11 +177,6 @@ export interface IProjectsData extends BaseContract {
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    getEachProjectCheerList(
-      _projectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     getEachProjectList(
@@ -292,15 +186,6 @@ export interface IProjectsData extends BaseContract {
   };
 
   populateTransaction: {
-    addEachProjectCheerList(
-      _projectPoolAddress: PromiseOrValue<string>,
-      _cheerPoolAddres: PromiseOrValue<string>,
-      _creationTime: PromiseOrValue<BigNumberish>,
-      _message: PromiseOrValue<string>,
-      _cher: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
     addProjects(
       _projectOwnerAddress: PromiseOrValue<string>,
       _projectPoolAddress: PromiseOrValue<string>,
@@ -309,11 +194,6 @@ export interface IProjectsData extends BaseContract {
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    getEachProjectCheerList(
-      _projectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     getEachProjectList(

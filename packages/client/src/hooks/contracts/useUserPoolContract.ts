@@ -28,6 +28,7 @@ type ReturnUseUserPoolContract = {
   handleChargeCher: (_amount: string) => Promise<void>;
   handleWithdrawCher: (_mount: string) => Promise<void>;
   handleNewProjectFactory: (_inputProject: UserProjectFactory) => Promise<void>;
+  handleApproveCherToProjectPool: (_projectAddress: string, _cherAmount: ethers.BigNumberish) => Promise<void>;
 };
 
 export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserPoolContract => {
@@ -161,7 +162,7 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
       const getAllChallengeProjects = await userPoolContract.getAllChallengeProjects();
       const allChallengeProjectsOrganize = getAllChallengeProjects.map((challengeProject) => {
         return {
-          projectOwnerAddress:challengeProject.projectOwnerAddress,
+          projectOwnerAddress: challengeProject.projectOwnerAddress,
           projectAddress: challengeProject.projectAddress,
           belongDaoAddress: challengeProject.belongDaoAddress,
           projectName: challengeProject.projectName,
@@ -170,7 +171,7 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
           timestamp: new Date(challengeProject.creationTime.toNumber() * 1000),
         };
       });
-      setAllChallengeProjects(allChallengeProjectsOrganize); 
+      setAllChallengeProjects(allChallengeProjectsOrganize);
     } catch (error) {
       console.error(error);
     }
@@ -186,6 +187,21 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
       console.error(error);
     }
   }, [userPoolContract]);
+
+  const handleApproveCherToProjectPool = useCallback(
+    async (projectAddress: string, cherAmount: ethers.BigNumberish) => {
+      try {
+        if (!userPoolContract) return;
+        const approveCheerToProjectPool = await userPoolContract.approveCherToProjectPool(projectAddress, cherAmount);
+        setMining(true);
+        await approveCheerToProjectPool.wait();
+        setMining(false);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [userPoolContract],
+  );
 
   useEffect(() => {
     handleGetUserPoolAddress();
@@ -217,5 +233,6 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     handleChargeCher,
     handleWithdrawCher,
     handleNewProjectFactory,
+    handleApproveCherToProjectPool,
   };
 };

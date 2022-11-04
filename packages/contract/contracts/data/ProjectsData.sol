@@ -7,7 +7,7 @@ import '../shared/SharedStruct.sol';
 // Projectデータ保存のためのコントラクト
 contract ProjectsData is IProjectsData {
   // pool
-  mapping(address => SharedStruct.Cheer[]) public eachProjectCheerList;
+  mapping(address => SharedStruct.Project) public projectAddressToProjectData;
   mapping(address => SharedStruct.Project[]) public eachProjectsList;
   SharedStruct.Project[] public allProjectsList;
 
@@ -45,19 +45,25 @@ contract ProjectsData is IProjectsData {
         _creationTime
       )
     );
+
+    projectAddressToProjectData[_projectPoolAddress] = SharedStruct.Project(
+      _projectOwnerAddress,
+      _projectPoolAddress,
+      _belongDaoAddress,
+      _projectName,
+      _projectContents,
+      _projectReword,
+      _creationTime
+    );
   }
 
-  // 各プロジェクトのcheerの追加
-  function addEachProjectCheerList(
-    address _projectPoolAddress,
-    address _cheerPoolAddres,
-    uint256 _creationTime,
-    string memory _message,
-    uint256 _cher
-  ) external {
-    eachProjectCheerList[_projectPoolAddress].push(
-      SharedStruct.Cheer(_projectPoolAddress, _cheerPoolAddres, _creationTime, _message, _cher)
-    );
+  // プロジェクトプールアドレスからプロジェクト取得
+  function getProjectAddressToProjectData(address _projectPoolAddress)
+    public
+    view
+    returns (SharedStruct.Project memory)
+  {
+    return projectAddressToProjectData[_projectPoolAddress];
   }
 
   // アドレスごとのProject取得
@@ -68,10 +74,5 @@ contract ProjectsData is IProjectsData {
   // 全てのProject取得
   function getAllProjectList() public view returns (SharedStruct.Project[] memory) {
     return allProjectsList;
-  }
-
-  // ProjectごとのCheer取得
-  function getEachProjectCheerList(address _projectPoolAddress) public view returns (SharedStruct.Cheer[] memory) {
-    return eachProjectCheerList[_projectPoolAddress];
   }
 }

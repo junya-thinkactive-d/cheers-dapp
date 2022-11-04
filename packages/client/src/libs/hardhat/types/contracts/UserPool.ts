@@ -71,8 +71,6 @@ export interface UserPoolInterface extends utils.Interface {
     "newProjectFactory(address,string,string,string)": FunctionFragment;
     "projectsData()": FunctionFragment;
     "removeCheerProject(address)": FunctionFragment;
-    "setCHER(address)": FunctionFragment;
-    "setProjectsData(address)": FunctionFragment;
     "userAddress()": FunctionFragment;
     "userIcon()": FunctionFragment;
     "userName()": FunctionFragment;
@@ -98,8 +96,6 @@ export interface UserPoolInterface extends utils.Interface {
       | "newProjectFactory"
       | "projectsData"
       | "removeCheerProject"
-      | "setCHER"
-      | "setProjectsData"
       | "userAddress"
       | "userIcon"
       | "userName"
@@ -174,14 +170,6 @@ export interface UserPoolInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setCHER",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setProjectsData",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "userAddress",
     values?: undefined
   ): string;
@@ -246,11 +234,6 @@ export interface UserPoolInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "removeCheerProject",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "setCHER", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "setProjectsData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -354,16 +337,6 @@ export interface UserPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     userAddress(overrides?: CallOverrides): Promise<[string]>;
 
     userIcon(overrides?: CallOverrides): Promise<[string]>;
@@ -431,16 +404,6 @@ export interface UserPool extends BaseContract {
 
   removeCheerProject(
     _cheerProjectPoolAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setCHER(
-    CHERAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setProjectsData(
-    projectsDataAddress: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -514,16 +477,6 @@ export interface UserPool extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     userAddress(overrides?: CallOverrides): Promise<string>;
 
     userIcon(overrides?: CallOverrides): Promise<string>;
@@ -592,16 +545,6 @@ export interface UserPool extends BaseContract {
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -675,16 +618,6 @@ export interface UserPool extends BaseContract {
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

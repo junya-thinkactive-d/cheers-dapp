@@ -14,39 +14,6 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_projectPoolAddress",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "_cheerPoolAddres",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_creationTime",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_message",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "_cher",
-        type: "uint256",
-      },
-    ],
-    name: "addEachProjectCheerList",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
         name: "_projectOwnerAddress",
         type: "address",
       },
@@ -79,52 +46,6 @@ const _abi = [
     name: "addProjects",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_projectPoolAddress",
-        type: "address",
-      },
-    ],
-    name: "getEachProjectCheerList",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "address",
-            name: "projectAddress",
-            type: "address",
-          },
-          {
-            internalType: "address",
-            name: "cheerPoolAddress",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "creationTime",
-            type: "uint256",
-          },
-          {
-            internalType: "string",
-            name: "message",
-            type: "string",
-          },
-          {
-            internalType: "uint256",
-            name: "cher",
-            type: "uint256",
-          },
-        ],
-        internalType: "struct SharedStruct.Cheer[]",
-        name: "",
-        type: "tuple[]",
-      },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {

@@ -11,8 +11,8 @@ const CONTRACT_ADDRESS = '';
 const CONTRACT_ABI = CheerListDataContractABI.abi;
 
 type Props = {
-  _cheerPoolAddress?: string;
-  _projectPoolAddress?: string;
+  cheerPoolAddress?: string;
+  projectPoolAddress?: string;
 };
 
 type ReturnCheerListDataContract = {
@@ -21,8 +21,8 @@ type ReturnCheerListDataContract = {
 };
 
 export const useCheerListDataContract = ({
-  _cheerPoolAddress,
-  _projectPoolAddress,
+  cheerPoolAddress,
+  projectPoolAddress,
 }: Props): ReturnCheerListDataContract => {
   const [myPoolCheerDataList, setMyPoolCheerDataList] = useState<CheerType[]>([]);
   const [myProjectCheerDataList, setMyProjectCheerDataList] = useState<CheerType[]>([]);
@@ -39,8 +39,8 @@ export const useCheerListDataContract = ({
   const handleGetMyPoolCheerDataList = useCallback(async () => {
     try {
       if (!cheerListDataContract) return;
-      if (!_cheerPoolAddress) return;
-      const getMyProjectCheerDataList = await cheerListDataContract.getMyPoolCheerDataList(_cheerPoolAddress);
+      if (!cheerPoolAddress) return;
+      const getMyProjectCheerDataList = await cheerListDataContract.getMyPoolCheerDataList(cheerPoolAddress);
       const myProjectCheerDataListOrganize = getMyProjectCheerDataList.map((cheerData) => {
         return {
           projectAddress: cheerData.projectAddress,
@@ -54,13 +54,13 @@ export const useCheerListDataContract = ({
     } catch (error) {
       console.error(error);
     }
-  }, [_cheerPoolAddress, cheerListDataContract]);
+  }, [cheerListDataContract, cheerPoolAddress]);
 
   const handleGetMyProjectCheerDataList = useCallback(async () => {
     try {
       if (!cheerListDataContract) return;
-      if (!_projectPoolAddress) return;
-      const getMyPoolCheerDataList = await cheerListDataContract.getMyProjectCheerDataList(_projectPoolAddress);
+      if (!projectPoolAddress) return;
+      const getMyPoolCheerDataList = await cheerListDataContract.getMyProjectCheerDataList(projectPoolAddress);
       const myPoolCheerDataListOrganize = getMyPoolCheerDataList.map((cheerData) => {
         return {
           projectAddress: cheerData.projectAddress,
@@ -74,7 +74,7 @@ export const useCheerListDataContract = ({
     } catch (error) {
       console.error(error);
     }
-  }, [_projectPoolAddress, cheerListDataContract]);
+  }, [cheerListDataContract, projectPoolAddress]);
 
   useEffect(() => {
     handleGetMyPoolCheerDataList();

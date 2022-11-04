@@ -34,8 +34,6 @@ export interface ProjectPoolInterface extends utils.Interface {
     "projectContents()": FunctionFragment;
     "projectName()": FunctionFragment;
     "projectReword()": FunctionFragment;
-    "setCHER(address)": FunctionFragment;
-    "setPoolListData(address)": FunctionFragment;
     "totalCher()": FunctionFragment;
   };
 
@@ -50,8 +48,6 @@ export interface ProjectPoolInterface extends utils.Interface {
       | "projectContents"
       | "projectName"
       | "projectReword"
-      | "setCHER"
-      | "setPoolListData"
       | "totalCher"
   ): FunctionFragment;
 
@@ -88,14 +84,6 @@ export interface ProjectPoolInterface extends utils.Interface {
     functionFragment: "projectReword",
     values?: undefined
   ): string;
-  encodeFunctionData(
-    functionFragment: "setCHER",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setPoolListData",
-    values: [PromiseOrValue<string>]
-  ): string;
   encodeFunctionData(functionFragment: "totalCher", values?: undefined): string;
 
   decodeFunctionResult(
@@ -123,11 +111,6 @@ export interface ProjectPoolInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "projectReword",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "setCHER", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "setPoolListData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "totalCher", data: BytesLike): Result;
@@ -184,16 +167,6 @@ export interface ProjectPool extends BaseContract {
 
     projectReword(overrides?: CallOverrides): Promise<[string]>;
 
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    setPoolListData(
-      poolListDataAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     totalCher(overrides?: CallOverrides): Promise<[BigNumber]>;
   };
 
@@ -219,16 +192,6 @@ export interface ProjectPool extends BaseContract {
 
   projectReword(overrides?: CallOverrides): Promise<string>;
 
-  setCHER(
-    CHERAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setPoolListData(
-    poolListDataAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   totalCher(overrides?: CallOverrides): Promise<BigNumber>;
 
   callStatic: {
@@ -253,16 +216,6 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<string>;
 
     projectReword(overrides?: CallOverrides): Promise<string>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setPoolListData(
-      poolListDataAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     totalCher(overrides?: CallOverrides): Promise<BigNumber>;
   };
@@ -292,16 +245,6 @@ export interface ProjectPool extends BaseContract {
 
     projectReword(overrides?: CallOverrides): Promise<BigNumber>;
 
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setPoolListData(
-      poolListDataAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     totalCher(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
@@ -327,16 +270,6 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     projectReword(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setPoolListData(
-      poolListDataAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
 
     totalCher(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };

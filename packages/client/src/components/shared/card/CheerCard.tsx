@@ -3,22 +3,22 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useDaoPoolContract ,useUserPoolContract} from '@/hooks/contracts';
-import { usePoolListDataContract } from '@/hooks/contracts/data';
-import { ProjectType } from '@/types/struct';
+import { useUserPoolContract, useProjectPoolContract } from '@/hooks/contracts';
+import { useProjectsDataContract,usePoolListDataContract } from '@/hooks/contracts/data';
+import { CheerType } from '@/types/struct';
 
 type Props = {
-  project: ProjectType;
+  cheerData: CheerType;
 };
 
-const CheerCard = ({ project }: Props) => {
-  const poolAddress = project.projectOwnerAddress;
+const CheerCard = ({ cheerData }: Props) => {
+  const projectPoolAddress = cheerData.projectAddress;
+  const poolAddress = cheerData.cheerPoolAddress;
   const { myWalletAddress } = usePoolListDataContract({ poolAddress });
   const userOwnerAddress = myWalletAddress;
   const { userName, userIcon } = useUserPoolContract({ userOwnerAddress });
-  const daoOwnerAddress = project.belongDaoAddress;
-  const { daoName } = useDaoPoolContract({ daoOwnerAddress });
-
+  const { projectAddressToProjectData } = useProjectsDataContract({ projectPoolAddress });
+  const { totalCher } = useProjectPoolContract({ projectPoolAddress });
   return (
     <>
       <Link href="#">
@@ -39,16 +39,16 @@ const CheerCard = ({ project }: Props) => {
             </div>
             <div className="col-span-3 pl-2">
               <div className="flex items-center text-xs mb-2">
-                <div className="p-1 bg-cherBlue rounded-lg">{daoName}</div>
+                <div className="p-1 bg-cherBlue rounded-lg">{projectAddressToProjectData.belongDaoAddress}</div>
               </div>
-              <div className="text-xs text-cherGreen">{project.projectName}</div>
+              <div className="text-xs text-cherGreen">{projectAddressToProjectData.projectName}</div>
             </div>
           </div>
           <div className="p-2 mt-2 text-sm border border-white bg-primary">{}</div>
           <div className="flex items-center text-lg mt-1 ">
             <div>💰</div>
             <div className="flex items-end">
-              <div className="translate-y-0.5">{throwCher.toLocaleString()}</div>
+              <div className="translate-y-0.5">{totalCher}</div>
               <div className="ml-1 text-sm">CHER</div>
             </div>
           </div>

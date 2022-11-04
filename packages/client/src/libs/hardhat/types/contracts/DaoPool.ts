@@ -75,8 +75,6 @@ export interface DaoPoolInterface extends utils.Interface {
     "newProjectFactory(string,string,string)": FunctionFragment;
     "projectsData()": FunctionFragment;
     "removeCheerProject(address)": FunctionFragment;
-    "setCHER(address)": FunctionFragment;
-    "setProjectsData(address)": FunctionFragment;
     "withdrawCher(uint256)": FunctionFragment;
   };
 
@@ -102,8 +100,6 @@ export interface DaoPoolInterface extends utils.Interface {
       | "newProjectFactory"
       | "projectsData"
       | "removeCheerProject"
-      | "setCHER"
-      | "setProjectsData"
       | "withdrawCher"
   ): FunctionFragment;
 
@@ -183,14 +179,6 @@ export interface DaoPoolInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setCHER",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setProjectsData",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "withdrawCher",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
@@ -243,11 +231,6 @@ export interface DaoPoolInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "removeCheerProject",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "setCHER", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "setProjectsData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -348,16 +331,6 @@ export interface DaoPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     withdrawCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -424,16 +397,6 @@ export interface DaoPool extends BaseContract {
 
   removeCheerProject(
     _cheerProjectPoolAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setCHER(
-    CHERAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setProjectsData(
-    projectsDataAddress: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -506,16 +469,6 @@ export interface DaoPool extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     withdrawCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -586,16 +539,6 @@ export interface DaoPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     withdrawCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -663,16 +606,6 @@ export interface DaoPool extends BaseContract {
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

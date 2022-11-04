@@ -23,11 +23,12 @@ type ReturnUseDaoPoolContract = {
   daoProfile: string;
   daoIcon: string;
   allChallengeProjects: ProjectType[];
-  totalCher:  string;
+  totalCher: string;
   mining: boolean;
   handleChargeCher: (_amount: string) => Promise<void>;
   handleWithdrawCher: (_mount: string) => Promise<void>;
   handleNewProjectFactory: (_inputProject: DaoProjectFactory) => Promise<void>;
+  handleApproveCherToProjectPool: (_projectAddress: string, _cherAmount: ethers.BigNumberish) => Promise<void>;
 };
 
 export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPoolContract => {
@@ -186,6 +187,21 @@ export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPool
     }
   }, [daoPoolContract]);
 
+  const handleApproveCherToProjectPool = useCallback(
+    async (projectAddress: string, cherAmount: ethers.BigNumberish) => {
+      try {
+        if (!daoPoolContract) return;
+        const approveCheerToProjectPool = await daoPoolContract.approveCherToProjectPool(projectAddress, cherAmount);
+        setMining(true);
+        await approveCheerToProjectPool.wait();
+        setMining(false);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [daoPoolContract],
+  );
+
   useEffect(() => {
     handleGetDaoPoolAddress();
     handleGetDaoAddress();
@@ -216,5 +232,6 @@ export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPool
     handleChargeCher,
     handleWithdrawCher,
     handleNewProjectFactory,
+    handleApproveCherToProjectPool,
   };
 };

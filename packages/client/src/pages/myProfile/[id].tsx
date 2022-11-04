@@ -22,7 +22,7 @@ const Profile = () => {
             </>
           ) : (
             <>
-              <MyProfileCard id={id} />
+              <MyProfileCard ownerAddress={id} />
             </>
           )}
         </>

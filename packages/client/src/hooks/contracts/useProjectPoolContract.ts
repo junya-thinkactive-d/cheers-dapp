@@ -15,12 +15,12 @@ type Props = {
 type ReturnProjectPoolDataContract = {
   mining: boolean;
   handleMintCheer: (_cher: number, _message: string) => Promise<void>;
-  totalCher: string | undefined;
+  totalCher: string;
 };
 
 export const useProjectPoolContract = ({ projectPoolAddress }: Props): ReturnProjectPoolDataContract => {
   const [mining, setMining] = useState<boolean>(false);
-  const [totalCher, setTotalCher] = useState<string>();
+  const [totalCher, setTotalCher] = useState<string>('');
   const CONTRACT_ADDRESS = projectPoolAddress;
 
   const ethereum = getEthereumSafety();
