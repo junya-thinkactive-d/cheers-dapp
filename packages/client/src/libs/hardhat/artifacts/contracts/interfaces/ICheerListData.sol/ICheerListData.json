@@ -44,7 +44,7 @@
           "type": "address"
         }
       ],
-      "name": "getMyPoolCheeerDataList",
+      "name": "getMyPoolCheerDataList",
       "outputs": [
         {
           "components": [

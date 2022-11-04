@@ -203,7 +203,7 @@ describe('ProjectsData', function () {
   });
 
   describe('addEachProjectCheerList test', function () {
-    it("Should initial addEachProjectCheerList be an empty array", async () => {
+    it("Should add eachProjectCheerList", async () => {
       const { projectsData, project1, project2, userPool1, userPool2 } = await loadFixture(fixture);
 
       let getEachProjectCheerList;
@@ -216,16 +216,18 @@ describe('ProjectsData', function () {
       addEachProjectCheerList = await projectsData.addEachProjectCheerList(project2.address, userPool2.address, 456, "Foo", 200);
 
       getEachProjectCheerList = await projectsData.getEachProjectCheerList(project1.address);
-      expect(getEachProjectCheerList[0][0]).to.equal(userPool1.address);
-      expect(getEachProjectCheerList[0][1]).to.equal(123);
-      expect(getEachProjectCheerList[0][2]).to.equal("ガンバ！");
-      expect(getEachProjectCheerList[0][3]).to.equal(100);
+      expect(getEachProjectCheerList[0][0]).to.equal(project1.address);
+      expect(getEachProjectCheerList[0][1]).to.equal(userPool1.address);
+      expect(getEachProjectCheerList[0][2]).to.equal(123);
+      expect(getEachProjectCheerList[0][3]).to.equal("ガンバ！");
+      expect(getEachProjectCheerList[0][4]).to.equal(100);
 
       getEachProjectCheerList = await projectsData.getEachProjectCheerList(project2.address);
-      expect(getEachProjectCheerList[0][0]).to.equal(userPool2.address);
-      expect(getEachProjectCheerList[0][1]).to.equal(456);
-      expect(getEachProjectCheerList[0][2]).to.equal("Foo");
-      expect(getEachProjectCheerList[0][3]).to.equal(200);
+      expect(getEachProjectCheerList[0][0]).to.equal(project2.address);
+      expect(getEachProjectCheerList[0][1]).to.equal(userPool2.address);
+      expect(getEachProjectCheerList[0][2]).to.equal(456);
+      expect(getEachProjectCheerList[0][3]).to.equal("Foo");
+      expect(getEachProjectCheerList[0][4]).to.equal(200);
     });
   });
 });
