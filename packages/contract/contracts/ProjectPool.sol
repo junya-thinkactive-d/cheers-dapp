@@ -112,12 +112,9 @@ contract ProjectPool is IProjectPool {
   //   POOLLISTDATA_CONTRACT_ADDRESS = poolListDataAddress;
   //   poolListData = IPoolListData(poolListDataAddress);
   // }
-<<<<<<< HEAD
 
   // function setCheerListData(address cheerListDataAddress) public {
   //   CHEERLISTDATA_CONTRACT_ADDRESS = cheerListDataAddress;
   //   cheerListData = ICheerListData(CHEERLISTDATA_CONTRACT_ADDRESS);
   // }
-=======
->>>>>>> feature/front
 }
