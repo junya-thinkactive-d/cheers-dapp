@@ -12,16 +12,10 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import type { FunctionFragment, Result } from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
-import type {
-  TypedEventFilter,
-  TypedEvent,
-  TypedListener,
-  OnEvent,
-  PromiseOrValue,
-} from "../common";
+} from 'ethers';
+import type { FunctionFragment, Result } from '@ethersproject/abi';
+import type { Listener, Provider } from '@ethersproject/providers';
+import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from '../common';
 
 export declare namespace SharedStruct {
   export type ProjectStruct = {
@@ -103,10 +97,21 @@ export interface UserPoolInterface extends utils.Interface {
       | "withdrawCher"
   ): FunctionFragment;
 
+  encodeFunctionData(functionFragment: 'addCheerProject', values: [PromiseOrValue<string>]): string;
   encodeFunctionData(
-    functionFragment: "addCheerProject",
-    values: [PromiseOrValue<string>]
+    functionFragment: 'approveCherToProjectPool',
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>],
   ): string;
+  encodeFunctionData(functionFragment: 'chargeCher', values: [PromiseOrValue<BigNumberish>]): string;
+  encodeFunctionData(functionFragment: 'cheersDapp', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'cher', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getAllChallengeProjects', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getUserAddress', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getUserIcon', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getUserName', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getUserPoolAddress', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getUserProfile', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'isCheer', values: [PromiseOrValue<string>]): string;
   encodeFunctionData(
     functionFragment: "approveCherToProjectPool",
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
@@ -183,6 +188,15 @@ export interface UserPoolInterface extends utils.Interface {
     functionFragment: "withdrawCher",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
+  encodeFunctionData(functionFragment: 'projectsData', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'removeCheerProject', values: [PromiseOrValue<string>]): string;
+  encodeFunctionData(functionFragment: 'setCHER', values: [PromiseOrValue<string>]): string;
+  encodeFunctionData(functionFragment: 'setProjectsData', values: [PromiseOrValue<string>]): string;
+  encodeFunctionData(functionFragment: 'userAddress', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'userIcon', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'userName', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'userProfile', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'withdrawCher', values: [PromiseOrValue<BigNumberish>]): string;
 
   decodeFunctionResult(
     functionFragment: "addCheerProject",
@@ -264,16 +278,12 @@ export interface UserPool extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
+    toBlock?: string | number | undefined,
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
-  ): this;
+  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -283,27 +293,25 @@ export interface UserPool extends BaseContract {
   functions: {
     addCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
     approveCherToProjectPool(
       _projectPoolAddress: PromiseOrValue<string>,
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
     chargeCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
     cheersDapp(overrides?: CallOverrides): Promise<[string]>;
 
     cher(overrides?: CallOverrides): Promise<[string]>;
 
-    getAllChallengeProjects(
-      overrides?: CallOverrides
-    ): Promise<[SharedStruct.ProjectStructOutput[]]>;
+    getAllChallengeProjects(overrides?: CallOverrides): Promise<[SharedStruct.ProjectStructOutput[]]>;
 
     getTotalCher(overrides?: CallOverrides): Promise<[BigNumber]>;
 
@@ -317,24 +325,21 @@ export interface UserPool extends BaseContract {
 
     getUserProfile(overrides?: CallOverrides): Promise<[string]>;
 
-    isCheer(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
+    isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<[boolean]>;
 
     newProjectFactory(
       _belongDaoAddress: PromiseOrValue<string>,
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
     projectsData(overrides?: CallOverrides): Promise<[string]>;
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
     userAddress(overrides?: CallOverrides): Promise<[string]>;
@@ -347,33 +352,31 @@ export interface UserPool extends BaseContract {
 
     withdrawCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
   };
 
   addCheerProject(
     _cheerProjectPoolAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
   approveCherToProjectPool(
     _projectPoolAddress: PromiseOrValue<string>,
     _cherAmount: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
   chargeCher(
     _cherAmount: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
   cheersDapp(overrides?: CallOverrides): Promise<string>;
 
   cher(overrides?: CallOverrides): Promise<string>;
 
-  getAllChallengeProjects(
-    overrides?: CallOverrides
-  ): Promise<SharedStruct.ProjectStructOutput[]>;
+  getAllChallengeProjects(overrides?: CallOverrides): Promise<SharedStruct.ProjectStructOutput[]>;
 
   getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -387,24 +390,21 @@ export interface UserPool extends BaseContract {
 
   getUserProfile(overrides?: CallOverrides): Promise<string>;
 
-  isCheer(
-    arg0: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
+  isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
 
   newProjectFactory(
     _belongDaoAddress: PromiseOrValue<string>,
     _projectName: PromiseOrValue<string>,
     _projectContents: PromiseOrValue<string>,
     _projectReword: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
   projectsData(overrides?: CallOverrides): Promise<string>;
 
   removeCheerProject(
     _cheerProjectPoolAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
   userAddress(overrides?: CallOverrides): Promise<string>;
@@ -417,33 +417,25 @@ export interface UserPool extends BaseContract {
 
   withdrawCher(
     _cherAmount: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    addCheerProject(
-      _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
+    addCheerProject(_cheerProjectPoolAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
 
     approveCherToProjectPool(
       _projectPoolAddress: PromiseOrValue<string>,
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
-    chargeCher(
-      _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    chargeCher(_cherAmount: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
 
     cheersDapp(overrides?: CallOverrides): Promise<string>;
 
     cher(overrides?: CallOverrides): Promise<string>;
 
-    getAllChallengeProjects(
-      overrides?: CallOverrides
-    ): Promise<SharedStruct.ProjectStructOutput[]>;
+    getAllChallengeProjects(overrides?: CallOverrides): Promise<SharedStruct.ProjectStructOutput[]>;
 
     getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -457,25 +449,19 @@ export interface UserPool extends BaseContract {
 
     getUserProfile(overrides?: CallOverrides): Promise<string>;
 
-    isCheer(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
+    isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
 
     newProjectFactory(
       _belongDaoAddress: PromiseOrValue<string>,
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<string>;
 
     projectsData(overrides?: CallOverrides): Promise<string>;
 
-    removeCheerProject(
-      _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
+    removeCheerProject(_cheerProjectPoolAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
 
     userAddress(overrides?: CallOverrides): Promise<string>;
 
@@ -485,10 +471,7 @@ export interface UserPool extends BaseContract {
 
     userProfile(overrides?: CallOverrides): Promise<string>;
 
-    withdrawCher(
-      _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    withdrawCher(_cherAmount: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
   };
 
   filters: {};
@@ -496,18 +479,18 @@ export interface UserPool extends BaseContract {
   estimateGas: {
     addCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
     approveCherToProjectPool(
       _projectPoolAddress: PromiseOrValue<string>,
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
     chargeCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
     cheersDapp(overrides?: CallOverrides): Promise<BigNumber>;
@@ -528,24 +511,21 @@ export interface UserPool extends BaseContract {
 
     getUserProfile(overrides?: CallOverrides): Promise<BigNumber>;
 
-    isCheer(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
 
     newProjectFactory(
       _belongDaoAddress: PromiseOrValue<string>,
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
     projectsData(overrides?: CallOverrides): Promise<BigNumber>;
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
     userAddress(overrides?: CallOverrides): Promise<BigNumber>;
@@ -558,34 +538,32 @@ export interface UserPool extends BaseContract {
 
     withdrawCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
     addCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
     approveCherToProjectPool(
       _projectPoolAddress: PromiseOrValue<string>,
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
     chargeCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
     cheersDapp(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     cher(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    getAllChallengeProjects(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    getAllChallengeProjects(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getTotalCher(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -595,30 +573,25 @@ export interface UserPool extends BaseContract {
 
     getUserName(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    getUserPoolAddress(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    getUserPoolAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getUserProfile(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    isCheer(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     newProjectFactory(
       _belongDaoAddress: PromiseOrValue<string>,
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
     projectsData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
     userAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -631,7 +604,7 @@ export interface UserPool extends BaseContract {
 
     withdrawCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
   };
 }

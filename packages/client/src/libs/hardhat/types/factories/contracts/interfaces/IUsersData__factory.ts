@@ -2,81 +2,78 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import type { Provider } from "@ethersproject/providers";
-import type {
-  IUsersData,
-  IUsersDataInterface,
-} from "../../../contracts/interfaces/IUsersData";
+import { Contract, Signer, utils } from 'ethers';
+import type { Provider } from '@ethersproject/providers';
+import type { IUsersData, IUsersDataInterface } from '../../../contracts/interfaces/IUsersData';
 
 const _abi = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "_userAddress",
-        type: "address",
+        internalType: 'address',
+        name: '_userAddress',
+        type: 'address',
       },
       {
-        internalType: "string",
-        name: "_userName",
-        type: "string",
+        internalType: 'string',
+        name: '_userName',
+        type: 'string',
       },
       {
-        internalType: "string",
-        name: "_userProfile",
-        type: "string",
+        internalType: 'string',
+        name: '_userProfile',
+        type: 'string',
       },
       {
-        internalType: "string",
-        name: "_userIcon",
-        type: "string",
+        internalType: 'string',
+        name: '_userIcon',
+        type: 'string',
       },
     ],
-    name: "addUsers",
+    name: 'addUsers',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [],
-    name: "getAllUserList",
+    name: 'getAllUserList',
     outputs: [
       {
         components: [
           {
-            internalType: "address",
-            name: "userAddress",
-            type: "address",
+            internalType: 'address',
+            name: 'userAddress',
+            type: 'address',
           },
           {
-            internalType: "string",
-            name: "userName",
-            type: "string",
+            internalType: 'string',
+            name: 'userName',
+            type: 'string',
           },
           {
-            internalType: "string",
-            name: "userProfile",
-            type: "string",
+            internalType: 'string',
+            name: 'userProfile',
+            type: 'string',
           },
           {
-            internalType: "string",
-            name: "userIcon",
-            type: "string",
+            internalType: 'string',
+            name: 'userIcon',
+            type: 'string',
           },
           {
-            internalType: "uint256",
-            name: "creationTime",
-            type: "uint256",
+            internalType: 'uint256',
+            name: 'creationTime',
+            type: 'uint256',
           },
         ],
-        internalType: "struct SharedStruct.User[]",
-        name: "",
-        type: "tuple[]",
+        internalType: 'struct SharedStruct.User[]',
+        name: '',
+        type: 'tuple[]',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
 ];
 
@@ -85,10 +82,7 @@ export class IUsersData__factory {
   static createInterface(): IUsersDataInterface {
     return new utils.Interface(_abi) as IUsersDataInterface;
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): IUsersData {
+  static connect(address: string, signerOrProvider: Signer | Provider): IUsersData {
     return new Contract(address, _abi, signerOrProvider) as IUsersData;
   }
 }

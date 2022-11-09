@@ -12,16 +12,10 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import type { FunctionFragment, Result } from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
-import type {
-  TypedEventFilter,
-  TypedEvent,
-  TypedListener,
-  OnEvent,
-  PromiseOrValue,
-} from "../common";
+} from 'ethers';
+import type { FunctionFragment, Result } from '@ethersproject/abi';
+import type { Listener, Provider } from '@ethersproject/providers';
+import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from '../common';
 
 export interface ProjectPoolInterface extends utils.Interface {
   functions: {
@@ -51,6 +45,10 @@ export interface ProjectPoolInterface extends utils.Interface {
       | "totalCher"
   ): FunctionFragment;
 
+  encodeFunctionData(functionFragment: 'cheersDapp', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'cher', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getAllCheers', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getTotalCher', values?: undefined): string;
   encodeFunctionData(
     functionFragment: "cheerListData",
     values?: undefined
@@ -128,16 +126,12 @@ export interface ProjectPool extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
+    toBlock?: string | number | undefined,
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
-  ): this;
+  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -156,7 +150,7 @@ export interface ProjectPool extends BaseContract {
     mintCheer(
       _cher: PromiseOrValue<BigNumberish>,
       _cheerMessage: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
     poolListData(overrides?: CallOverrides): Promise<[string]>;
@@ -181,7 +175,7 @@ export interface ProjectPool extends BaseContract {
   mintCheer(
     _cher: PromiseOrValue<BigNumberish>,
     _cheerMessage: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
   poolListData(overrides?: CallOverrides): Promise<string>;
@@ -206,7 +200,7 @@ export interface ProjectPool extends BaseContract {
     mintCheer(
       _cher: PromiseOrValue<BigNumberish>,
       _cheerMessage: PromiseOrValue<string>,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
     poolListData(overrides?: CallOverrides): Promise<string>;
@@ -234,7 +228,7 @@ export interface ProjectPool extends BaseContract {
     mintCheer(
       _cher: PromiseOrValue<BigNumberish>,
       _cheerMessage: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
     poolListData(overrides?: CallOverrides): Promise<BigNumber>;
@@ -260,7 +254,7 @@ export interface ProjectPool extends BaseContract {
     mintCheer(
       _cher: PromiseOrValue<BigNumberish>,
       _cheerMessage: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
     poolListData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
