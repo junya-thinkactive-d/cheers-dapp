@@ -4,22 +4,19 @@ import Image from 'next/image';
 
 import { ChangeBelongDaoName, Level, Nodata } from '@/components/shared/parts';
 import { useUserPoolContract } from '@/hooks/contracts';
-import { useUsersDataContract, useProjectsDataContract, usePoolListDataContract } from '@/hooks/contracts/data';
-import { UserType } from '@/types/struct';
+import { useProjectsDataContract, usePoolListDataContract } from '@/hooks/contracts/data';
 
 type Props = {
   userOwnerAddress: string;
 };
 
 const UserProfileCard = ({ userOwnerAddress }: Props) => {
-  const { allUserList } = useUsersDataContract({});
-  const { totalCher } = useUserPoolContract({ userOwnerAddress });
+  const { userName, userProfile, userIcon, totalCher } = useUserPoolContract({ userOwnerAddress });
   const ownerAddress = userOwnerAddress;
   const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
   const projectOwnerAddress = myPoolAddress;
   const { eachProjectList } = useProjectsDataContract({ projectOwnerAddress });
 
-  const [userList, setUserList] = useState<UserType>();
   const [belongDaoAddressList, setBelongDaoAddressList] = useState<string[]>([]);
 
   const setBelongDaos = useCallback(async () => {
@@ -30,45 +27,29 @@ const UserProfileCard = ({ userOwnerAddress }: Props) => {
     setBelongDaoAddressList(projectList);
   }, [eachProjectList]);
 
-  const getUserData = useCallback(async () => {
-    if (!allUserList) return;
-    allUserList.map((user) => {
-      if (userOwnerAddress == user.userWalletAddress) {
-        setUserList(user);
-      }
-    });
-  }, [allUserList, userOwnerAddress]);
-
   useEffect(() => {
-    getUserData();
     setBelongDaos();
-  }, [getUserData, setBelongDaos]);
+  }, [setBelongDaos]);
 
   return (
     <div className="flex justify-center items-center w-full">
-      {userList ? (
+      {userName ? (
         <div className="w-[800px] h-[500px] my-12">
           <div className="w-full h-full rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px]">
             <div className="w-full h-full bg-secondary rounded-xl grid grid-cols-4 grid-rows-4">
               <div className="col-span-2 row-span-2 py-8 px-12">
                 <div className="relative w-full h-full">
-                  <Image
-                    src={userList.userIcon}
-                    layout="fill"
-                    objectFit="cover"
-                    alt="user icon"
-                    className="rounded-lg"
-                  />
+                  <Image src={userIcon} layout="fill" objectFit="cover" alt="user icon" className="rounded-lg" />
                 </div>
               </div>
               <div className="row-start-3 col-span-2 row-span-2 flex flex-col justify-between py-8 px-12 text-lg">
                 <div className=" flex justify-left items-baseline border-b">
                   <div className="text-xl">name:</div>
-                  <div className="ml-4 text-2xl">{userList.userName}</div>
+                  <div className="ml-4 text-2xl">{userName}</div>
                 </div>
                 <div className=" flex justify-left items-baseline border-b">
                   <div className="text-xl">profile:</div>
-                  <div className="ml-4 text-xl">{userList.userProfile}</div>
+                  <div className="ml-4 text-xl">{userProfile}</div>
                 </div>
                 <div className=" flex justify-left items-baseline border-b">
                   <div className="text-xl">total ex:</div>

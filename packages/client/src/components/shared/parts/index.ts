@@ -9,3 +9,5 @@ export { default as Nodata } from './Nodata';
 export { default as ChangeBelongDaoName } from './ChangeBelongDaoName';
 export { default as ProjectCheers } from './ProjectCheers';
 export { default as DaoPoolToName } from './DaoPoolToName';
+export { default as ChallengeProjects } from './ChallengeProjects';
+export { default as CheerProjects } from './CheerProjects';

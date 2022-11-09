@@ -5,5 +5,3 @@ export { default as Withdraw } from './Withdraw';
 export { default as SellCher } from './SellCher';
 export { default as CreateProjectDao } from './CreateProjectDao';
 export { default as CreateProjectUser } from './CreateProjectUser';
-export { default as ChallengeProjects } from './ChallengeProjects';
-export { default as CheerProjects } from './CheerProjects';

@@ -13,7 +13,7 @@ const ProjectCheers = ({ projectPoolAddress }: Props) => {
 
   return (
     <div className="p-12">
-      <div className="text-4xl mb-12">Cheer Projects</div>
+      <div className="text-4xl mb-12">Cheers</div>
       <div className="flex flex-wrap">
         {myProjectCheerDataList.map((cheerData, i) => (
           <CheerCardForProject key={i} cheerData={cheerData} />

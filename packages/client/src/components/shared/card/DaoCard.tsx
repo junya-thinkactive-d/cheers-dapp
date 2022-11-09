@@ -14,8 +14,8 @@ type Props = {
 
 const DaoCard = ({ daoData }: Props) => {
   const projectOwnerAddress = daoData.daoWalletAddress;
+  const ownerAddress = daoData.daoWalletAddress;
   const { eachProjectList } = useProjectsDataContract({ projectOwnerAddress });
-  const ownerAddress = projectOwnerAddress;
   const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
   const address = myPoolAddress;
   const { cherBalance } = useCherContract({ address });
@@ -24,7 +24,7 @@ const DaoCard = ({ daoData }: Props) => {
     <div className="min-w-72 w-72 mr-12 p-4 break-words bg-white bg-opacity-5 border border-secondary rounded-lg">
       {/* icon */}
       <div className="relative w-full h-20 mb-2">
-        <Image src={daoData.daoIcon} layout="fill" objectFit="cover" alt="dao icon" className="rounded-lg" />
+        <Image src={daoData.daoIcon} layout="fill" objectFit="cover" alt="user icon" className="rounded-lg" />
       </div>
       {/* name */}
       <div className="text-2xl font-black mt-4">{daoData.daoName}</div>

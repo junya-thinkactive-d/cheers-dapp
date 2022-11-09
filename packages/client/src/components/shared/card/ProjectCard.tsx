@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 
 import Link from 'next/link';
 
@@ -12,15 +12,8 @@ type Props = {
 };
 
 const ProjectCard = ({ project }: Props) => {
-  const [address, setAddress] = useState<string>('');
-  const handleSetAddress = useCallback(async () => {
-    setAddress(project.projectAddress);
-  }, [project.projectAddress]);
+  const address = project.projectAddress;
   const { cherBalance } = useCherContract({ address });
-
-  useEffect(() => {
-    handleSetAddress();
-  }, [handleSetAddress]);
 
   return (
     <>
@@ -38,7 +31,6 @@ const ProjectCard = ({ project }: Props) => {
           <div className="flex items-center text-lg">
             <div>💰</div>
             <div className="flex items-end">
-              <div className="translate-y-0.5">{cherBalance}</div>
               <div className="ml-1 text-sm">CHER: {cherBalance ? cherBalance : 0}</div>
             </div>
           </div>

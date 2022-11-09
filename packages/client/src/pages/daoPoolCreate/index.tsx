@@ -19,7 +19,7 @@ const DaoPoolCreate = () => {
   const onClickEvent = useCallback(async () => {
     try {
       await handleNewDaoPoolFactory({ daoName, daoIcon, daoProfile });
-      setClearState();
+      await setClearState();
     } catch (error) {
       alert(error);
     }

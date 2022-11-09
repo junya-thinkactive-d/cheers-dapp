@@ -3,13 +3,16 @@ import React from 'react';
 import { ProjectCard } from '@/components/shared/card';
 // import { projectsData } from '@/mock';
 import { Nodata } from '@/components/shared/parts';
-import { useProjectsDataContract } from '@/hooks/contracts/data';
+import { usePoolListDataContract, useProjectsDataContract } from '@/hooks/contracts/data';
 
 type Props = {
-  projectOwnerAddress: string;
+  ownerWalletAddress: string;
 };
 
-const ChallengeProjects = ({ projectOwnerAddress }: Props) => {
+const ChallengeProjects = ({ ownerWalletAddress }: Props) => {
+  const ownerAddress = ownerWalletAddress;
+  const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
+  const projectOwnerAddress = myPoolAddress;
   const { eachProjectList } = useProjectsDataContract({ projectOwnerAddress });
   return (
     <div className="p-12">

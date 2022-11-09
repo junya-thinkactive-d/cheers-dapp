@@ -17,7 +17,9 @@ const BuyCher = () => {
       <div className="mb-2">
         CHERに交換する <span className="text-sm text-cherGreen">Change TOKEN</span>
       </div>
-      <Button buttonName="CHANGE TOKEN" onClickEvent={onClickEvent} />
+      <div className="flex justify-center items-center">
+        <Button buttonName="CHARGE POOL!" onClickEvent={onClickEvent} />
+      </div>
     </div>
   );
 };

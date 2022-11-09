@@ -3,9 +3,8 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { BeforeLogin } from '@/components/pages/home';
-import { ChallengeProjects, CheerProjects } from '@/components/pages/myProfile';
 import { UserProfileCard } from '@/components/pages/userProfile';
-import { PageTitle } from '@/components/shared/parts';
+import { ChallengeProjects, CheerProjects, PageTitle } from '@/components/shared/parts';
 import { useWalletContext } from '@/context/state';
 
 const UserProfile = () => {
@@ -20,7 +19,7 @@ const UserProfile = () => {
         <>
           <PageTitle title="USER PROFILE" />
           <UserProfileCard userOwnerAddress={id} />
-          <ChallengeProjects projectOwnerAddress={id} />
+          <ChallengeProjects ownerWalletAddress={id} />
           <CheerProjects ownerWalletAddress={id} />
         </>
       )}

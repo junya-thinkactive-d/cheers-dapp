@@ -2,14 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import {
   BuyCher,
-  ChallengeProjects,
-  CheerProjects,
   CreateProjectDao,
   CreateProjectUser,
   SellCher,
   SendCher,
   Withdraw,
 } from '@/components/pages/myProfile';
+import { ChallengeProjects, CheerProjects } from '@/components/shared/parts';
 import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
 import { usePoolListDataContract } from '@/hooks/contracts/data';
 import { useCherContract } from '@/hooks/contracts/useCherContract';
@@ -22,7 +21,7 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
   const [poolAddressType, setPoolAddressType] = useState<{ type: string; name: string; poolAddress: string }>({
     type: '',
     name: '',
-    poolAddress: '0x0000000000000000000000000000000000000000',
+    poolAddress: '',
   });
 
   const userOwnerAddress = ownerAddress;
@@ -53,11 +52,26 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
       <div className="m-12">
         <div className="flex flex-wrap">
           <div className="w-1/2">
-            <div>Type: {poolAddressType.type}</div>
-            <div>Name: {poolAddressType.name}</div>
-            <div>Wallet Address: {ownerAddress}</div>
-            <div>Pool Address: {poolAddressType.poolAddress}</div>
-            <div>Total CHER: {cherBalance}</div>
+            <div>
+              <span className="text-cherYellow mx-1">Type:</span>
+              {poolAddressType.type}
+            </div>
+            <div>
+              <span className="text-cherYellow mx-1">{`${poolAddressType.type}`}Name:</span>
+              {poolAddressType.name}
+            </div>
+            <div>
+              <span className="text-cherYellow mx-1">{`${poolAddressType.type}`}Wallet Address:</span>
+              {ownerAddress}
+            </div>
+            <div>
+              <span className="text-cherYellow mx-1">{`${poolAddressType.type}`}Pool Address:</span>
+              {poolAddressType.poolAddress}
+            </div>
+            <div>
+              <span className="text-cherYellow mx-1">Pool Total CHER:</span>
+              {cherBalance}
+            </div>
             <div className="my-8">
               <BuyCher />
             </div>
@@ -84,7 +98,7 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
         <div></div>
       </div>
       <div className="col-span-1">
-        <ChallengeProjects projectOwnerAddress={projectOwnerAddress} />
+        <ChallengeProjects poolAddress={projectOwnerAddress} />
         <CheerProjects ownerWalletAddress={ownerAddress} />
       </div>
     </>

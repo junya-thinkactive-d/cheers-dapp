@@ -2,50 +2,47 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import type { Provider } from "@ethersproject/providers";
-import type {
-  IPoolListData,
-  IPoolListDataInterface,
-} from "../../../contracts/interfaces/IPoolListData";
+import { Contract, Signer, utils } from 'ethers';
+import type { Provider } from '@ethersproject/providers';
+import type { IPoolListData, IPoolListDataInterface } from '../../../contracts/interfaces/IPoolListData';
 
 const _abi = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "_ownerAddress",
-        type: "address",
+        internalType: 'address',
+        name: '_ownerAddress',
+        type: 'address',
       },
       {
-        internalType: "address",
-        name: "_poolAddress",
-        type: "address",
+        internalType: 'address',
+        name: '_poolAddress',
+        type: 'address',
       },
     ],
-    name: "addMyPoolAddress",
+    name: 'addMyPoolAddress',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "_ownerAddress",
-        type: "address",
+        internalType: 'address',
+        name: '_ownerAddress',
+        type: 'address',
       },
     ],
-    name: "getMyPoolAddress",
+    name: 'getMyPoolAddress',
     outputs: [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
+        internalType: 'address',
+        name: '',
+        type: 'address',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
 ];
 
@@ -54,10 +51,7 @@ export class IPoolListData__factory {
   static createInterface(): IPoolListDataInterface {
     return new utils.Interface(_abi) as IPoolListDataInterface;
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): IPoolListData {
+  static connect(address: string, signerOrProvider: Signer | Provider): IPoolListData {
     return new Contract(address, _abi, signerOrProvider) as IPoolListData;
   }
 }

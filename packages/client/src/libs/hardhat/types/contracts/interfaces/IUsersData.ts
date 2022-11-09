@@ -12,16 +12,10 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import type { FunctionFragment, Result } from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
-import type {
-  TypedEventFilter,
-  TypedEvent,
-  TypedListener,
-  OnEvent,
-  PromiseOrValue,
-} from "../../common";
+} from 'ethers';
+import type { FunctionFragment, Result } from '@ethersproject/abi';
+import type { Listener, Provider } from '@ethersproject/providers';
+import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from '../../common';
 
 export declare namespace SharedStruct {
   export type UserStruct = {
@@ -43,33 +37,20 @@ export declare namespace SharedStruct {
 
 export interface IUsersDataInterface extends utils.Interface {
   functions: {
-    "addUsers(address,string,string,string)": FunctionFragment;
-    "getAllUserList()": FunctionFragment;
+    'addUsers(address,string,string,string)': FunctionFragment;
+    'getAllUserList()': FunctionFragment;
   };
 
-  getFunction(
-    nameOrSignatureOrTopic: "addUsers" | "getAllUserList"
-  ): FunctionFragment;
+  getFunction(nameOrSignatureOrTopic: 'addUsers' | 'getAllUserList'): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: "addUsers",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>
-    ]
+    functionFragment: 'addUsers',
+    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>],
   ): string;
-  encodeFunctionData(
-    functionFragment: "getAllUserList",
-    values?: undefined
-  ): string;
+  encodeFunctionData(functionFragment: 'getAllUserList', values?: undefined): string;
 
-  decodeFunctionResult(functionFragment: "addUsers", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "getAllUserList",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: 'addUsers', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getAllUserList', data: BytesLike): Result;
 
   events: {};
 }
@@ -84,16 +65,12 @@ export interface IUsersData extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
+    toBlock?: string | number | undefined,
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
-  ): this;
+  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -106,12 +83,10 @@ export interface IUsersData extends BaseContract {
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
-    getAllUserList(
-      overrides?: CallOverrides
-    ): Promise<[SharedStruct.UserStructOutput[]]>;
+    getAllUserList(overrides?: CallOverrides): Promise<[SharedStruct.UserStructOutput[]]>;
   };
 
   addUsers(
@@ -119,12 +94,10 @@ export interface IUsersData extends BaseContract {
     _userName: PromiseOrValue<string>,
     _userProfile: PromiseOrValue<string>,
     _userIcon: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
-  getAllUserList(
-    overrides?: CallOverrides
-  ): Promise<SharedStruct.UserStructOutput[]>;
+  getAllUserList(overrides?: CallOverrides): Promise<SharedStruct.UserStructOutput[]>;
 
   callStatic: {
     addUsers(
@@ -132,12 +105,10 @@ export interface IUsersData extends BaseContract {
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<void>;
 
-    getAllUserList(
-      overrides?: CallOverrides
-    ): Promise<SharedStruct.UserStructOutput[]>;
+    getAllUserList(overrides?: CallOverrides): Promise<SharedStruct.UserStructOutput[]>;
   };
 
   filters: {};
@@ -148,7 +119,7 @@ export interface IUsersData extends BaseContract {
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
     getAllUserList(overrides?: CallOverrides): Promise<BigNumber>;
@@ -160,7 +131,7 @@ export interface IUsersData extends BaseContract {
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
     getAllUserList(overrides?: CallOverrides): Promise<PopulatedTransaction>;

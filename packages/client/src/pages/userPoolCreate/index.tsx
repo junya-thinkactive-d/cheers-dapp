@@ -19,7 +19,7 @@ const UserPoolCreate = () => {
   const onClickEvent = useCallback(async () => {
     try {
       await handleNewUserPoolFactory({ userName, userIcon, userProfile });
-      setClearState();
+      await setClearState();
     } catch (error) {
       alert(error);
     }
