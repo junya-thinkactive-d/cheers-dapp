@@ -11,24 +11,37 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from 'ethers';
-import type { FunctionFragment, Result } from '@ethersproject/abi';
-import type { Listener, Provider } from '@ethersproject/providers';
-import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from '../../common';
+} from "ethers";
+import type { FunctionFragment, Result } from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
+import type {
+  TypedEventFilter,
+  TypedEvent,
+  TypedListener,
+  OnEvent,
+  PromiseOrValue,
+} from "../../common";
 
 export interface IDaoPoolFactoryInterface extends utils.Interface {
   functions: {
-    'newDaoPoolFactory(string,string,string)': FunctionFragment;
+    "newDaoPoolFactory(string,string,string)": FunctionFragment;
   };
 
-  getFunction(nameOrSignatureOrTopic: 'newDaoPoolFactory'): FunctionFragment;
+  getFunction(nameOrSignatureOrTopic: "newDaoPoolFactory"): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: 'newDaoPoolFactory',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>],
+    functionFragment: "newDaoPoolFactory",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>
+    ]
   ): string;
 
-  decodeFunctionResult(functionFragment: 'newDaoPoolFactory', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "newDaoPoolFactory",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -43,12 +56,16 @@ export interface IDaoPoolFactory extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined,
+    toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(
+    eventFilter?: TypedEventFilter<TEvent>
+  ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+  removeAllListeners<TEvent extends TypedEvent>(
+    eventFilter: TypedEventFilter<TEvent>
+  ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -60,7 +77,7 @@ export interface IDaoPoolFactory extends BaseContract {
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
 
@@ -68,7 +85,7 @@ export interface IDaoPoolFactory extends BaseContract {
     _daoName: PromiseOrValue<string>,
     _daoProfile: PromiseOrValue<string>,
     _daoIcon: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -76,7 +93,7 @@ export interface IDaoPoolFactory extends BaseContract {
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<string>;
   };
 
@@ -87,7 +104,7 @@ export interface IDaoPoolFactory extends BaseContract {
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
   };
 
@@ -96,7 +113,7 @@ export interface IDaoPoolFactory extends BaseContract {
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };
 }

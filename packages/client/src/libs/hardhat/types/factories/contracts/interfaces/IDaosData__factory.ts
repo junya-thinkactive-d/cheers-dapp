@@ -2,78 +2,81 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from 'ethers';
-import type { Provider } from '@ethersproject/providers';
-import type { IDaosData, IDaosDataInterface } from '../../../contracts/interfaces/IDaosData';
+import { Contract, Signer, utils } from "ethers";
+import type { Provider } from "@ethersproject/providers";
+import type {
+  IDaosData,
+  IDaosDataInterface,
+} from "../../../contracts/interfaces/IDaosData";
 
 const _abi = [
   {
     inputs: [
       {
-        internalType: 'address',
-        name: '_daoAddress',
-        type: 'address',
+        internalType: "address",
+        name: "_daoAddress",
+        type: "address",
       },
       {
-        internalType: 'string',
-        name: '_daoName',
-        type: 'string',
+        internalType: "string",
+        name: "_daoName",
+        type: "string",
       },
       {
-        internalType: 'string',
-        name: '_daoProfile',
-        type: 'string',
+        internalType: "string",
+        name: "_daoProfile",
+        type: "string",
       },
       {
-        internalType: 'string',
-        name: '_daoIcon',
-        type: 'string',
+        internalType: "string",
+        name: "_daoIcon",
+        type: "string",
       },
     ],
-    name: 'addDaos',
+    name: "addDaos",
     outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
   },
   {
     inputs: [],
-    name: 'getAllDaoList',
+    name: "getAllDaoList",
     outputs: [
       {
         components: [
           {
-            internalType: 'address',
-            name: 'daoAddress',
-            type: 'address',
+            internalType: "address",
+            name: "daoAddress",
+            type: "address",
           },
           {
-            internalType: 'string',
-            name: 'daoName',
-            type: 'string',
+            internalType: "string",
+            name: "daoName",
+            type: "string",
           },
           {
-            internalType: 'string',
-            name: 'daoProfile',
-            type: 'string',
+            internalType: "string",
+            name: "daoProfile",
+            type: "string",
           },
           {
-            internalType: 'string',
-            name: 'daoIcon',
-            type: 'string',
+            internalType: "string",
+            name: "daoIcon",
+            type: "string",
           },
           {
-            internalType: 'uint256',
-            name: 'creationTime',
-            type: 'uint256',
+            internalType: "uint256",
+            name: "creationTime",
+            type: "uint256",
           },
         ],
-        internalType: 'struct SharedStruct.Dao[]',
-        name: '',
-        type: 'tuple[]',
+        internalType: "struct SharedStruct.Dao[]",
+        name: "",
+        type: "tuple[]",
       },
     ],
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
   },
 ];
 
@@ -82,7 +85,10 @@ export class IDaosData__factory {
   static createInterface(): IDaosDataInterface {
     return new utils.Interface(_abi) as IDaosDataInterface;
   }
-  static connect(address: string, signerOrProvider: Signer | Provider): IDaosData {
+  static connect(
+    address: string,
+    signerOrProvider: Signer | Provider
+  ): IDaosData {
     return new Contract(address, _abi, signerOrProvider) as IDaosData;
   }
 }

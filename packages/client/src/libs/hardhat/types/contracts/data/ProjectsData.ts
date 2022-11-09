@@ -12,10 +12,16 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from 'ethers';
-import type { FunctionFragment, Result } from '@ethersproject/abi';
-import type { Listener, Provider } from '@ethersproject/providers';
-import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from '../../common';
+} from "ethers";
+import type { FunctionFragment, Result } from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
+import type {
+  TypedEventFilter,
+  TypedEvent,
+  TypedListener,
+  OnEvent,
+  PromiseOrValue,
+} from "../../common";
 
 export declare namespace SharedStruct {
   export type ProjectStruct = {
@@ -28,7 +34,15 @@ export declare namespace SharedStruct {
     creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type ProjectStructOutput = [string, string, string, string, string, string, BigNumber] & {
+  export type ProjectStructOutput = [
+    string,
+    string,
+    string,
+    string,
+    string,
+    string,
+    BigNumber
+  ] & {
     projectOwnerAddress: string;
     projectAddress: string;
     belongDaoAddress: string;
@@ -41,54 +55,90 @@ export declare namespace SharedStruct {
 
 export interface ProjectsDataInterface extends utils.Interface {
   functions: {
-    'addProjects(address,address,address,string,string,string)': FunctionFragment;
-    'allProjectsList(uint256)': FunctionFragment;
-    'eachProjectsList(address,uint256)': FunctionFragment;
-    'getAllProjectList()': FunctionFragment;
-    'getEachProjectList(address)': FunctionFragment;
-    'getProjectAddressToProjectData(address)': FunctionFragment;
-    'projectAddressToProjectData(address)': FunctionFragment;
+    "addProjects(address,address,address,string,string,string)": FunctionFragment;
+    "allProjectsList(uint256)": FunctionFragment;
+    "eachProjectsList(address,uint256)": FunctionFragment;
+    "getAllProjectList()": FunctionFragment;
+    "getEachProjectList(address)": FunctionFragment;
+    "getProjectAddressToProjectData(address)": FunctionFragment;
+    "projectAddressToProjectData(address)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | 'addProjects'
-      | 'allProjectsList'
-      | 'eachProjectsList'
-      | 'getAllProjectList'
-      | 'getEachProjectList'
-      | 'getProjectAddressToProjectData'
-      | 'projectAddressToProjectData',
+      | "addProjects"
+      | "allProjectsList"
+      | "eachProjectsList"
+      | "getAllProjectList"
+      | "getEachProjectList"
+      | "getProjectAddressToProjectData"
+      | "projectAddressToProjectData"
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: 'addProjects',
+    functionFragment: "addProjects",
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>,
-      PromiseOrValue<string>,
-    ],
+      PromiseOrValue<string>
+    ]
   ): string;
-  encodeFunctionData(functionFragment: 'allProjectsList', values: [PromiseOrValue<BigNumberish>]): string;
   encodeFunctionData(
-    functionFragment: 'eachProjectsList',
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>],
+    functionFragment: "allProjectsList",
+    values: [PromiseOrValue<BigNumberish>]
   ): string;
-  encodeFunctionData(functionFragment: 'getAllProjectList', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'getEachProjectList', values: [PromiseOrValue<string>]): string;
-  encodeFunctionData(functionFragment: 'getProjectAddressToProjectData', values: [PromiseOrValue<string>]): string;
-  encodeFunctionData(functionFragment: 'projectAddressToProjectData', values: [PromiseOrValue<string>]): string;
+  encodeFunctionData(
+    functionFragment: "eachProjectsList",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getAllProjectList",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getEachProjectList",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getProjectAddressToProjectData",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "projectAddressToProjectData",
+    values: [PromiseOrValue<string>]
+  ): string;
 
-  decodeFunctionResult(functionFragment: 'addProjects', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'allProjectsList', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'eachProjectsList', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getAllProjectList', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getEachProjectList', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getProjectAddressToProjectData', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'projectAddressToProjectData', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "addProjects",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "allProjectsList",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "eachProjectsList",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllProjectList",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getEachProjectList",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getProjectAddressToProjectData",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "projectAddressToProjectData",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -103,12 +153,16 @@ export interface ProjectsData extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined,
+    toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(
+    eventFilter?: TypedEventFilter<TEvent>
+  ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+  removeAllListeners<TEvent extends TypedEvent>(
+    eventFilter: TypedEventFilter<TEvent>
+  ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -123,12 +177,12 @@ export interface ProjectsData extends BaseContract {
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     allProjectsList(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<
       [string, string, string, string, string, string, BigNumber] & {
         projectOwnerAddress: string;
@@ -144,7 +198,7 @@ export interface ProjectsData extends BaseContract {
     eachProjectsList(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<
       [string, string, string, string, string, string, BigNumber] & {
         projectOwnerAddress: string;
@@ -157,21 +211,23 @@ export interface ProjectsData extends BaseContract {
       }
     >;
 
-    getAllProjectList(overrides?: CallOverrides): Promise<[SharedStruct.ProjectStructOutput[]]>;
+    getAllProjectList(
+      overrides?: CallOverrides
+    ): Promise<[SharedStruct.ProjectStructOutput[]]>;
 
     getEachProjectList(
       _projectOwnerAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<[SharedStruct.ProjectStructOutput[]]>;
 
     getProjectAddressToProjectData(
       _projectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<[SharedStruct.ProjectStructOutput]>;
 
     projectAddressToProjectData(
       arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<
       [string, string, string, string, string, string, BigNumber] & {
         projectOwnerAddress: string;
@@ -192,12 +248,12 @@ export interface ProjectsData extends BaseContract {
     _projectName: PromiseOrValue<string>,
     _projectContents: PromiseOrValue<string>,
     _projectReword: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   allProjectsList(
     arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<
     [string, string, string, string, string, string, BigNumber] & {
       projectOwnerAddress: string;
@@ -213,7 +269,7 @@ export interface ProjectsData extends BaseContract {
   eachProjectsList(
     arg0: PromiseOrValue<string>,
     arg1: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<
     [string, string, string, string, string, string, BigNumber] & {
       projectOwnerAddress: string;
@@ -226,21 +282,23 @@ export interface ProjectsData extends BaseContract {
     }
   >;
 
-  getAllProjectList(overrides?: CallOverrides): Promise<SharedStruct.ProjectStructOutput[]>;
+  getAllProjectList(
+    overrides?: CallOverrides
+  ): Promise<SharedStruct.ProjectStructOutput[]>;
 
   getEachProjectList(
     _projectOwnerAddress: PromiseOrValue<string>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<SharedStruct.ProjectStructOutput[]>;
 
   getProjectAddressToProjectData(
     _projectPoolAddress: PromiseOrValue<string>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<SharedStruct.ProjectStructOutput>;
 
   projectAddressToProjectData(
     arg0: PromiseOrValue<string>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<
     [string, string, string, string, string, string, BigNumber] & {
       projectOwnerAddress: string;
@@ -261,12 +319,12 @@ export interface ProjectsData extends BaseContract {
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     allProjectsList(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<
       [string, string, string, string, string, string, BigNumber] & {
         projectOwnerAddress: string;
@@ -282,7 +340,7 @@ export interface ProjectsData extends BaseContract {
     eachProjectsList(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<
       [string, string, string, string, string, string, BigNumber] & {
         projectOwnerAddress: string;
@@ -295,21 +353,23 @@ export interface ProjectsData extends BaseContract {
       }
     >;
 
-    getAllProjectList(overrides?: CallOverrides): Promise<SharedStruct.ProjectStructOutput[]>;
+    getAllProjectList(
+      overrides?: CallOverrides
+    ): Promise<SharedStruct.ProjectStructOutput[]>;
 
     getEachProjectList(
       _projectOwnerAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<SharedStruct.ProjectStructOutput[]>;
 
     getProjectAddressToProjectData(
       _projectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<SharedStruct.ProjectStructOutput>;
 
     projectAddressToProjectData(
       arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<
       [string, string, string, string, string, string, BigNumber] & {
         projectOwnerAddress: string;
@@ -333,27 +393,36 @@ export interface ProjectsData extends BaseContract {
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    allProjectsList(arg0: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
+    allProjectsList(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     eachProjectsList(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     getAllProjectList(overrides?: CallOverrides): Promise<BigNumber>;
 
-    getEachProjectList(_projectOwnerAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
+    getEachProjectList(
+      _projectOwnerAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     getProjectAddressToProjectData(
       _projectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    projectAddressToProjectData(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
+    projectAddressToProjectData(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -364,29 +433,35 @@ export interface ProjectsData extends BaseContract {
       _projectName: PromiseOrValue<string>,
       _projectContents: PromiseOrValue<string>,
       _projectReword: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    allProjectsList(arg0: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    allProjectsList(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     eachProjectsList(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     getAllProjectList(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getEachProjectList(
       _projectOwnerAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     getProjectAddressToProjectData(
       _projectPoolAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    projectAddressToProjectData(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    projectAddressToProjectData(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
   };
 }

@@ -12,10 +12,16 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from 'ethers';
-import type { FunctionFragment, Result } from '@ethersproject/abi';
-import type { Listener, Provider } from '@ethersproject/providers';
-import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from '../../common';
+} from "ethers";
+import type { FunctionFragment, Result } from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
+import type {
+  TypedEventFilter,
+  TypedEvent,
+  TypedListener,
+  OnEvent,
+  PromiseOrValue,
+} from "../../common";
 
 export declare namespace SharedStruct {
   export type DaoStruct = {
@@ -37,20 +43,33 @@ export declare namespace SharedStruct {
 
 export interface IDaosDataInterface extends utils.Interface {
   functions: {
-    'addDaos(address,string,string,string)': FunctionFragment;
-    'getAllDaoList()': FunctionFragment;
+    "addDaos(address,string,string,string)": FunctionFragment;
+    "getAllDaoList()": FunctionFragment;
   };
 
-  getFunction(nameOrSignatureOrTopic: 'addDaos' | 'getAllDaoList'): FunctionFragment;
+  getFunction(
+    nameOrSignatureOrTopic: "addDaos" | "getAllDaoList"
+  ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: 'addDaos',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>],
+    functionFragment: "addDaos",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>
+    ]
   ): string;
-  encodeFunctionData(functionFragment: 'getAllDaoList', values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "getAllDaoList",
+    values?: undefined
+  ): string;
 
-  decodeFunctionResult(functionFragment: 'addDaos', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getAllDaoList', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "addDaos", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllDaoList",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -65,12 +84,16 @@ export interface IDaosData extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined,
+    toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(
+    eventFilter?: TypedEventFilter<TEvent>
+  ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+  removeAllListeners<TEvent extends TypedEvent>(
+    eventFilter: TypedEventFilter<TEvent>
+  ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -83,10 +106,12 @@ export interface IDaosData extends BaseContract {
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    getAllDaoList(overrides?: CallOverrides): Promise<[SharedStruct.DaoStructOutput[]]>;
+    getAllDaoList(
+      overrides?: CallOverrides
+    ): Promise<[SharedStruct.DaoStructOutput[]]>;
   };
 
   addDaos(
@@ -94,10 +119,12 @@ export interface IDaosData extends BaseContract {
     _daoName: PromiseOrValue<string>,
     _daoProfile: PromiseOrValue<string>,
     _daoIcon: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  getAllDaoList(overrides?: CallOverrides): Promise<SharedStruct.DaoStructOutput[]>;
+  getAllDaoList(
+    overrides?: CallOverrides
+  ): Promise<SharedStruct.DaoStructOutput[]>;
 
   callStatic: {
     addDaos(
@@ -105,10 +132,12 @@ export interface IDaosData extends BaseContract {
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
-    getAllDaoList(overrides?: CallOverrides): Promise<SharedStruct.DaoStructOutput[]>;
+    getAllDaoList(
+      overrides?: CallOverrides
+    ): Promise<SharedStruct.DaoStructOutput[]>;
   };
 
   filters: {};
@@ -119,7 +148,7 @@ export interface IDaosData extends BaseContract {
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     getAllDaoList(overrides?: CallOverrides): Promise<BigNumber>;
@@ -131,7 +160,7 @@ export interface IDaosData extends BaseContract {
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     getAllDaoList(overrides?: CallOverrides): Promise<PopulatedTransaction>;
