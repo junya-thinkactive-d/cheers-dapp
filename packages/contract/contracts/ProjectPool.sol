@@ -5,6 +5,7 @@ import './interfaces/IProjectPool.sol';
 import './interfaces/IERC20.sol';
 import './interfaces/ICheers.sol';
 import './interfaces/IPoolListData.sol';
+import './interfaces/ICheerListData.sol';
 import './shared/SharedStruct.sol';
 
 contract ProjectPool is IProjectPool {
@@ -18,9 +19,8 @@ contract ProjectPool is IProjectPool {
   string public projectContents;
   string public projectReword;
   // Alchemy testnet goerli deploy
-  address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
+  address CHER_CONTRACT_ADDRESS = 0xc87D7FE5E5Af9cfEDE29F8d362EEb1a788c539cf;
 
-  SharedStruct.Cheer[] cheers;
   uint256 public totalCher;
 
   modifier onlyOwner() {
@@ -29,8 +29,10 @@ contract ProjectPool is IProjectPool {
   }
 
   // POOl
-  address POOLLISTDATA_CONTRACT_ADDRESS; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  address POOLLISTDATA_CONTRACT_ADDRESS = 0x35FA06F351ED31f8eAd5DcDF1E586e47fc064376; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   IPoolListData public poolListData;
+  address CHEERLISTDATA_CONTRACT_ADDRESS = 0xcE9aDb57464657D74d8A8260b29B29bD07e2c3eb; // = cheerDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  ICheerListData public cheerListData;
 
   constructor(
     address _ownerPoolAddress,
@@ -40,6 +42,7 @@ contract ProjectPool is IProjectPool {
     string memory _projectReword
   ) {
     poolListData = IPoolListData(POOLLISTDATA_CONTRACT_ADDRESS);
+    cheerListData = ICheerListData(CHEERLISTDATA_CONTRACT_ADDRESS);
 
     //CHERコントラクト接続
     cher = IERC20(CHER_CONTRACT_ADDRESS);
@@ -62,7 +65,13 @@ contract ProjectPool is IProjectPool {
   // cheerの処理
   function cheer(uint256 _cher, string memory _cheerMessage) private {
     cher.transferFrom(poolListData.getMyPoolAddress(msg.sender), address(this), _cher);
-    cheers.push(SharedStruct.Cheer(poolListData.getMyPoolAddress(msg.sender), block.timestamp, _cheerMessage, _cher));
+    cheerListData.addCheerDataList(
+      address(this),
+      poolListData.getMyPoolAddress(msg.sender),
+      block.timestamp,
+      _cheerMessage,
+      _cher
+    );
     distributeCher(_cher);
   }
 
@@ -77,8 +86,11 @@ contract ProjectPool is IProjectPool {
     // daoの分配分
     uint256 daoDistribute = _cher - cheerDistribute - challengerDistribute;
     // cheer全員の分配分を投じたcher割合に応じ分配
-    for (uint256 i = 0; i < cheers.length; i++) {
-      cher.transfer(cheers[i].cheerPoolAddress, (cheerDistribute * cheers[i].cher) / totalCher);
+    for (uint256 i = 0; i < cheerListData.getMyProjectCheerDataList(address(this)).length; i++) {
+      cher.transfer(
+        cheerListData.getMyProjectCheerDataList(address(this))[i].cheerPoolAddress,
+        (cheerDistribute * cheerListData.getMyProjectCheerDataList(address(this))[i].cher) / totalCher
+      );
     }
     // challengerのPoolへ分配
     cher.transfer(ownerPoolAddress, challengerDistribute);
@@ -86,23 +98,23 @@ contract ProjectPool is IProjectPool {
     cher.transfer(belongDaoAddress, daoDistribute);
   }
 
-  // Cheersのデータ参照
-  function getAllCheers() public view returns (SharedStruct.Cheer[] memory) {
-    return cheers;
-  }
-
-  // このプロジェクトのcher総量
+  // このプールのcher総量
   function getTotalCher() public view returns (uint256) {
     return cher.balanceOf(address(this));
   }
 
-  function setCHER(address CHERAddress) public {
-    CHER_CONTRACT_ADDRESS = CHERAddress;
-    cher = IERC20(CHERAddress);
-  }
+  // function setCHER(address CHERAddress) public {
+  //   CHER_CONTRACT_ADDRESS = CHERAddress;
+  //   cher = IERC20(CHERAddress);
+  // }
 
-  function setPoolListData(address poolListDataAddress) public {
-    POOLLISTDATA_CONTRACT_ADDRESS = poolListDataAddress;
-    poolListData = IPoolListData(poolListDataAddress);
-  }
+  // function setPoolListData(address poolListDataAddress) public {
+  //   POOLLISTDATA_CONTRACT_ADDRESS = poolListDataAddress;
+  //   poolListData = IPoolListData(poolListDataAddress);
+  // }
+
+  // function setCheerListData(address cheerListDataAddress) public {
+  //   CHEERLISTDATA_CONTRACT_ADDRESS = cheerListDataAddress;
+  //   cheerListData = ICheerListData(CHEERLISTDATA_CONTRACT_ADDRESS);
+  // }
 }

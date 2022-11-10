@@ -7,18 +7,36 @@ import type { ProjectsData as ProjectsDataType } from '@/libs/hardhat/types';
 import { ProjectType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '';
+const CONTRACT_ADDRESS = '0x5CE46cA237c357970ee6DCe0e64d1d3dF506514d';
 const CONTRACT_ABI = ProjectsDataContractABI.abi;
 
-type Props = {};
-
-type ReturnProjectsDataContract = {
-  handleGetEachProjectList: (_projectOwnerAddress: string) => void;
-  allProjectList: ProjectType[] | undefined;
+type Props = {
+  projectOwnerAddress?: string;
+  projectPoolAddress?: string;
 };
 
-export const useProjectsDataContract = ({}: Props): ReturnProjectsDataContract => {
-  const [allProjectList, setAllProjectList] = useState<ProjectType[]>();
+type ReturnProjectsDataContract = {
+  eachProjectList: ProjectType[];
+  allProjectList: ProjectType[];
+  projectAddressToProjectData: ProjectType;
+};
+
+export const useProjectsDataContract = ({
+  projectOwnerAddress,
+  projectPoolAddress,
+}: Props): ReturnProjectsDataContract => {
+  const [projectAddressToProjectData, setProjectAddressToProjectData] = useState<ProjectType>({
+    projectOwnerAddress: '',
+    projectAddress: 'noData',
+    belongDaoAddress: 'noData',
+    projectName: 'noData',
+    projectContents: 'noData',
+    projectReword: 'noData',
+    timestamp: new Date('2022-11-06T23:59:59'),
+  });
+  const [eachProjectList, setEachProjectList] = useState<ProjectType[]>([]);
+  const [allProjectList, setAllProjectList] = useState<ProjectType[]>([]);
+
   const ethereum = getEthereumSafety();
 
   const projectsDataContract: ProjectsDataType | null = useMemo(() => {
@@ -29,27 +47,49 @@ export const useProjectsDataContract = ({}: Props): ReturnProjectsDataContract =
     return new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer) as ProjectsDataType;
   }, [ethereum]);
 
-  const handleGetEachProjectList = useCallback(
-    async (projectOwnerAddress: string) => {
-      try {
-        if (!projectsDataContract) return;
-        const getEachProjectList = await projectsDataContract.getEachProjectList(projectOwnerAddress);
-        const eachProjectListOrganize = getEachProjectList.map((project) => {
-          return {
-            projectAddress: project.projectAddress,
-            belongDaoAddress: project.belongDaoAddress,
-            projectName: project.projectName,
-            projectContents: project.projectContents,
-            projectReword: project.projectReword,
-          };
-        });
-        return eachProjectListOrganize;
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [projectsDataContract],
-  );
+  const handleGetProjectAddressToProjectData = useCallback(async () => {
+    try {
+      if (!projectsDataContract) return;
+      if (!projectPoolAddress) return;
+      const getProjectAddressToProjectData = await projectsDataContract.getProjectAddressToProjectData(
+        projectPoolAddress,
+      );
+      const projectAddressToProjectDataOrganize = {
+        projectOwnerAddress: getProjectAddressToProjectData.projectOwnerAddress,
+        projectAddress: getProjectAddressToProjectData.projectAddress,
+        belongDaoAddress: getProjectAddressToProjectData.belongDaoAddress,
+        projectName: getProjectAddressToProjectData.projectName,
+        projectContents: getProjectAddressToProjectData.projectContents,
+        projectReword: getProjectAddressToProjectData.projectReword,
+        timestamp: new Date(getProjectAddressToProjectData.creationTime.toNumber() * 1000),
+      };
+      setProjectAddressToProjectData(projectAddressToProjectDataOrganize);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [projectPoolAddress, projectsDataContract]);
+
+  const handleGetEachProjectList = useCallback(async () => {
+    try {
+      if (!projectsDataContract) return;
+      if (!projectOwnerAddress) return;
+      const getEachProjectList = await projectsDataContract.getEachProjectList(projectOwnerAddress);
+      const eachProjectListOrganize = getEachProjectList.map((project) => {
+        return {
+          projectOwnerAddress: project.projectOwnerAddress,
+          projectAddress: project.projectAddress,
+          belongDaoAddress: project.belongDaoAddress,
+          projectName: project.projectName,
+          projectContents: project.projectContents,
+          projectReword: project.projectReword,
+          timestamp: new Date(project.creationTime.toNumber() * 1000),
+        };
+      });
+      setEachProjectList(eachProjectListOrganize);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [projectOwnerAddress, projectsDataContract]);
 
   const handleGetAllProjectList = useCallback(async () => {
     try {
@@ -57,6 +97,7 @@ export const useProjectsDataContract = ({}: Props): ReturnProjectsDataContract =
       const getAllProjectList = await projectsDataContract.getAllProjectList();
       const allProjectListOrganize = getAllProjectList.map((project) => {
         return {
+          projectOwnerAddress: project.projectOwnerAddress,
           projectAddress: project.projectAddress,
           belongDaoAddress: project.belongDaoAddress,
           projectName: project.projectName,
@@ -72,11 +113,14 @@ export const useProjectsDataContract = ({}: Props): ReturnProjectsDataContract =
   }, [projectsDataContract]);
 
   useEffect(() => {
+    handleGetProjectAddressToProjectData();
+    handleGetEachProjectList();
     handleGetAllProjectList();
-  }, [handleGetAllProjectList, handleGetEachProjectList]);
+  }, [handleGetAllProjectList, handleGetEachProjectList, handleGetProjectAddressToProjectData]);
 
   return {
-    handleGetEachProjectList,
+    eachProjectList,
     allProjectList,
+    projectAddressToProjectData,
   };
 };

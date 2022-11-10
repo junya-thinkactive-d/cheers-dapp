@@ -19,6 +19,7 @@ import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrVal
 
 export declare namespace SharedStruct {
   export type ProjectStruct = {
+    projectOwnerAddress: PromiseOrValue<string>;
     projectAddress: PromiseOrValue<string>;
     belongDaoAddress: PromiseOrValue<string>;
     projectName: PromiseOrValue<string>;
@@ -27,7 +28,16 @@ export declare namespace SharedStruct {
     creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type ProjectStructOutput = [string, string, string, string, string, BigNumber] & {
+  export type ProjectStructOutput = [
+    string,
+    string,
+    string,
+    string,
+    string,
+    string,
+    BigNumber
+  ] & {
+    projectOwnerAddress: string;
     projectAddress: string;
     belongDaoAddress: string;
     projectName: string;
@@ -39,54 +49,52 @@ export declare namespace SharedStruct {
 
 export interface UserPoolInterface extends utils.Interface {
   functions: {
-    'addCheerProject(address)': FunctionFragment;
-    'approveCherToProjectPool(address,uint256)': FunctionFragment;
-    'chargeCher(uint256)': FunctionFragment;
-    'cheersDapp()': FunctionFragment;
-    'cher()': FunctionFragment;
-    'getAllChallengeProjects()': FunctionFragment;
-    'getUserAddress()': FunctionFragment;
-    'getUserIcon()': FunctionFragment;
-    'getUserName()': FunctionFragment;
-    'getUserPoolAddress()': FunctionFragment;
-    'getUserProfile()': FunctionFragment;
-    'isCheer(address)': FunctionFragment;
-    'newProjectFactory(address,string,string,string)': FunctionFragment;
-    'projectsData()': FunctionFragment;
-    'removeCheerProject(address)': FunctionFragment;
-    'setCHER(address)': FunctionFragment;
-    'setProjectsData(address)': FunctionFragment;
-    'userAddress()': FunctionFragment;
-    'userIcon()': FunctionFragment;
-    'userName()': FunctionFragment;
-    'userProfile()': FunctionFragment;
-    'withdrawCher(uint256)': FunctionFragment;
+    "addCheerProject(address)": FunctionFragment;
+    "approveCherToProjectPool(address,uint256)": FunctionFragment;
+    "chargeCher(uint256)": FunctionFragment;
+    "cheersDapp()": FunctionFragment;
+    "cher()": FunctionFragment;
+    "getAllChallengeProjects()": FunctionFragment;
+    "getTotalCher()": FunctionFragment;
+    "getUserAddress()": FunctionFragment;
+    "getUserIcon()": FunctionFragment;
+    "getUserName()": FunctionFragment;
+    "getUserPoolAddress()": FunctionFragment;
+    "getUserProfile()": FunctionFragment;
+    "isCheer(address)": FunctionFragment;
+    "newProjectFactory(address,string,string,string)": FunctionFragment;
+    "projectsData()": FunctionFragment;
+    "removeCheerProject(address)": FunctionFragment;
+    "userAddress()": FunctionFragment;
+    "userIcon()": FunctionFragment;
+    "userName()": FunctionFragment;
+    "userProfile()": FunctionFragment;
+    "withdrawCher(uint256)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | 'addCheerProject'
-      | 'approveCherToProjectPool'
-      | 'chargeCher'
-      | 'cheersDapp'
-      | 'cher'
-      | 'getAllChallengeProjects'
-      | 'getUserAddress'
-      | 'getUserIcon'
-      | 'getUserName'
-      | 'getUserPoolAddress'
-      | 'getUserProfile'
-      | 'isCheer'
-      | 'newProjectFactory'
-      | 'projectsData'
-      | 'removeCheerProject'
-      | 'setCHER'
-      | 'setProjectsData'
-      | 'userAddress'
-      | 'userIcon'
-      | 'userName'
-      | 'userProfile'
-      | 'withdrawCher',
+      | "addCheerProject"
+      | "approveCherToProjectPool"
+      | "chargeCher"
+      | "cheersDapp"
+      | "cher"
+      | "getAllChallengeProjects"
+      | "getTotalCher"
+      | "getUserAddress"
+      | "getUserIcon"
+      | "getUserName"
+      | "getUserPoolAddress"
+      | "getUserProfile"
+      | "isCheer"
+      | "newProjectFactory"
+      | "projectsData"
+      | "removeCheerProject"
+      | "userAddress"
+      | "userIcon"
+      | "userName"
+      | "userProfile"
+      | "withdrawCher"
   ): FunctionFragment;
 
   encodeFunctionData(functionFragment: 'addCheerProject', values: [PromiseOrValue<string>]): string;
@@ -105,8 +113,80 @@ export interface UserPoolInterface extends utils.Interface {
   encodeFunctionData(functionFragment: 'getUserProfile', values?: undefined): string;
   encodeFunctionData(functionFragment: 'isCheer', values: [PromiseOrValue<string>]): string;
   encodeFunctionData(
-    functionFragment: 'newProjectFactory',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>],
+    functionFragment: "approveCherToProjectPool",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "chargeCher",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "cheersDapp",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "cher", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "getAllChallengeProjects",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getTotalCher",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getUserAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getUserIcon",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getUserName",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getUserPoolAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getUserProfile",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "isCheer",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "newProjectFactory",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>
+    ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "projectsData",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "removeCheerProject",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "userAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "userIcon", values?: undefined): string;
+  encodeFunctionData(functionFragment: "userName", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "userProfile",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "withdrawCher",
+    values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(functionFragment: 'projectsData', values?: undefined): string;
   encodeFunctionData(functionFragment: 'removeCheerProject', values: [PromiseOrValue<string>]): string;
@@ -118,28 +198,72 @@ export interface UserPoolInterface extends utils.Interface {
   encodeFunctionData(functionFragment: 'userProfile', values?: undefined): string;
   encodeFunctionData(functionFragment: 'withdrawCher', values: [PromiseOrValue<BigNumberish>]): string;
 
-  decodeFunctionResult(functionFragment: 'addCheerProject', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'approveCherToProjectPool', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'chargeCher', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'cheersDapp', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'cher', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getAllChallengeProjects', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getUserAddress', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getUserIcon', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getUserName', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getUserPoolAddress', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getUserProfile', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'isCheer', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'newProjectFactory', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'projectsData', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'removeCheerProject', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setCHER', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setProjectsData', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'userAddress', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'userIcon', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'userName', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'userProfile', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'withdrawCher', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "addCheerProject",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "approveCherToProjectPool",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "chargeCher", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "cheersDapp", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "cher", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllChallengeProjects",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getTotalCher",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getUserAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getUserIcon",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getUserName",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getUserPoolAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getUserProfile",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "isCheer", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "newProjectFactory",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "projectsData",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "removeCheerProject",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "userAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "userIcon", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "userName", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "userProfile",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "withdrawCher",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -189,6 +313,8 @@ export interface UserPool extends BaseContract {
 
     getAllChallengeProjects(overrides?: CallOverrides): Promise<[SharedStruct.ProjectStructOutput[]]>;
 
+    getTotalCher(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     getUserAddress(overrides?: CallOverrides): Promise<[string]>;
 
     getUserIcon(overrides?: CallOverrides): Promise<[string]>;
@@ -213,16 +339,6 @@ export interface UserPool extends BaseContract {
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<ContractTransaction>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<ContractTransaction>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
@@ -262,6 +378,8 @@ export interface UserPool extends BaseContract {
 
   getAllChallengeProjects(overrides?: CallOverrides): Promise<SharedStruct.ProjectStructOutput[]>;
 
+  getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
+
   getUserAddress(overrides?: CallOverrides): Promise<string>;
 
   getUserIcon(overrides?: CallOverrides): Promise<string>;
@@ -286,16 +404,6 @@ export interface UserPool extends BaseContract {
 
   removeCheerProject(
     _cheerProjectPoolAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
-  ): Promise<ContractTransaction>;
-
-  setCHER(
-    CHERAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
-  ): Promise<ContractTransaction>;
-
-  setProjectsData(
-    projectsDataAddress: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
@@ -329,6 +437,8 @@ export interface UserPool extends BaseContract {
 
     getAllChallengeProjects(overrides?: CallOverrides): Promise<SharedStruct.ProjectStructOutput[]>;
 
+    getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
+
     getUserAddress(overrides?: CallOverrides): Promise<string>;
 
     getUserIcon(overrides?: CallOverrides): Promise<string>;
@@ -352,10 +462,6 @@ export interface UserPool extends BaseContract {
     projectsData(overrides?: CallOverrides): Promise<string>;
 
     removeCheerProject(_cheerProjectPoolAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
-
-    setCHER(CHERAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
-
-    setProjectsData(projectsDataAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
 
     userAddress(overrides?: CallOverrides): Promise<string>;
 
@@ -393,6 +499,8 @@ export interface UserPool extends BaseContract {
 
     getAllChallengeProjects(overrides?: CallOverrides): Promise<BigNumber>;
 
+    getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
+
     getUserAddress(overrides?: CallOverrides): Promise<BigNumber>;
 
     getUserIcon(overrides?: CallOverrides): Promise<BigNumber>;
@@ -417,16 +525,6 @@ export interface UserPool extends BaseContract {
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<BigNumber>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<BigNumber>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
@@ -467,6 +565,8 @@ export interface UserPool extends BaseContract {
 
     getAllChallengeProjects(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    getTotalCher(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     getUserAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getUserIcon(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -491,16 +591,6 @@ export interface UserPool extends BaseContract {
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<PopulatedTransaction>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<PopulatedTransaction>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 

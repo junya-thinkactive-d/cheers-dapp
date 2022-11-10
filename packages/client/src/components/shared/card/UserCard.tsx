@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Level } from '@/components/shared/parts';
+import { useCherContract } from '@/hooks/contracts';
+import { usePoolListDataContract, useProjectsDataContract } from '@/hooks/contracts/data';
 import { UserType } from '@/types/struct';
 
 type Props = {
@@ -11,6 +13,13 @@ type Props = {
 };
 
 const UserCard = ({ userData }: Props) => {
+  const projectOwnerAddress = userData.userWalletAddress;
+  const ownerAddress = userData.userWalletAddress;
+  const { eachProjectList } = useProjectsDataContract({ projectOwnerAddress });
+  const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
+  const address = myPoolAddress;
+  const { cherBalance } = useCherContract({ address });
+
   return (
     <div className="min-w-72 w-72 mr-12 p-4 break-words bg-white bg-opacity-5 border border-secondary rounded-lg">
       {/* icon */}
@@ -20,13 +29,14 @@ const UserCard = ({ userData }: Props) => {
       {/* name */}
       <div className="text-2xl font-black mt-4">{userData.userName}</div>
       {/* belong dao */}
-      {/* <div className="flex mt-1 mb-3">
-        {userData.daos.map((dao, i) => (
-          <div key={i} className="text-xs rounded-md mr-2 p-1 bg-cherBlue">
-            {dao}
-          </div>
-        ))}
-      </div> */}
+      <div className="flex mt-1 mb-3">
+        {eachProjectList &&
+          eachProjectList.map((project, i) => (
+            <div key={i} className="text-xs rounded-md mr-2 p-1 bg-cherBlue">
+              {project.belongDaoAddress}
+            </div>
+          ))}
+      </div>
       {/* level
       challenger */}
       <div className="flex justify-between mb-2">
@@ -34,7 +44,7 @@ const UserCard = ({ userData }: Props) => {
           <div className="text-xl">🗡️</div>
           <div className="text-xs">challenger</div>
         </div>
-        <Level ex={1000} />
+        <Level ex={cherBalance} />
       </div>
       {/* level
       cheer */}
@@ -43,10 +53,10 @@ const UserCard = ({ userData }: Props) => {
           <div className="text-2xl">🛡️</div>
           <div className="text-xs">cheer</div>
         </div>
-        <Level ex={1000} />
+        <Level ex={cherBalance} />
       </div>
       {/* to profile */}
-      <Link href={`/userProfile/${userData.userAddress}`}>
+      <Link href={`/userProfile/${userData.userWalletAddress}`}>
         <button className="w-full h-12 rounded-md bg-cherGreen">Go to profile</button>
       </Link>
     </div>

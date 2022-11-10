@@ -168,6 +168,8 @@ describe('UserPool', function () {
       getAllChallengeProjects = await userPool.getAllChallengeProjects();
       expect(getAllChallengeProjects).to.deep.equal([]);
 
+      const newProjectPoolAddress = await userPool.connect(user1).callStatic.newProjectFactory(daoPool1.address,"Project1_Name", "Project1_Contents", "Project1_Reword");
+
       const newProjectFactory = await userPool.connect(user1).newProjectFactory(daoPool1.address,"Project1_Name", "Project1_Contents", "Project1_Reword");
       await newProjectFactory.wait();
 
@@ -175,11 +177,12 @@ describe('UserPool', function () {
 
       expect(getAllChallengeProjects.length).to.equal(1);
 
-      // // expect(getAllChallengeProjects[0][0]).to.equal(newProjectFactory);
-      expect(getAllChallengeProjects[0][1]).to.equal(daoPool1.address);
-      expect(getAllChallengeProjects[0][2]).to.equal("Project1_Name");
-      expect(getAllChallengeProjects[0][3]).to.equal("Project1_Contents");
-      expect(getAllChallengeProjects[0][4]).to.equal("Project1_Reword");
+      expect(getAllChallengeProjects[0][0]).to.equal(userPool.address);
+      expect(getAllChallengeProjects[0][1]).to.equal(newProjectPoolAddress);
+      expect(getAllChallengeProjects[0][2]).to.equal(daoPool1.address);
+      expect(getAllChallengeProjects[0][3]).to.equal("Project1_Name");
+      expect(getAllChallengeProjects[0][4]).to.equal("Project1_Contents");
+      expect(getAllChallengeProjects[0][5]).to.equal("Project1_Reword");
     });
   });
 
@@ -231,6 +234,16 @@ describe('UserPool', function () {
 
       balanceOf = await CHER.balanceOf(projectPool1.address);
       expect(balanceOf).to.equal(10);
+    });
+  });
+
+  describe('getTotalCher test', function () {
+    it("Should get total Cher owned by UserPool", async () => {
+      const { userPool, CHER } = await loadFixture(fixture);
+
+      const getTotalCher = await userPool.getTotalCher();
+      const balanceOf = await CHER.balanceOf(userPool.address);
+      expect(getTotalCher).to.deep.equal(balanceOf);
     });
   });
 });

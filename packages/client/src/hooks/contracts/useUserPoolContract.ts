@@ -13,34 +13,38 @@ import { usePoolListDataContract } from './data/usePoolListDataContract';
 const CONTRACT_ABI = UserPoolContractABI.abi;
 
 type Props = {
-  ownerAddress: string;
+  userOwnerAddress: string;
 };
 
 type ReturnUseUserPoolContract = {
-  userPoolAddress: string | undefined;
-  userAddress: string | undefined;
-  userName: string | undefined;
-  userProfile: string | undefined;
-  userIcon: string | undefined;
-  allChallengeProjects: ProjectType[] | undefined;
-  mining: boolean;
-  handleChargeCher: (_amount: string) => Promise<void>;
-  handleWithdrawCher: (_mount: string) => Promise<void>;
+  userPoolAddress: string;
+  userAddress: string;
+  userName: string;
+  userProfile: string;
+  userIcon: string;
+  allChallengeProjects: ProjectType[];
+  totalCher: string;
+  userMining: boolean;
+  handleUserChargeCher: (_amount: number) => Promise<void>;
+  handleUserWithdrawCher: (_amount: number) => Promise<void>;
   handleNewProjectFactory: (_inputProject: UserProjectFactory) => Promise<void>;
+  handleApproveCherToProjectPool: (_projectAddress: string, _cherAmount: ethers.BigNumberish) => Promise<void>;
 };
 
-export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolContract => {
+export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserPoolContract => {
+  const ownerAddress = userOwnerAddress;
   const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
 
   const CONTRACT_ADDRESS = myPoolAddress;
 
-  const [userPoolAddress, setUserPoolAddress] = useState<string>();
-  const [userAddress, setUserAddress] = useState<string>();
-  const [userName, setUserName] = useState<string>();
-  const [userProfile, setUserProfile] = useState<string>();
-  const [userIcon, setUserIcon] = useState<string>();
-  const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>();
-  const [mining, setMining] = useState<boolean>(false);
+  const [userPoolAddress, setUserPoolAddress] = useState<string>('');
+  const [userAddress, setUserAddress] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
+  const [userProfile, setUserProfile] = useState<string>('');
+  const [userIcon, setUserIcon] = useState<string>('');
+  const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>([]);
+  const [totalCher, setTotalCher] = useState<string>('');
+  const [userMining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
   const userPoolContract: UserPoolTypes | null = useMemo(() => {
@@ -102,8 +106,8 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
     }
   }, [userPoolContract]);
 
-  const handleChargeCher = useCallback(
-    async (amount: string) => {
+  const handleUserChargeCher = useCallback(
+    async (amount: number) => {
       try {
         if (!userPoolContract) return;
         const chargeCherTxn = await userPoolContract.chargeCher(amount);
@@ -117,8 +121,8 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
     [userPoolContract],
   );
 
-  const handleWithdrawCher = useCallback(
-    async (amount: string) => {
+  const handleUserWithdrawCher = useCallback(
+    async (amount: number) => {
       try {
         if (!userPoolContract) return;
         const withdrawCherTxn = await userPoolContract.withdrawCher(amount);
@@ -158,6 +162,7 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
       const getAllChallengeProjects = await userPoolContract.getAllChallengeProjects();
       const allChallengeProjectsOrganize = getAllChallengeProjects.map((challengeProject) => {
         return {
+          projectOwnerAddress: challengeProject.projectOwnerAddress,
           projectAddress: challengeProject.projectAddress,
           belongDaoAddress: challengeProject.belongDaoAddress,
           projectName: challengeProject.projectName,
@@ -172,15 +177,43 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
     }
   }, [userPoolContract]);
 
+  const handleGetTotalCher = useCallback(async () => {
+    try {
+      if (!userPoolContract) return;
+      const getTotalCher = await userPoolContract.getTotalCher();
+      const getTotalCherOrganize = ethers.utils.formatEther(getTotalCher);
+      setTotalCher(getTotalCherOrganize);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [userPoolContract]);
+
+  const handleApproveCherToProjectPool = useCallback(
+    async (projectAddress: string, cherAmount: ethers.BigNumberish) => {
+      try {
+        if (!userPoolContract) return;
+        const approveCheerToProjectPool = await userPoolContract.approveCherToProjectPool(projectAddress, cherAmount);
+        setMining(true);
+        await approveCheerToProjectPool.wait();
+        setMining(false);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [userPoolContract],
+  );
+
   useEffect(() => {
-    handleGetUserPoolAddress;
-    handleGetUserAddress;
-    handleGetUserName;
-    handleGetUserProfile;
-    handleGetUserIcon;
-    handleGetAllChallengeProjects;
+    handleGetUserPoolAddress();
+    handleGetUserAddress();
+    handleGetUserName();
+    handleGetUserProfile();
+    handleGetUserIcon();
+    handleGetAllChallengeProjects();
+    handleGetTotalCher();
   }, [
     handleGetAllChallengeProjects,
+    handleGetTotalCher,
     handleGetUserAddress,
     handleGetUserIcon,
     handleGetUserName,
@@ -195,9 +228,11 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
     userProfile,
     userIcon,
     allChallengeProjects,
-    mining,
-    handleChargeCher,
-    handleWithdrawCher,
+    totalCher,
+    userMining,
+    handleUserChargeCher,
+    handleUserWithdrawCher,
     handleNewProjectFactory,
+    handleApproveCherToProjectPool,
   };
 };

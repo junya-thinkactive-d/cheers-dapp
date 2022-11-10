@@ -19,6 +19,7 @@ import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrVal
 
 export declare namespace SharedStruct {
   export type ProjectStruct = {
+    projectOwnerAddress: PromiseOrValue<string>;
     projectAddress: PromiseOrValue<string>;
     belongDaoAddress: PromiseOrValue<string>;
     projectName: PromiseOrValue<string>;
@@ -27,7 +28,16 @@ export declare namespace SharedStruct {
     creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type ProjectStructOutput = [string, string, string, string, string, BigNumber] & {
+  export type ProjectStructOutput = [
+    string,
+    string,
+    string,
+    string,
+    string,
+    string,
+    BigNumber
+  ] & {
+    projectOwnerAddress: string;
     projectAddress: string;
     belongDaoAddress: string;
     projectName: string;
@@ -39,54 +49,52 @@ export declare namespace SharedStruct {
 
 export interface DaoPoolInterface extends utils.Interface {
   functions: {
-    'addCheerProject(address)': FunctionFragment;
-    'approveCherToProjectPool(address,uint256)': FunctionFragment;
-    'chargeCher(uint256)': FunctionFragment;
-    'cheersDapp()': FunctionFragment;
-    'cher()': FunctionFragment;
-    'daoAddress()': FunctionFragment;
-    'daoIcon()': FunctionFragment;
-    'daoName()': FunctionFragment;
-    'daoProfile()': FunctionFragment;
-    'getAllChallengeProjects()': FunctionFragment;
-    'getDaoAddress()': FunctionFragment;
-    'getDaoIcon()': FunctionFragment;
-    'getDaoName()': FunctionFragment;
-    'getDaoPoolAddress()': FunctionFragment;
-    'getDaoProfile()': FunctionFragment;
-    'isCheer(address)': FunctionFragment;
-    'newProjectFactory(string,string,string)': FunctionFragment;
-    'projectsData()': FunctionFragment;
-    'removeCheerProject(address)': FunctionFragment;
-    'setCHER(address)': FunctionFragment;
-    'setProjectsData(address)': FunctionFragment;
-    'withdrawCher(uint256)': FunctionFragment;
+    "addCheerProject(address)": FunctionFragment;
+    "approveCherToProjectPool(address,uint256)": FunctionFragment;
+    "chargeCher(uint256)": FunctionFragment;
+    "cheersDapp()": FunctionFragment;
+    "cher()": FunctionFragment;
+    "daoAddress()": FunctionFragment;
+    "daoIcon()": FunctionFragment;
+    "daoName()": FunctionFragment;
+    "daoProfile()": FunctionFragment;
+    "getAllChallengeProjects()": FunctionFragment;
+    "getDaoAddress()": FunctionFragment;
+    "getDaoIcon()": FunctionFragment;
+    "getDaoName()": FunctionFragment;
+    "getDaoPoolAddress()": FunctionFragment;
+    "getDaoProfile()": FunctionFragment;
+    "getTotalCher()": FunctionFragment;
+    "isCheer(address)": FunctionFragment;
+    "newProjectFactory(string,string,string)": FunctionFragment;
+    "projectsData()": FunctionFragment;
+    "removeCheerProject(address)": FunctionFragment;
+    "withdrawCher(uint256)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | 'addCheerProject'
-      | 'approveCherToProjectPool'
-      | 'chargeCher'
-      | 'cheersDapp'
-      | 'cher'
-      | 'daoAddress'
-      | 'daoIcon'
-      | 'daoName'
-      | 'daoProfile'
-      | 'getAllChallengeProjects'
-      | 'getDaoAddress'
-      | 'getDaoIcon'
-      | 'getDaoName'
-      | 'getDaoPoolAddress'
-      | 'getDaoProfile'
-      | 'isCheer'
-      | 'newProjectFactory'
-      | 'projectsData'
-      | 'removeCheerProject'
-      | 'setCHER'
-      | 'setProjectsData'
-      | 'withdrawCher',
+      | "addCheerProject"
+      | "approveCherToProjectPool"
+      | "chargeCher"
+      | "cheersDapp"
+      | "cher"
+      | "daoAddress"
+      | "daoIcon"
+      | "daoName"
+      | "daoProfile"
+      | "getAllChallengeProjects"
+      | "getDaoAddress"
+      | "getDaoIcon"
+      | "getDaoName"
+      | "getDaoPoolAddress"
+      | "getDaoProfile"
+      | "getTotalCher"
+      | "isCheer"
+      | "newProjectFactory"
+      | "projectsData"
+      | "removeCheerProject"
+      | "withdrawCher"
   ): FunctionFragment;
 
   encodeFunctionData(functionFragment: 'addCheerProject', values: [PromiseOrValue<string>]): string;
@@ -109,8 +117,79 @@ export interface DaoPoolInterface extends utils.Interface {
   encodeFunctionData(functionFragment: 'getDaoProfile', values?: undefined): string;
   encodeFunctionData(functionFragment: 'isCheer', values: [PromiseOrValue<string>]): string;
   encodeFunctionData(
-    functionFragment: 'newProjectFactory',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>],
+    functionFragment: "approveCherToProjectPool",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "chargeCher",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "cheersDapp",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "cher", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "daoAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "daoIcon", values?: undefined): string;
+  encodeFunctionData(functionFragment: "daoName", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "daoProfile",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getAllChallengeProjects",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getDaoAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getDaoIcon",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getDaoName",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getDaoPoolAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getDaoProfile",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getTotalCher",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "isCheer",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "newProjectFactory",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>
+    ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "projectsData",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "removeCheerProject",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "withdrawCher",
+    values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(functionFragment: 'projectsData', values?: undefined): string;
   encodeFunctionData(functionFragment: 'removeCheerProject', values: [PromiseOrValue<string>]): string;
@@ -118,28 +197,60 @@ export interface DaoPoolInterface extends utils.Interface {
   encodeFunctionData(functionFragment: 'setProjectsData', values: [PromiseOrValue<string>]): string;
   encodeFunctionData(functionFragment: 'withdrawCher', values: [PromiseOrValue<BigNumberish>]): string;
 
-  decodeFunctionResult(functionFragment: 'addCheerProject', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'approveCherToProjectPool', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'chargeCher', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'cheersDapp', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'cher', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'daoAddress', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'daoIcon', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'daoName', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'daoProfile', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getAllChallengeProjects', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getDaoAddress', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getDaoIcon', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getDaoName', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getDaoPoolAddress', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getDaoProfile', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'isCheer', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'newProjectFactory', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'projectsData', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'removeCheerProject', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setCHER', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setProjectsData', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'withdrawCher', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "addCheerProject",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "approveCherToProjectPool",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "chargeCher", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "cheersDapp", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "cher", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "daoAddress", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "daoIcon", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "daoName", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "daoProfile", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllChallengeProjects",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getDaoAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "getDaoIcon", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "getDaoName", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getDaoPoolAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getDaoProfile",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getTotalCher",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "isCheer", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "newProjectFactory",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "projectsData",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "removeCheerProject",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "withdrawCher",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -207,7 +318,12 @@ export interface DaoPool extends BaseContract {
 
     getDaoProfile(overrides?: CallOverrides): Promise<[string]>;
 
-    isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<[boolean]>;
+    getTotalCher(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    isCheer(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
 
     newProjectFactory(
       _projectName: PromiseOrValue<string>,
@@ -220,16 +336,6 @@ export interface DaoPool extends BaseContract {
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<ContractTransaction>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<ContractTransaction>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
@@ -279,7 +385,12 @@ export interface DaoPool extends BaseContract {
 
   getDaoProfile(overrides?: CallOverrides): Promise<string>;
 
-  isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
+  getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
+
+  isCheer(
+    arg0: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
 
   newProjectFactory(
     _projectName: PromiseOrValue<string>,
@@ -292,16 +403,6 @@ export interface DaoPool extends BaseContract {
 
   removeCheerProject(
     _cheerProjectPoolAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
-  ): Promise<ContractTransaction>;
-
-  setCHER(
-    CHERAddress: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
-  ): Promise<ContractTransaction>;
-
-  setProjectsData(
-    projectsDataAddress: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
@@ -345,7 +446,12 @@ export interface DaoPool extends BaseContract {
 
     getDaoProfile(overrides?: CallOverrides): Promise<string>;
 
-    isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
+    getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
+
+    isCheer(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
 
     newProjectFactory(
       _projectName: PromiseOrValue<string>,
@@ -358,11 +464,10 @@ export interface DaoPool extends BaseContract {
 
     removeCheerProject(_cheerProjectPoolAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
 
-    setCHER(CHERAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
-
-    setProjectsData(projectsDataAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
-
-    withdrawCher(_cherAmount: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
+    withdrawCher(
+      _cherAmount: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
   };
 
   filters: {};
@@ -408,7 +513,12 @@ export interface DaoPool extends BaseContract {
 
     getDaoProfile(overrides?: CallOverrides): Promise<BigNumber>;
 
-    isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
+    getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
+
+    isCheer(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     newProjectFactory(
       _projectName: PromiseOrValue<string>,
@@ -421,16 +531,6 @@ export interface DaoPool extends BaseContract {
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<BigNumber>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<BigNumber>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
@@ -481,7 +581,12 @@ export interface DaoPool extends BaseContract {
 
     getDaoProfile(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    isCheer(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getTotalCher(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    isCheer(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     newProjectFactory(
       _projectName: PromiseOrValue<string>,
@@ -494,16 +599,6 @@ export interface DaoPool extends BaseContract {
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<PopulatedTransaction>;
-
-    setCHER(
-      CHERAddress: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
-    ): Promise<PopulatedTransaction>;
-
-    setProjectsData(
-      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 

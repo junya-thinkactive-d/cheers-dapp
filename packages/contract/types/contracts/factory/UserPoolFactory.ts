@@ -24,7 +24,7 @@ import type {
 
 export interface UserPoolFactoryInterface extends utils.Interface {
   functions: {
-    "newUserPoolFactory(string,string,string)": FunctionFragment;
+    "newUserPoolFactory(address,string,string,string)": FunctionFragment;
     "poolListData()": FunctionFragment;
     "setPoolListData(address)": FunctionFragment;
     "setUsersData(address)": FunctionFragment;
@@ -43,6 +43,7 @@ export interface UserPoolFactoryInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "newUserPoolFactory",
     values: [
+      PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>
@@ -111,6 +112,7 @@ export interface UserPoolFactory extends BaseContract {
 
   functions: {
     newUserPoolFactory(
+      _userAddress: PromiseOrValue<string>,
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
@@ -133,6 +135,7 @@ export interface UserPoolFactory extends BaseContract {
   };
 
   newUserPoolFactory(
+    _userAddress: PromiseOrValue<string>,
     _userName: PromiseOrValue<string>,
     _userProfile: PromiseOrValue<string>,
     _userIcon: PromiseOrValue<string>,
@@ -155,6 +158,7 @@ export interface UserPoolFactory extends BaseContract {
 
   callStatic: {
     newUserPoolFactory(
+      _userAddress: PromiseOrValue<string>,
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
@@ -180,6 +184,7 @@ export interface UserPoolFactory extends BaseContract {
 
   estimateGas: {
     newUserPoolFactory(
+      _userAddress: PromiseOrValue<string>,
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
@@ -203,6 +208,7 @@ export interface UserPoolFactory extends BaseContract {
 
   populateTransaction: {
     newUserPoolFactory(
+      _userAddress: PromiseOrValue<string>,
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,

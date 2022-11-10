@@ -7,7 +7,7 @@ import type { Cheers as CheersType } from '@/libs/hardhat/types';
 import { DaoFactory, UserFactory } from '@/types/contractTypes';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '';
+const CONTRACT_ADDRESS = '0x02e2CFe8363021453d09c98e83180547268613a8';
 const CONTRACT_ABI = CheersContractABI.abi;
 
 type Props = {};
@@ -52,7 +52,7 @@ export const useCheersContract = ({}: Props): ReturnUseCheersContract => {
     async (inputUser: UserFactory) => {
       try {
         if (!cheersContract) return;
-        const newUserPoolFactoryTxn = await cheersContract.newDaoPoolFactory(
+        const newUserPoolFactoryTxn = await cheersContract.newUserPoolFactory(
           inputUser.userName,
           inputUser.userProfile,
           inputUser.userIcon,

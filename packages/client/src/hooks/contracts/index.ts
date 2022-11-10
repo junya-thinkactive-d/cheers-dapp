@@ -3,3 +3,4 @@ export * from './useCherFaucet';
 export * from './useDaoPoolContract';
 export * from './useProjectPoolContract';
 export * from './useUserPoolContract';
+export * from './useCherContract';

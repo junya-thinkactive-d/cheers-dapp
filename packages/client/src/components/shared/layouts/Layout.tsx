@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import Footer from './footer/Footer';
+// import Footer from './footer/Footer';
 import Header from './header/Header';
 import Sidebar from './sidebar/Sidebar';
 
@@ -18,7 +18,7 @@ const Layout = ({ children }: Props) => {
         </div>
         <div className="w-full min-h-screen">
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
     </div>

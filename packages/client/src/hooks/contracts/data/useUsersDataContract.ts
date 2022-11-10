@@ -7,16 +7,18 @@ import type { UsersData as UsersDataType } from '@/libs/hardhat/types';
 import { UserType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '';
+const CONTRACT_ADDRESS = '0x3B71d3662eF1D13B63a337adA7Fd86C2cDE541a9';
 const CONTRACT_ABI = UsersDataContractABI.abi;
 
 type Props = {};
 type ReturnUsersDataContract = {
-  allUserList: UserType[] | undefined;
+  allUserList: UserType[];
 };
 
 export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
-  const [allUserList, setAllUserList] = useState<UserType[]>();
+  const [allUserList, setAllUserList] = useState<UserType[]>([
+    { userWalletAddress: '', userName: '', userProfile: '', userIcon: '', timestamp: new Date(2022, 11 - 1, 6) },
+  ]);
   const ethereum = getEthereumSafety();
 
   const usersDataContract: UsersDataType | null = useMemo(() => {
@@ -33,7 +35,7 @@ export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
       const getAllUserList = await usersDataContract.getAllUserList();
       const allUserListOrganize = getAllUserList.map((user) => {
         return {
-          userAddress: user.userAddress,
+          userWalletAddress: user.userAddress,
           userName: user.userName,
           userProfile: user.userProfile,
           userIcon: user.userIcon,
@@ -47,9 +49,8 @@ export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
   }, [usersDataContract]);
 
   useEffect(() => {
-    allUserList;
     handleGetAllUserList();
-  }, [allUserList, handleGetAllUserList]);
+  }, [handleGetAllUserList]);
 
   return {
     allUserList,

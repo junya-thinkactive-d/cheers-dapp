@@ -26,11 +26,18 @@ export interface PoolListDataInterface extends utils.Interface {
   functions: {
     "addMyPoolAddress(address,address)": FunctionFragment;
     "getMyPoolAddress(address)": FunctionFragment;
+    "getSearchWalletAddress(address)": FunctionFragment;
     "poolList(address)": FunctionFragment;
+    "searchWalletAddress(address)": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: "addMyPoolAddress" | "getMyPoolAddress" | "poolList"
+    nameOrSignatureOrTopic:
+      | "addMyPoolAddress"
+      | "getMyPoolAddress"
+      | "getSearchWalletAddress"
+      | "poolList"
+      | "searchWalletAddress"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -42,7 +49,15 @@ export interface PoolListDataInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
+    functionFragment: "getSearchWalletAddress",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "poolList",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "searchWalletAddress",
     values: [PromiseOrValue<string>]
   ): string;
 
@@ -54,7 +69,15 @@ export interface PoolListDataInterface extends utils.Interface {
     functionFragment: "getMyPoolAddress",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "getSearchWalletAddress",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "poolList", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "searchWalletAddress",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -97,7 +120,17 @@ export interface PoolListData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    getSearchWalletAddress(
+      _poolAddres: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
     poolList(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    searchWalletAddress(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[string]>;
@@ -114,7 +147,17 @@ export interface PoolListData extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  getSearchWalletAddress(
+    _poolAddres: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
   poolList(
+    arg0: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  searchWalletAddress(
     arg0: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<string>;
@@ -131,7 +174,17 @@ export interface PoolListData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
+    getSearchWalletAddress(
+      _poolAddres: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
     poolList(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    searchWalletAddress(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<string>;
@@ -151,7 +204,17 @@ export interface PoolListData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    getSearchWalletAddress(
+      _poolAddres: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     poolList(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    searchWalletAddress(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -169,7 +232,17 @@ export interface PoolListData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    getSearchWalletAddress(
+      _poolAddres: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     poolList(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    searchWalletAddress(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;

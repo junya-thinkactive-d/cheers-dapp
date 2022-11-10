@@ -7,6 +7,7 @@ import '../shared/SharedStruct.sol';
 // Projectデータ保存のためのコントラクト
 contract ProjectsData is IProjectsData {
   // pool
+  mapping(address => SharedStruct.Project) public projectAddressToProjectData;
   mapping(address => SharedStruct.Project[]) public eachProjectsList;
   SharedStruct.Project[] public allProjectsList;
 
@@ -23,6 +24,7 @@ contract ProjectsData is IProjectsData {
 
     eachProjectsList[_projectOwnerAddress].push(
       SharedStruct.Project(
+        _projectOwnerAddress,
         _projectPoolAddress,
         _belongDaoAddress,
         _projectName,
@@ -34,6 +36,7 @@ contract ProjectsData is IProjectsData {
 
     allProjectsList.push(
       SharedStruct.Project(
+        _projectOwnerAddress,
         _projectPoolAddress,
         _belongDaoAddress,
         _projectName,
@@ -42,6 +45,25 @@ contract ProjectsData is IProjectsData {
         _creationTime
       )
     );
+
+    projectAddressToProjectData[_projectPoolAddress] = SharedStruct.Project(
+      _projectOwnerAddress,
+      _projectPoolAddress,
+      _belongDaoAddress,
+      _projectName,
+      _projectContents,
+      _projectReword,
+      _creationTime
+    );
+  }
+
+  // プロジェクトプールアドレスからプロジェクト取得
+  function getProjectAddressToProjectData(address _projectPoolAddress)
+    public
+    view
+    returns (SharedStruct.Project memory)
+  {
+    return projectAddressToProjectData[_projectPoolAddress];
   }
 
   // アドレスごとのProject取得
@@ -49,7 +71,7 @@ contract ProjectsData is IProjectsData {
     return eachProjectsList[_projectOwnerAddress];
   }
 
-  //
+  // 全てのProject取得
   function getAllProjectList() public view returns (SharedStruct.Project[] memory) {
     return allProjectsList;
   }

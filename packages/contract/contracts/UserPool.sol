@@ -10,7 +10,7 @@ import './ProjectPool.sol';
 
 contract UserPool is IUserPool {
   // PROJECT
-  address PROJECTSDATA_CONTRACT_ADDRESS; // = projectsDataコントラクトアドレス 先にDaoDataコントラクトをdeploy
+  address PROJECTSDATA_CONTRACT_ADDRESS = 0x5CE46cA237c357970ee6DCe0e64d1d3dF506514d; // = projectsDataコントラクトアドレス 先にDaoDataコントラクトをdeploy
   IProjectsData public projectsData;
 
   IERC20 public cher;
@@ -22,7 +22,7 @@ contract UserPool is IUserPool {
   string public userProfile;
   string public userIcon;
   // Alchemy testnet goerli deploy
-  address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
+  address CHER_CONTRACT_ADDRESS = 0xc87D7FE5E5Af9cfEDE29F8d362EEb1a788c539cf;
 
   // cheerProjectリスト
   address[] cheerProjectList;
@@ -159,15 +159,20 @@ contract UserPool is IUserPool {
     return isCheer[_cheerProjectPoolAddress];
   }
 
-  function setCHER(address CHERAddress) public {
-    CHER_CONTRACT_ADDRESS = CHERAddress;
-    cher = IERC20(CHERAddress);
+  // このプールのcher総量
+  function getTotalCher() public view returns (uint256) {
+    return cher.balanceOf(address(this));
   }
 
-  function setProjectsData(address projectsDataAddress) public {
-    PROJECTSDATA_CONTRACT_ADDRESS = projectsDataAddress;
-    projectsData = IProjectsData(projectsDataAddress);
-  }
+  // function setCHER(address CHERAddress) public {
+  //   CHER_CONTRACT_ADDRESS = CHERAddress;
+  //   cher = IERC20(CHERAddress);
+  // }
+
+  // function setProjectsData(address projectsDataAddress) public {
+  //   PROJECTSDATA_CONTRACT_ADDRESS = projectsDataAddress;
+  //   projectsData = IProjectsData(projectsDataAddress);
+  // }
 
   function approveCherToProjectPool(address _projectPoolAddress, uint256 _cherAmount) external onlyOwner {
     require(cher.balanceOf(address(this)) >= _cherAmount, 'not insufficient');

@@ -20,6 +20,7 @@ library SharedStruct {
   }
 
   struct Project {
+    address projectOwnerAddress;
     address projectAddress;
     address belongDaoAddress;
     string projectName;
@@ -29,8 +30,9 @@ library SharedStruct {
   }
 
   struct Cheer {
+    address projectAddress;
     address cheerPoolAddress;
-    uint256 timestamp;
+    uint256 creationTime;
     string message;
     uint256 cher;
   }

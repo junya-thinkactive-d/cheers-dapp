@@ -167,6 +167,8 @@ describe('DaoPool', function () {
       getAllChallengeProjects = await daoPool.getAllChallengeProjects();
       expect(getAllChallengeProjects).to.deep.equal([]);
 
+      const newProjectPoolAddress = await daoPool.connect(dao1).callStatic.newProjectFactory('Project1_Name', 'Project1_Contents', 'Project1_Reword');
+
       const newProjectFactory = await daoPool
         .connect(dao1)
         .newProjectFactory('Project1_Name', 'Project1_Contents', 'Project1_Reword');
@@ -176,11 +178,12 @@ describe('DaoPool', function () {
 
       expect(getAllChallengeProjects.length).to.equal(1);
 
-      // expect(getAllChallengeProjects[0][0]).to.equal(newProjectFactory);
-      expect(getAllChallengeProjects[0][1]).to.equal(daoPool.address);
-      expect(getAllChallengeProjects[0][2]).to.equal('Project1_Name');
-      expect(getAllChallengeProjects[0][3]).to.equal('Project1_Contents');
-      expect(getAllChallengeProjects[0][4]).to.equal('Project1_Reword');
+      expect(getAllChallengeProjects[0][0]).to.equal(daoPool.address);
+      expect(getAllChallengeProjects[0][1]).to.equal(newProjectPoolAddress);
+      expect(getAllChallengeProjects[0][2]).to.equal(daoPool.address);
+      expect(getAllChallengeProjects[0][3]).to.equal('Project1_Name');
+      expect(getAllChallengeProjects[0][4]).to.equal('Project1_Contents');
+      expect(getAllChallengeProjects[0][5]).to.equal('Project1_Reword');
     });
   });
 
@@ -232,6 +235,16 @@ describe('DaoPool', function () {
 
       balanceOf = await CHER.balanceOf(projectPool1.address);
       expect(balanceOf).to.equal(10);
+    });
+  });
+
+  describe('getTotalCher test', function () {
+    it("Should get total Cher owned by DaoPool", async () => {
+      const { daoPool, CHER } = await loadFixture(fixture);
+
+      const getTotalCher = await daoPool.getTotalCher();
+      const balanceOf = await CHER.balanceOf(daoPool.address);
+      expect(getTotalCher).to.deep.equal(balanceOf);
     });
   });
 });

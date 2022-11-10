@@ -18,23 +18,60 @@ import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrVal
 
 export interface PoolListDataInterface extends utils.Interface {
   functions: {
-    'addMyPoolAddress(address,address)': FunctionFragment;
-    'getMyPoolAddress(address)': FunctionFragment;
-    'poolList(address)': FunctionFragment;
+    "addMyPoolAddress(address,address)": FunctionFragment;
+    "getMyPoolAddress(address)": FunctionFragment;
+    "getSearchWalletAddress(address)": FunctionFragment;
+    "poolList(address)": FunctionFragment;
+    "searchWalletAddress(address)": FunctionFragment;
   };
 
-  getFunction(nameOrSignatureOrTopic: 'addMyPoolAddress' | 'getMyPoolAddress' | 'poolList'): FunctionFragment;
+  getFunction(
+    nameOrSignatureOrTopic:
+      | "addMyPoolAddress"
+      | "getMyPoolAddress"
+      | "getSearchWalletAddress"
+      | "poolList"
+      | "searchWalletAddress"
+  ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: 'addMyPoolAddress',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>],
+    functionFragment: "addMyPoolAddress",
+    values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(functionFragment: 'getMyPoolAddress', values: [PromiseOrValue<string>]): string;
-  encodeFunctionData(functionFragment: 'poolList', values: [PromiseOrValue<string>]): string;
+  encodeFunctionData(
+    functionFragment: "getMyPoolAddress",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getSearchWalletAddress",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "poolList",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "searchWalletAddress",
+    values: [PromiseOrValue<string>]
+  ): string;
 
-  decodeFunctionResult(functionFragment: 'addMyPoolAddress', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getMyPoolAddress', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'poolList', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "addMyPoolAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getMyPoolAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getSearchWalletAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "poolList", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "searchWalletAddress",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -70,7 +107,20 @@ export interface PoolListData extends BaseContract {
 
     getMyPoolAddress(_ownerAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<[string]>;
 
-    poolList(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<[string]>;
+    getSearchWalletAddress(
+      _poolAddres: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    poolList(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    searchWalletAddress(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
   };
 
   addMyPoolAddress(
@@ -81,7 +131,20 @@ export interface PoolListData extends BaseContract {
 
   getMyPoolAddress(_ownerAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<string>;
 
-  poolList(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<string>;
+  getSearchWalletAddress(
+    _poolAddres: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  poolList(
+    arg0: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  searchWalletAddress(
+    arg0: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   callStatic: {
     addMyPoolAddress(
@@ -92,7 +155,20 @@ export interface PoolListData extends BaseContract {
 
     getMyPoolAddress(_ownerAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<string>;
 
-    poolList(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<string>;
+    getSearchWalletAddress(
+      _poolAddres: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    poolList(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    searchWalletAddress(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<string>;
   };
 
   filters: {};
@@ -106,7 +182,20 @@ export interface PoolListData extends BaseContract {
 
     getMyPoolAddress(_ownerAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
 
-    poolList(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
+    getSearchWalletAddress(
+      _poolAddres: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    poolList(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    searchWalletAddress(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -118,6 +207,19 @@ export interface PoolListData extends BaseContract {
 
     getMyPoolAddress(_ownerAddress: PromiseOrValue<string>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    poolList(arg0: PromiseOrValue<string>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getSearchWalletAddress(
+      _poolAddres: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    poolList(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    searchWalletAddress(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
   };
 }

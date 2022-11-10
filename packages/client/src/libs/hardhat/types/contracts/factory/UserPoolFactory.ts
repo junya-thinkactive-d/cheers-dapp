@@ -18,11 +18,11 @@ import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrVal
 
 export interface UserPoolFactoryInterface extends utils.Interface {
   functions: {
-    'newUserPoolFactory(string,string,string)': FunctionFragment;
-    'poolListData()': FunctionFragment;
-    'setPoolListData(address)': FunctionFragment;
-    'setUsersData(address)': FunctionFragment;
-    'usersData()': FunctionFragment;
+    "newUserPoolFactory(address,string,string,string)": FunctionFragment;
+    "poolListData()": FunctionFragment;
+    "setPoolListData(address)": FunctionFragment;
+    "setUsersData(address)": FunctionFragment;
+    "usersData()": FunctionFragment;
   };
 
   getFunction(
@@ -30,8 +30,13 @@ export interface UserPoolFactoryInterface extends utils.Interface {
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: 'newUserPoolFactory',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>],
+    functionFragment: "newUserPoolFactory",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<string>
+    ]
   ): string;
   encodeFunctionData(functionFragment: 'poolListData', values?: undefined): string;
   encodeFunctionData(functionFragment: 'setPoolListData', values: [PromiseOrValue<string>]): string;
@@ -71,6 +76,7 @@ export interface UserPoolFactory extends BaseContract {
 
   functions: {
     newUserPoolFactory(
+      _userAddress: PromiseOrValue<string>,
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
@@ -93,6 +99,7 @@ export interface UserPoolFactory extends BaseContract {
   };
 
   newUserPoolFactory(
+    _userAddress: PromiseOrValue<string>,
     _userName: PromiseOrValue<string>,
     _userProfile: PromiseOrValue<string>,
     _userIcon: PromiseOrValue<string>,
@@ -115,6 +122,7 @@ export interface UserPoolFactory extends BaseContract {
 
   callStatic: {
     newUserPoolFactory(
+      _userAddress: PromiseOrValue<string>,
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
@@ -134,6 +142,7 @@ export interface UserPoolFactory extends BaseContract {
 
   estimateGas: {
     newUserPoolFactory(
+      _userAddress: PromiseOrValue<string>,
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
@@ -157,6 +166,7 @@ export interface UserPoolFactory extends BaseContract {
 
   populateTransaction: {
     newUserPoolFactory(
+      _userAddress: PromiseOrValue<string>,
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,

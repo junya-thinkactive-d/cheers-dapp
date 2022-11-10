@@ -4,7 +4,7 @@ pragma solidity ^0.8.17;
 import './interfaces/IERC20.sol';
 
 contract CherFaucet {
-  address public CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
+  address public CHER_CONTRACT_ADDRESS = 0xc87D7FE5E5Af9cfEDE29F8d362EEb1a788c539cf;
   IERC20 public cher = IERC20(CHER_CONTRACT_ADDRESS);
   address public owner;
 
@@ -46,5 +46,22 @@ contract CherFaucet {
 
     bool sent = cher.transfer(msg.sender, balance);
     require(sent, 'CHER could not be sent.');
+  }
+
+  function exchange(uint256 cherAmount) external {
+    require(msg.sender == tx.origin, 'EOA only');
+
+    uint256 cherAllowance = cher.allowance(msg.sender, address(this));
+    require(cherAllowance >= cherAmount, 'CHER allowance is required to receive Native token');
+
+    uint256 ethAmount = cherAmount / 1000;
+    require(ethAmount > 0, 'Need more Cher allowance');
+    require(address(this).balance >= ethAmount, 'No Native token');
+
+    bool sentCher = cher.transferFrom(msg.sender, address(this), cherAmount);
+    require(sentCher, 'CHER could not be sent.');
+
+    (bool sentEth, ) = msg.sender.call{value: ethAmount}('');
+    require(sentEth, 'Native token could not be sent.');
   }
 }

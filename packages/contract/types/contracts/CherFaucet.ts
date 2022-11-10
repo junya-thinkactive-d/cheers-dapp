@@ -4,6 +4,7 @@
 import type {
   BaseContract,
   BigNumber,
+  BigNumberish,
   BytesLike,
   CallOverrides,
   ContractTransaction,
@@ -27,6 +28,7 @@ export interface CherFaucetInterface extends utils.Interface {
   functions: {
     "CHER_CONTRACT_ADDRESS()": FunctionFragment;
     "cher()": FunctionFragment;
+    "exchange(uint256)": FunctionFragment;
     "faucet()": FunctionFragment;
     "getFaucetBalance()": FunctionFragment;
     "owner()": FunctionFragment;
@@ -39,6 +41,7 @@ export interface CherFaucetInterface extends utils.Interface {
     nameOrSignatureOrTopic:
       | "CHER_CONTRACT_ADDRESS"
       | "cher"
+      | "exchange"
       | "faucet"
       | "getFaucetBalance"
       | "owner"
@@ -52,6 +55,10 @@ export interface CherFaucetInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "cher", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "exchange",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
   encodeFunctionData(functionFragment: "faucet", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "getFaucetBalance",
@@ -73,6 +80,7 @@ export interface CherFaucetInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "cher", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "exchange", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "faucet", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getFaucetBalance",
@@ -117,6 +125,11 @@ export interface CherFaucet extends BaseContract {
 
     cher(overrides?: CallOverrides): Promise<[string]>;
 
+    exchange(
+      cherAmount: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     faucet(
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -143,6 +156,11 @@ export interface CherFaucet extends BaseContract {
   CHER_CONTRACT_ADDRESS(overrides?: CallOverrides): Promise<string>;
 
   cher(overrides?: CallOverrides): Promise<string>;
+
+  exchange(
+    cherAmount: PromiseOrValue<BigNumberish>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
 
   faucet(
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
@@ -171,6 +189,11 @@ export interface CherFaucet extends BaseContract {
 
     cher(overrides?: CallOverrides): Promise<string>;
 
+    exchange(
+      cherAmount: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     faucet(overrides?: CallOverrides): Promise<void>;
 
     getFaucetBalance(overrides?: CallOverrides): Promise<BigNumber>;
@@ -196,6 +219,11 @@ export interface CherFaucet extends BaseContract {
     CHER_CONTRACT_ADDRESS(overrides?: CallOverrides): Promise<BigNumber>;
 
     cher(overrides?: CallOverrides): Promise<BigNumber>;
+
+    exchange(
+      cherAmount: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
 
     faucet(
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
@@ -226,6 +254,11 @@ export interface CherFaucet extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     cher(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    exchange(
+      cherAmount: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
 
     faucet(
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }

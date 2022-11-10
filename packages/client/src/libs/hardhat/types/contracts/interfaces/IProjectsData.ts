@@ -19,6 +19,7 @@ import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrVal
 
 export declare namespace SharedStruct {
   export type ProjectStruct = {
+    projectOwnerAddress: PromiseOrValue<string>;
     projectAddress: PromiseOrValue<string>;
     belongDaoAddress: PromiseOrValue<string>;
     projectName: PromiseOrValue<string>;
@@ -27,7 +28,16 @@ export declare namespace SharedStruct {
     creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type ProjectStructOutput = [string, string, string, string, string, BigNumber] & {
+  export type ProjectStructOutput = [
+    string,
+    string,
+    string,
+    string,
+    string,
+    string,
+    BigNumber
+  ] & {
+    projectOwnerAddress: string;
     projectAddress: string;
     belongDaoAddress: string;
     projectName: string;

@@ -1,5 +1,5 @@
 export type UserType = {
-  userAddress: string;
+  userWalletAddress: string;
   userName: string;
   userProfile: string;
   userIcon: string;
@@ -7,7 +7,7 @@ export type UserType = {
 };
 
 export type DaoType = {
-  daoAddress: string;
+  daoWalletAddress: string;
   daoName: string;
   daoProfile: string;
   daoIcon: string;
@@ -15,6 +15,7 @@ export type DaoType = {
 };
 
 export type ProjectType = {
+  projectOwnerAddress: string;
   projectAddress: string;
   belongDaoAddress: string;
   projectName: string;
@@ -24,6 +25,7 @@ export type ProjectType = {
 };
 
 export type CheerType = {
+  projectAddress: string;
   cheerPoolAddress: string;
   timestamp: Date;
   message: string;

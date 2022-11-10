@@ -1,12 +1,12 @@
 import React from 'react';
 
 type Props = {
-  ex: number;
+  ex: string;
 };
 
 const Level = ({ ex }: Props) => {
-  const level = Math.floor(ex / 100);
-  const remainingEx = ex % 100;
+  const level = Math.floor(Number(ex) / 100);
+  const remainingEx = Number(ex) % 100;
 
   return (
     <div className="flex flex-col justify-center w-8/12">

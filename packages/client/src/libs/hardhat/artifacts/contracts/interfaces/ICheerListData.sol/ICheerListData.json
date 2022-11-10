@@ -1,0 +1,136 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ICheerListData",
+  "sourceName": "contracts/interfaces/ICheerListData.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_projectPoolAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_cheerPoolAddres",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_creationTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_message",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_cher",
+          "type": "uint256"
+        }
+      ],
+      "name": "addCheerDataList",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_cheerPoolAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getMyPoolCheerDataList",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "projectAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "cheerPoolAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "creationTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "message",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "cher",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct SharedStruct.Cheer[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_projectPoolAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getMyProjectCheerDataList",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "projectAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "cheerPoolAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "creationTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "message",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "cher",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct SharedStruct.Cheer[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

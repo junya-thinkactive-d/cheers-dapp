@@ -14,6 +14,7 @@ interface IProjectsData {
     string memory _projectReword
   ) external;
 
+
   // アドレスごとのProject取得
   function getEachProjectList(address _projectOwnerAddress) external view returns (SharedStruct.Project[] memory);
 }

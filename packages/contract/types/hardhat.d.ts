@@ -41,6 +41,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DaoPool__factory>;
     getContractFactory(
+      name: "CheerListData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.CheerListData__factory>;
+    getContractFactory(
       name: "DaosData",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DaosData__factory>;
@@ -64,6 +68,10 @@ declare module "hardhat/types/runtime" {
       name: "UserPoolFactory",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.UserPoolFactory__factory>;
+    getContractFactory(
+      name: "ICheerListData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ICheerListData__factory>;
     getContractFactory(
       name: "IDaoPool",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -145,6 +153,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.DaoPool>;
     getContractAt(
+      name: "CheerListData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.CheerListData>;
+    getContractAt(
       name: "DaosData",
       address: string,
       signer?: ethers.Signer
@@ -174,6 +187,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.UserPoolFactory>;
+    getContractAt(
+      name: "ICheerListData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ICheerListData>;
     getContractAt(
       name: "IDaoPool",
       address: string,
