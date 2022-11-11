@@ -18,7 +18,7 @@ const ProjectCard = ({ project }: Props) => {
   return (
     <>
       <Link href={`/projectContents/${address}`}>
-        <div className="w-80 p-4 mx-4 my-4 rounded-lg bg-secondary cursor-pointer">
+        <div className="min-w-72 w-72 p-4 my-4 rounded-lg bg-secondary cursor-pointer">
           <div className="flex items-center text-xs mb-2">
             <ChangeBelongDaoName belongDaoAddress={project.belongDaoAddress} />
           </div>

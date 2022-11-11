@@ -21,7 +21,7 @@ const DaoCard = ({ daoData }: Props) => {
   const { cherBalance } = useCherContract({ address });
 
   return (
-    <div className="min-w-72 w-72 mr-12 p-4 break-words bg-white bg-opacity-5 border border-secondary rounded-lg">
+    <div className="min-w-72 w-72 p-4 break-words bg-white bg-opacity-5 border border-secondary rounded-lg">
       {/* icon */}
       <div className="relative w-full h-20 mb-2">
         <Image src={daoData.daoIcon} layout="fill" objectFit="cover" alt="user icon" className="rounded-lg" />

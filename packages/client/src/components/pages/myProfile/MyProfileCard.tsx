@@ -29,7 +29,6 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
   const daoOwnerAddress = ownerAddress;
   const { daoPoolAddress, daoName } = useDaoPoolContract({ daoOwnerAddress });
   const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
-  const projectOwnerAddress = myPoolAddress;
   const address = myPoolAddress;
   const { cherBalance } = useCherContract({ address });
 

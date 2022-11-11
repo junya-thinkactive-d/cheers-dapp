@@ -22,18 +22,18 @@ const AfterLogin = () => {
   }, [handleSetOwnerAddress]);
 
   return (
-    <div className="w-full min-h-screen">
+    <div className="w-full min-h-screen px-4">
       {myPoolAddress === '0x0000000000000000000000000000000000000000' ? (
         <>
           <BeforeCreatePool />
         </>
       ) : (
         <>
-          <div className="text-2xl ml-4 mt-12 mb-4 font-bold">ALL USER</div>
+          <div className="text-2xl ml-4 mt-12 mb-4 font-bold text-cherBlue">ALL USER</div>
           {allUserList ? <UsersInfo usersData={allUserList} /> : <Nodata />}
-          <div className="text-2xl ml-4 mt-12 mb-4 font-bold">ALL DAO</div>
+          <div className="text-2xl ml-4 mt-12 mb-4 font-bold text-cherRed">ALL DAO</div>
           {allDaoList ? <DaosInfo daosData={allDaoList} /> : <Nodata />}
-          <div className="text-2xl ml-4 mt-12 mb-4 font-bold">ALL PROJECTS</div>
+          <div className="text-2xl ml-4 mt-12 mb-4 font-bold text-cherYellow">ALL PROJECTS</div>
           <AllProjects />
         </>
       )}
