@@ -47,14 +47,14 @@ const Withdraw = ({ ownerAddress }: Props) => {
       <Mining mining={userMining} />
       <Mining mining={daoMining} />
       <div className="mb-2">
-        CHERをPOOLから引き出す <span className="text-sm text-cherBlue">Withdraw Pool</span>
+        CHERをPOOLから引き出す <span className="text-sm text-cherYellow">Withdraw CHER</span>
       </div>
       <div className="flex justify-center items-center">
         <InputNumber value={form.amount} onChange={handleChangeAmount} onInvalidNumber={handleInvalidAmount} />
         {errors?.amount ? (
           <p className="text-cherRed">{errors.amount}</p>
         ) : (
-          <Button buttonName="CHARGE POOL!" onClickEvent={onClickEvent} />
+          <Button buttonName="WITHDRAW CHER!" onClickEvent={onClickEvent} />
         )}
       </div>
     </div>

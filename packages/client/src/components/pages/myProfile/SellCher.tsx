@@ -33,15 +33,15 @@ const SellCher = () => {
     <div className="flex flex-col justify-center items-start">
       <Mining mining={mining} />
       <div className="mb-2">
-        CHERをETHと交換する
-        <span className="text-sm text-cherPink">Change CHER</span>
+        MATICと交換する
+        <span className="text-sm text-cherYellow">Exchange for MATIC</span>
       </div>
       <div className="flex justify-center items-center">
         <InputNumber value={form.amount} onChange={handleChangeAmount} onInvalidNumber={handleInvalidAmount} />
         {errors?.amount ? (
           <p className="text-cherRed">{errors.amount}</p>
         ) : (
-          <Button buttonName="CHARGE POOL!" onClickEvent={onClickEvent} />
+          <Button buttonName="EXCHANGE FOR MATIC!" onClickEvent={onClickEvent} />
         )}
       </div>
     </div>

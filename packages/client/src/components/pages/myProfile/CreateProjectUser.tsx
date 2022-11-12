@@ -65,7 +65,7 @@ const CreateProjectUser = ({ userOwnerAddress }: Props) => {
   }, [createDaoNameList, handleSetBelongDaoAddress]);
 
   return (
-    <div className="flex justify-start items-start pt-12">
+    <div className="flex justify-center items-center pt-12">
       <Mining mining={userMining} />
       <div className="flex flex-col justify-center items-center">
         <div className="text-4xl text-cherBlue">PROJECT FACTORY</div>

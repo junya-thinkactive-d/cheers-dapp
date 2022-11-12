@@ -47,14 +47,14 @@ const SendCher = ({ ownerAddress }: Props) => {
       <Mining mining={userMining} />
       <Mining mining={daoMining} />
       <div className="mb-2">
-        CHERをPOOLにチャージする <span className="text-sm text-cherBlue">Charge Pool</span>
+        CHERをPOOLにチャージする <span className="text-sm text-cherYellow">Charge CHER</span>
       </div>
       <div className="flex justify-center items-center">
         <InputNumber value={form.amount} onChange={handleChangeAmount} onInvalidNumber={handleInvalidAmount} />
         {errors?.amount ? (
           <p className="text-cherRed">{errors.amount}</p>
         ) : (
-          <Button buttonName="CHARGE POOL!" onClickEvent={onClickEvent} />
+          <Button buttonName="CHARGE CHER!" onClickEvent={onClickEvent} />
         )}
       </div>
     </div>
