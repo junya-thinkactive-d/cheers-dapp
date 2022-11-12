@@ -110,7 +110,7 @@ export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPool
     async (amount: number) => {
       try {
         if (!daoPoolContract) return;
-        const chargeCherTxn = await daoPoolContract.chargeCher(amount);
+        const chargeCherTxn = await daoPoolContract.chargeCher(ethers.utils.parseEther(`${amount}`));
         setMining(true);
         await chargeCherTxn.wait();
         setMining(false);
