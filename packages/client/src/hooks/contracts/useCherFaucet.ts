@@ -15,7 +15,7 @@ type ReturnUseCherFaucet = {
   mining: boolean;
   handleSetOwner: (_ownerAddress: string) => void;
   handleSetCHER: (_CHERAddress: string) => void;
-  handleFaucet: (_value: number) => void;
+  handleFaucet: () => void;
   handleWithdraw: () => void;
   handleExchange: (_cherAmount: number) => void;
 };
@@ -63,10 +63,10 @@ export const useCherFaucetContract = ({}: Props): ReturnUseCherFaucet => {
   );
 
   const handleFaucet = useCallback(
-    async (value: number) => {
+    async () => {
       try {
         if (!cherFaucetContract) return;
-        const faucetTxn = await cherFaucetContract.faucet({ value: value });
+        const faucetTxn = await cherFaucetContract.faucet();
         setMining(true);
         await faucetTxn.wait();
         setMining(false);
