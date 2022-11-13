@@ -49,28 +49,31 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
   return (
     <>
       <div className="m-12">
+        <div className="border-b border-white pb-12">
+          <div>
+            <span className="text-cherYellow mx-1">Type:</span>
+            {poolAddressType.type}
+          </div>
+          <div>
+            <span className="text-cherYellow mx-1">{`${poolAddressType.type}`}Name:</span>
+            {poolAddressType.name}
+          </div>
+          <div>
+            <span className="text-cherYellow mx-1">{`${poolAddressType.type}`}Wallet Address:</span>
+            {ownerAddress}
+          </div>
+          <div>
+            <span className="text-cherYellow mx-1">{`${poolAddressType.type}`}Pool Address:</span>
+            {poolAddressType.poolAddress}
+          </div>
+          <div>
+            <span className="text-cherYellow mx-1">Pool Total CHER:</span>
+            {cherBalance}
+          </div>
+        </div>
         <div className="flex flex-wrap">
-          <div className="w-1/2">
-            <div>
-              <span className="text-cherYellow mx-1">Type:</span>
-              {poolAddressType.type}
-            </div>
-            <div>
-              <span className="text-cherYellow mx-1">{`${poolAddressType.type}`}Name:</span>
-              {poolAddressType.name}
-            </div>
-            <div>
-              <span className="text-cherYellow mx-1">{`${poolAddressType.type}`}Wallet Address:</span>
-              {ownerAddress}
-            </div>
-            <div>
-              <span className="text-cherYellow mx-1">{`${poolAddressType.type}`}Pool Address:</span>
-              {poolAddressType.poolAddress}
-            </div>
-            <div>
-              <span className="text-cherYellow mx-1">Pool Total CHER:</span>
-              {cherBalance}
-            </div>
+          <div className="w-1/2 border-r border-white pt-12">
+            <div className="text-4xl text-cherYellow text-center">CHER CONTROL</div>
             <div className="my-8">
               <BuyCher />
             </div>

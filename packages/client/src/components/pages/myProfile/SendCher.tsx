@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { Mining } from '@/components/shared/layouts';
 import { Button, InputNumber } from '@/components/shared/parts';
-import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
+import { useCherContract, useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
 import { Form, FormErrors } from '@/types/form';
 
 type Props = {
@@ -11,9 +11,10 @@ type Props = {
 
 const SendCher = ({ ownerAddress }: Props) => {
   const userOwnerAddress = ownerAddress;
-  const { userMining, userPoolAddress, handleUserChargeCher } = useUserPoolContract({ userOwnerAddress });
+  const { userMining, userPoolAddress } = useUserPoolContract({ userOwnerAddress });
   const daoOwnerAddress = ownerAddress;
-  const { daoMining, daoPoolAddress, handleDaoChargeCher } = useDaoPoolContract({ daoOwnerAddress });
+  const { daoMining, daoPoolAddress } = useDaoPoolContract({ daoOwnerAddress });
+  const { mining, handleTransfer } = useCherContract({});
 
   const [errors, setErrors] = useState<FormErrors>();
   const [form, setForm] = useState<Form>({
@@ -32,29 +33,34 @@ const SendCher = ({ ownerAddress }: Props) => {
   const onClickEvent = useCallback(async () => {
     try {
       if (userPoolAddress !== '') {
-        await handleUserChargeCher(form.amount);
+        handleTransfer(userPoolAddress, form.amount);
       } else if (daoPoolAddress !== '') {
-        await handleDaoChargeCher(form.amount);
+        handleTransfer(daoPoolAddress, form.amount);
+        setForm({ amount: 0 });
       }
-      setForm({ amount: 0 });
     } catch (error) {
       alert(error);
     }
-  }, [daoPoolAddress, form.amount, handleDaoChargeCher, handleUserChargeCher, userPoolAddress]);
+  }, [daoPoolAddress, form.amount, handleTransfer, userPoolAddress]);
+
+  useEffect(() => {
+    form;
+  }, [form, setForm]);
 
   return (
     <div className="flex flex-col justify-center items-start">
       <Mining mining={userMining} />
       <Mining mining={daoMining} />
+      <Mining mining={mining} />
       <div className="mb-2">
-        CHERをPOOLにチャージする <span className="text-sm text-cherBlue">Charge Pool</span>
+        CHERをPOOLにチャージする <span className="text-sm text-cherYellow">Charge CHER</span>
       </div>
       <div className="flex justify-center items-center">
         <InputNumber value={form.amount} onChange={handleChangeAmount} onInvalidNumber={handleInvalidAmount} />
         {errors?.amount ? (
           <p className="text-cherRed">{errors.amount}</p>
         ) : (
-          <Button buttonName="CHARGE POOL!" onClickEvent={onClickEvent} />
+          <Button buttonName="CHARGE CHER!" onClickEvent={onClickEvent} />
         )}
       </div>
     </div>

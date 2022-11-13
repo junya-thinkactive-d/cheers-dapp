@@ -28,7 +28,7 @@ type ReturnUseUserPoolContract = {
   handleUserChargeCher: (_amount: number) => Promise<void>;
   handleUserWithdrawCher: (_amount: number) => Promise<void>;
   handleNewProjectFactory: (_inputProject: UserProjectFactory) => Promise<void>;
-  handleApproveCherToProjectPool: (_projectAddress: string, _cherAmount: ethers.BigNumberish) => Promise<void>;
+  handleUserApproveCherToProjectPool: (_projectAddress: string, _cherAmount: number) => Promise<void>;
 };
 
 export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserPoolContract => {
@@ -110,7 +110,7 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     async (amount: number) => {
       try {
         if (!userPoolContract) return;
-        const chargeCherTxn = await userPoolContract.chargeCher(amount);
+        const chargeCherTxn = await userPoolContract.chargeCher(ethers.utils.parseEther(`${amount}`));
         setMining(true);
         await chargeCherTxn.wait();
         setMining(false);
@@ -125,7 +125,7 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     async (amount: number) => {
       try {
         if (!userPoolContract) return;
-        const withdrawCherTxn = await userPoolContract.withdrawCher(amount);
+        const withdrawCherTxn = await userPoolContract.withdrawCher(ethers.utils.parseEther(`${amount}`));
         setMining(true);
         await withdrawCherTxn.wait();
         setMining(false);
@@ -188,11 +188,11 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     }
   }, [userPoolContract]);
 
-  const handleApproveCherToProjectPool = useCallback(
-    async (projectAddress: string, cherAmount: ethers.BigNumberish) => {
+  const handleUserApproveCherToProjectPool = useCallback(
+    async (projectAddress: string, amount: number) => {
       try {
         if (!userPoolContract) return;
-        const approveCheerToProjectPool = await userPoolContract.approveCherToProjectPool(projectAddress, cherAmount);
+        const approveCheerToProjectPool = await userPoolContract.approveCherToProjectPool(projectAddress, ethers.utils.parseEther(`${amount}`));
         setMining(true);
         await approveCheerToProjectPool.wait();
         setMining(false);
@@ -233,6 +233,6 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     handleUserChargeCher,
     handleUserWithdrawCher,
     handleNewProjectFactory,
-    handleApproveCherToProjectPool,
+    handleUserApproveCherToProjectPool,
   };
 };
