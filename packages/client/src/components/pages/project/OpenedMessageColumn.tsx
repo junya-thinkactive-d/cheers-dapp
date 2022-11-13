@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { InputCher } from '@/components/pages/project';
 import { Mining } from '@/components/shared/layouts';
 import { ButtonRed } from '@/components/shared/parts';
-import { useProjectPoolContract } from '@/hooks/contracts';
+import { useProjectPoolContract, useUserPoolContract } from '@/hooks/contracts';
 
 type Props = {
   projectPoolAddress: string;
@@ -11,6 +11,7 @@ type Props = {
 
 const OpenedMessageColumn = ({ projectPoolAddress }: Props) => {
   const { mining, handleMintCheer } = useProjectPoolContract({ projectPoolAddress });
+  const {} =useUserPoolContract({})
   const [message, setMessage] = useState<string>('');
   const [cher, setCher] = useState<number>();
 

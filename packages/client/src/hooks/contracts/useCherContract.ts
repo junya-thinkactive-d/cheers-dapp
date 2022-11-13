@@ -38,7 +38,7 @@ export const useCherContract = ({ address }: Props): ReturnUseCherContract => {
       if (!address) return;
       const balanceOf = await cherContract.balanceOf(address);
       const balanceOfNumber = balanceOf;
-      setCherBalance(balanceOfNumber.toString());
+      setCherBalance(ethers.utils.formatEther(balanceOfNumber));
     } catch (error) {
       console.error(error);
     }
@@ -48,7 +48,7 @@ export const useCherContract = ({ address }: Props): ReturnUseCherContract => {
     async (toAddress: string, amount: number) => {
       try {
         if (!cherContract) return;
-        const transfer = await cherContract.transfer(toAddress, amount);
+        const transfer = await cherContract.transfer(toAddress, ethers.utils.parseEther(`${amount}`));
         setMining(true);
         await transfer.wait();
         setMining(false);

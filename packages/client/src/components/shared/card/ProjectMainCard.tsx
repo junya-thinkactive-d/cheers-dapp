@@ -40,21 +40,24 @@ const ProjectMainCard = ({ projectData }: Props) => {
         <div className="w-full h-full rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px]">
           <div className="w-full h-full bg-secondary rounded-xl p-4">
             <div className="flex">
-              <div className="mr-2">Project Address:</div>
+              <div className="mr-2 text-cherYellow">Project Address:</div>
               <div>{projectData.projectAddress}</div>
             </div>
             <div className="flex">
-              <div>Project Owner:</div>
+              <div className="mr-2 text-cherYellow">Project Owner:</div>
               <div>{name}</div>
             </div>
             <div className="flex justify-start items-center">
-              <div>Belong Dao:</div>
+              <div className="mr-2 text-cherYellow">Belong Dao:</div>
               <DaoPoolToName poolAddress={projectData.belongDaoAddress} />
             </div>
-            <div>Project Name: {projectData.projectName}</div>
-            <div>Project Contents: {projectData.projectContents}</div>
-            <div>Project Reword: {projectData.projectReword}</div>
-            <div>Created At: {dayjs(projectData.timestamp.toString()).format('YYYY/M/D/H:m:s')}</div>
+            <div className="mr-2 text-cherYellow">Project Name:</div>
+            <div>{projectData.projectName}</div>
+            <div className="mr-2 text-cherYellow">Project Contents:</div> <div>{projectData.projectContents}</div>
+            <div className="mr-2 text-cherYellow">Project Reword: </div>
+            <div>{projectData.projectReword}</div>
+            <div className="mr-2 text-cherYellow">Created At:</div>{' '}
+            <div>{dayjs(projectData.timestamp.toString()).format('YYYY/M/D/H:m:s')}</div>
           </div>
         </div>
       </div>

@@ -22,11 +22,11 @@ const Withdraw = ({ ownerAddress }: Props) => {
 
   const handleChangeAmount = (value: number) => {
     setErrors({});
-    setForm({ amount: value });
+    setForm({ amount: parseFloat(`${value}`) });
   };
 
   const handleInvalidAmount = (_value: string) => {
-    setErrors({ amount: '数値のみを入力してください' });
+    setErrors({ amount: '整数のみを入力してください' });
   };
 
   const onClickEvent = useCallback(async () => {
@@ -55,7 +55,7 @@ const Withdraw = ({ ownerAddress }: Props) => {
           <p className="text-cherRed">{errors.amount}</p>
         ) : (
           <Button buttonName="WITHDRAW CHER!" onClickEvent={onClickEvent} />
-        )}
+         )}
       </div>
     </div>
   );
