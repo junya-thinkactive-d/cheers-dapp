@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link';
 
 import { useProjectPoolContract } from '@/hooks/contracts';
-import { useCherContract } from '@/hooks/contracts/useCherContract';
 import { ProjectType } from '@/types/struct';
 
 import { ChangeBelongDaoName } from '../parts';
@@ -14,7 +13,6 @@ type Props = {
 
 const ProjectCard = ({ project }: Props) => {
   const address = project.projectAddress;
-  const { cherBalance } = useCherContract({ address });
   const projectPoolAddress = project.projectAddress;
   const { totalCher } = useProjectPoolContract({ projectPoolAddress });
 
