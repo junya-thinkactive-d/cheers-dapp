@@ -58,14 +58,14 @@ const _abi = [
       {
         components: [
           {
-            internalType: "address",
-            name: "projectOwnerAddress",
-            type: "address",
+            internalType: 'address',
+            name: 'projectOwnerAddress',
+            type: 'address',
           },
           {
-            internalType: "address",
-            name: "projectAddress",
-            type: "address",
+            internalType: 'address',
+            name: 'projectAddress',
+            type: 'address',
           },
           {
             internalType: 'address',

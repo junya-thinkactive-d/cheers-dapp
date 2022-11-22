@@ -47,10 +47,10 @@ export const useCheerListDataContract = ({
           cheerPoolAddress: cheerData.cheerPoolAddress,
           timestamp: new Date(cheerData.creationTime.toNumber() * 1000),
           message: cheerData.message,
-          cher: cheerData.cher.toString(),
+          cher: ethers.utils.formatEther(cheerData.cher) ,
         };
       });
-      setMyProjectCheerDataList(myProjectCheerDataListOrganize);
+      setMyPoolCheerDataList(myProjectCheerDataListOrganize);
     } catch (error) {
       console.error(error);
     }
@@ -67,10 +67,10 @@ export const useCheerListDataContract = ({
           cheerPoolAddress: cheerData.cheerPoolAddress,
           timestamp: new Date(cheerData.creationTime.toNumber() * 1000),
           message: cheerData.message,
-          cher: cheerData.cher.toString(),
+          cher: ethers.utils.formatEther(cheerData.cher),
         };
       });
-      setMyPoolCheerDataList(myPoolCheerDataListOrganize);
+      setMyProjectCheerDataList(myPoolCheerDataListOrganize);
     } catch (error) {
       console.error(error);
     }

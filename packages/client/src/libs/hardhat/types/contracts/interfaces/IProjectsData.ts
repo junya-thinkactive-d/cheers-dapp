@@ -28,15 +28,7 @@ export declare namespace SharedStruct {
     creationTime: PromiseOrValue<BigNumberish>;
   };
 
-  export type ProjectStructOutput = [
-    string,
-    string,
-    string,
-    string,
-    string,
-    string,
-    BigNumber
-  ] & {
+  export type ProjectStructOutput = [string, string, string, string, string, string, BigNumber] & {
     projectOwnerAddress: string;
     projectAddress: string;
     belongDaoAddress: string;

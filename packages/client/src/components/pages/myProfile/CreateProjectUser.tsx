@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+import { DaoSelect } from '@/components/pages/myProfile';
 import { Mining } from '@/components/shared/layouts';
 import { Button } from '@/components/shared/parts';
 import { useUserPoolContract } from '@/hooks/contracts';
@@ -9,81 +10,91 @@ type Props = {
   userOwnerAddress: string;
 };
 
+type NameListType = {
+  value: string;
+  text: string;
+};
+
 const CreateProjectUser = ({ userOwnerAddress }: Props) => {
-  const [belongDaoName, setBelongDaoName] = useState<string>('');
-  const [daoNameList, setDaoNameList] = useState<string[]>([]);
-  const [belongDaoWalletAddress, setBelongDaoWalletAddress] = useState<string>('');
+  const [selected, setSelected] = useState<string>('');
+  const [options, setOptions] = useState<NameListType[]>([]);
+  const [buttonOpen, setButtonOpen] = useState<boolean>(false);
+  const [ownerAddress, setOwnerAddress] = useState<string>('');
   const [belongDaoAddress, setBelongDaoAddress] = useState<string>('');
   const [projectName, setProjectName] = useState<string>('');
   const [projectContents, setProjectContents] = useState<string>('');
   const [projectReword, setProjectReword] = useState<string>('');
-  const [buttonOpen, setButtonOpen] = useState<boolean>(false);
 
   const { userMining, handleNewProjectFactory } = useUserPoolContract({ userOwnerAddress });
-
   const { allDaoList } = useDaosDataContract({});
+  const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
 
-  const createDaoNameList = useCallback(async () => {
-    const daoNameArray: string[] = [];
+  const handleSelectClick = useCallback(async () => {
+    setButtonOpen(true);
+  }, []);
+
+  const handleSetOptions = useCallback(() => {
+    const optionItem: NameListType[] = [{ value: '', text: 'Please Select DAO' }];
     allDaoList.map((dao) => {
-      daoNameArray.push(dao.daoName);
+      optionItem.push({ value: dao.daoName, text: dao.daoName });
     });
-    setDaoNameList(daoNameArray);
+    setOptions(optionItem);
   }, [allDaoList]);
 
-  const handleSetBelongDaoName = useCallback(
-    async (e: any) => {
-      setBelongDaoName(daoNameList[e.target.value]);
-      setButtonOpen(true);
-    },
-    [daoNameList],
-  );
+  const handleChange = (e: { target: { value: React.SetStateAction<string> } }) => {
+    setSelected(e.target.value);
+  };
 
-  const handleSelectedButton = useCallback(async () => {
+  const handleSetOwnerAddress = useCallback(async()=>{
     allDaoList.map((dao) => {
-      if (dao.daoName === belongDaoName) {
-        setBelongDaoWalletAddress(dao.daoWalletAddress);
+      if (dao.daoName === selected) {
+        setOwnerAddress(dao.daoWalletAddress);
       }
-      setButtonOpen(false);
     });
-  }, [allDaoList, belongDaoName, setBelongDaoWalletAddress]);
-  const poolAddress = belongDaoWalletAddress;
-
-  const { myPoolAddress } = usePoolListDataContract({ poolAddress });
+  },[allDaoList, selected])
 
   const handleSetBelongDaoAddress = useCallback(async () => {
     setBelongDaoAddress(myPoolAddress);
   }, [myPoolAddress]);
 
+
+  const onClickSetButton = useCallback(async ()=> {
+    await handleSetOwnerAddress()
+    await handleSetBelongDaoAddress()
+    setButtonOpen(false)
+  },[handleSetBelongDaoAddress, handleSetOwnerAddress])
+
   const onClickEvent = useCallback(async () => {
-    handleNewProjectFactory({ belongDaoAddress, projectName, projectContents, projectReword });
+    try {
+      await handleNewProjectFactory({ belongDaoAddress, projectName, projectContents, projectReword });
+      setBelongDaoAddress('')
+      setProjectName('');
+      setProjectContents('');
+      setProjectReword('');
+    } catch (error) {
+      alert(error);
+    }
   }, [belongDaoAddress, handleNewProjectFactory, projectContents, projectName, projectReword]);
 
   useEffect(() => {
-    createDaoNameList();
-    handleSetBelongDaoAddress();
-  }, [createDaoNameList, handleSetBelongDaoAddress]);
+    handleSetOptions();
+    handleSetBelongDaoAddress()
+  }, [handleSetBelongDaoAddress, handleSetOptions]);
 
   return (
     <div className="flex justify-center items-center pt-12">
+      {/* {console.log(belongDaoAddress, projectName, projectContents, projectReword)} */}
       <Mining mining={userMining} />
       <div className="flex flex-col justify-center items-center">
         <div className="text-4xl text-cherBlue">PROJECT FACTORY</div>
-        <div className="flex flex-col justify-center items-center mt-12">
-          <div>SELECT BELONG DAO:</div>
-          <select onChange={handleSetBelongDaoName} className="w-96 text-primary p-2 mx-2 rounded-lg">
-            {daoNameList.map((daoName, i) => (
-              <option key={i} value={i} className="text-secondary">
-                {daoName}
-              </option>
-            ))}
-          </select>
-          {buttonOpen && (
-            <button className="bg-secondary p-2 mt-2 mx-2 rounded-lg" onClick={handleSelectedButton}>
-              Set Belong DAO
-            </button>
-          )}
-        </div>
+        <DaoSelect
+          selected={selected}
+          handleSelectClick={handleSelectClick}
+          handleChange={handleChange}
+          options={options}
+          buttonOpen={buttonOpen}
+          onClickSetButton={onClickSetButton}
+        />
         <div className="flex flex-col justify-center items-center mt-12">
           <div>PROJECT NAME:</div>
           <input
@@ -110,7 +121,6 @@ const CreateProjectUser = ({ userOwnerAddress }: Props) => {
             placeholder="Project Reward"
           />
         </div>
-
         <Button buttonName="CREATE POOL" onClickEvent={onClickEvent} />
       </div>
     </div>

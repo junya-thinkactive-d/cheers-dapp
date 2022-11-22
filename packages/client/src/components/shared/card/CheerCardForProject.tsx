@@ -40,7 +40,7 @@ const CheerCardForProject = ({ cheerData }: Props) => {
 
   return (
     <>
-      <Link href={`/userProfile/${cheerData.cheerPoolAddress}`}>
+      <Link href={`/userProfile/${myWalletAddress}`}>
         <div className="flex  flex-col w-80 p-4 mx-4 rounded-lg bg-secondary cursor-pointer mb-6">
           <div className="grid grid-cols-4">
             <div className="col-span-1 flex flex-col justify-center items-center bg-primary p-1 border">

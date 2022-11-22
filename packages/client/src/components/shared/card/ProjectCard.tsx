@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import { useCherContract } from '@/hooks/contracts/useCherContract';
+import { useProjectPoolContract } from '@/hooks/contracts';
 import { ProjectType } from '@/types/struct';
 
 import { ChangeBelongDaoName } from '../parts';
@@ -13,7 +13,8 @@ type Props = {
 
 const ProjectCard = ({ project }: Props) => {
   const address = project.projectAddress;
-  const { cherBalance } = useCherContract({ address });
+  const projectPoolAddress = project.projectAddress;
+  const { totalCher } = useProjectPoolContract({ projectPoolAddress });
 
   return (
     <>
@@ -31,7 +32,7 @@ const ProjectCard = ({ project }: Props) => {
           <div className="flex items-center text-lg">
             <div>💰</div>
             <div className="flex items-end">
-              <div className="ml-1 text-sm">CHER: {cherBalance ? cherBalance : 0}</div>
+              <div className="ml-1 text-sm">CHER: {totalCher ? totalCher : 0}</div>
             </div>
           </div>
         </div>

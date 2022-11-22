@@ -62,20 +62,17 @@ export const useCherFaucetContract = ({}: Props): ReturnUseCherFaucet => {
     [cherFaucetContract],
   );
 
-  const handleFaucet = useCallback(
-    async () => {
-      try {
-        if (!cherFaucetContract) return;
-        const faucetTxn = await cherFaucetContract.faucet();
-        setMining(true);
-        await faucetTxn.wait();
-        setMining(false);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [cherFaucetContract],
-  );
+  const handleFaucet = useCallback(async () => {
+    try {
+      if (!cherFaucetContract) return;
+      const faucetTxn = await cherFaucetContract.faucet();
+      setMining(true);
+      await faucetTxn.wait();
+      setMining(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [cherFaucetContract]);
 
   const handleWithdraw = useCallback(async () => {
     try {

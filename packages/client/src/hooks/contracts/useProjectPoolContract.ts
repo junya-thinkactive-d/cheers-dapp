@@ -51,7 +51,7 @@ export const useProjectPoolContract = ({ projectPoolAddress }: Props): ReturnPro
   const handleGetTotalCher = useCallback(async () => {
     try {
       if (!projectPoolContract) return;
-      const getTotalCher = await projectPoolContract.getTotalCher();
+      const getTotalCher = await projectPoolContract.totalCher();
       const getTotalCherOrganize = ethers.utils.formatEther(getTotalCher);
       setTotalCher(getTotalCherOrganize);
     } catch (error) {

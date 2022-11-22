@@ -13,7 +13,7 @@ const Layout = ({ children }: Props) => {
     <div className="bg-primary">
       <Header />
       <div className="grid grid-cols-12">
-        <div className='col-span-2'>
+        <div className="col-span-2">
           <Sidebar />
         </div>
         <div className="col-span-10 min-h-screen">
