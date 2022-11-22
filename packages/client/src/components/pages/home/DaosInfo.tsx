@@ -26,7 +26,7 @@ const DaosInfo = ({ daosData }: Props) => {
         navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
-        loop={true}
+        loop={daosData.length >= 4 ?true:false}
       >
         <div className="flex justify-center items-center">
           {daosData.map((daoData, i) => (
