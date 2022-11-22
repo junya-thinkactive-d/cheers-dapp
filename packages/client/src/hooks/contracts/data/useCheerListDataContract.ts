@@ -47,7 +47,7 @@ export const useCheerListDataContract = ({
           cheerPoolAddress: cheerData.cheerPoolAddress,
           timestamp: new Date(cheerData.creationTime.toNumber() * 1000),
           message: cheerData.message,
-          cher: cheerData.cher.toString(),
+          cher: ethers.utils.formatEther(cheerData.cher) ,
         };
       });
       setMyPoolCheerDataList(myProjectCheerDataListOrganize);
