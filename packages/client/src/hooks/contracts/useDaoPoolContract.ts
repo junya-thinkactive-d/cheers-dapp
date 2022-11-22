@@ -28,7 +28,7 @@ type ReturnUseDaoPoolContract = {
   handleDaoChargeCher: (_amount: number) => Promise<void>;
   handleDaoWithdrawCher: (_mount: number) => Promise<void>;
   handleNewProjectFactory: (_inputProject: DaoProjectFactory) => Promise<void>;
-  handleDaoApproveCherToProjectPool: (_projectAddress: string, _cherAmount: ethers.BigNumberish) => Promise<void>;
+  handleDaoApproveCherToProjectPool: (_projectAddress: string, _cherAmount: number) => Promise<void>;
 };
 
 export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPoolContract => {
@@ -188,10 +188,10 @@ export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPool
   }, [daoPoolContract]);
 
   const handleDaoApproveCherToProjectPool = useCallback(
-    async (projectAddress: string, cherAmount: ethers.BigNumberish) => {
+    async (projectAddress: string, cherAmount: number) => {
       try {
         if (!daoPoolContract) return;
-        const approveCheerToProjectPool = await daoPoolContract.approveCherToProjectPool(projectAddress, cherAmount);
+        const approveCheerToProjectPool = await daoPoolContract.approveCherToProjectPool(projectAddress, ethers.utils.parseEther(`${cherAmount}`),);
         setMining(true);
         await approveCheerToProjectPool.wait();
         setMining(false);

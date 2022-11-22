@@ -37,7 +37,7 @@ export const useProjectPoolContract = ({ projectPoolAddress }: Props): ReturnPro
     async (cher: number, message: string) => {
       try {
         if (!projectPoolContract) return;
-        const mintCheerTxn = await projectPoolContract.mintCheer(cher, message);
+        const mintCheerTxn = await projectPoolContract.mintCheer(ethers.utils.parseEther(`${cher}`), message);
         setMining(true);
         await mintCheerTxn.wait();
         setMining(false);

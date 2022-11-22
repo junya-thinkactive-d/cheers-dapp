@@ -7,7 +7,6 @@ export type UserType = {
 };
 
 export type DaoType = {
-  name: any;
   daoWalletAddress: string;
   daoName: string;
   daoProfile: string;

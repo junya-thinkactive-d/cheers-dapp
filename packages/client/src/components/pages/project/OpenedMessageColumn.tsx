@@ -24,10 +24,11 @@ const OpenedMessageColumn = ({ projectPoolAddress }: Props) => {
     if (!cher) return;
     if (userPoolAddress !== '') {
       await handleUserApproveCherToProjectPool(projectPoolAddress, cher);
+      handleMintCheer(cher, message);
     } else if (daoPoolAddress !== '') {
       await handleDaoApproveCherToProjectPool(projectPoolAddress, cher);
+      handleMintCheer(cher, message);
     }
-    return handleMintCheer(cher, message);
   }, [
     cher,
     daoPoolAddress,
