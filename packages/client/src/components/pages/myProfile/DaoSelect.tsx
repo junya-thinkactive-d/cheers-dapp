@@ -10,7 +10,7 @@ type Props = {
   }) => void;
   options: { value: string; text: string }[];
   buttonOpen: boolean;
-  handleSetBelongDaoAddress: () => void;
+  onClickSetButton: () => void;
 };
 
 const DaoSelect = ({
@@ -19,7 +19,7 @@ const DaoSelect = ({
   handleChange,
   options,
   buttonOpen,
-  handleSetBelongDaoAddress,
+  onClickSetButton,
 }: Props) => {
   return (
     <div className="flex flex-col justify-center items-center mt-12">
@@ -37,7 +37,7 @@ const DaoSelect = ({
         ))}
       </select>
       {buttonOpen && (
-        <button className="bg-secondary p-2 mt-2 mx-2 rounded-lg" onClick={handleSetBelongDaoAddress}>
+        <button className="bg-secondary p-2 mt-2 mx-2 rounded-lg" onClick={onClickSetButton}>
           Set Belong DAO
         </button>
       )}

@@ -45,19 +45,29 @@ const CreateProjectUser = ({ userOwnerAddress }: Props) => {
     setSelected(e.target.value);
   };
 
-  const handleSetBelongDaoAddress = useCallback(async () => {
+  const handleSetOwnerAddress = useCallback(async()=>{
     allDaoList.map((dao) => {
       if (dao.daoName === selected) {
         setOwnerAddress(dao.daoWalletAddress);
       }
     });
+  },[allDaoList, selected])
+
+  const handleSetBelongDaoAddress = useCallback(async () => {
     setBelongDaoAddress(myPoolAddress);
-    setButtonOpen(false);
-  }, [allDaoList, myPoolAddress, selected]);
+  }, [myPoolAddress]);
+
+
+  const onClickSetButton = useCallback(async ()=> {
+    await handleSetOwnerAddress()
+    await handleSetBelongDaoAddress()
+    setButtonOpen(false)
+  },[handleSetBelongDaoAddress, handleSetOwnerAddress])
 
   const onClickEvent = useCallback(async () => {
     try {
       await handleNewProjectFactory({ belongDaoAddress, projectName, projectContents, projectReword });
+      setBelongDaoAddress('')
       setProjectName('');
       setProjectContents('');
       setProjectReword('');
@@ -68,10 +78,12 @@ const CreateProjectUser = ({ userOwnerAddress }: Props) => {
 
   useEffect(() => {
     handleSetOptions();
-  }, [handleSetOptions]);
+    handleSetBelongDaoAddress()
+  }, [handleSetBelongDaoAddress, handleSetOptions]);
 
   return (
     <div className="flex justify-center items-center pt-12">
+      {/* {console.log(belongDaoAddress, projectName, projectContents, projectReword)} */}
       <Mining mining={userMining} />
       <div className="flex flex-col justify-center items-center">
         <div className="text-4xl text-cherBlue">PROJECT FACTORY</div>
@@ -81,7 +93,7 @@ const CreateProjectUser = ({ userOwnerAddress }: Props) => {
           handleChange={handleChange}
           options={options}
           buttonOpen={buttonOpen}
-          handleSetBelongDaoAddress={handleSetBelongDaoAddress}
+          onClickSetButton={onClickSetButton}
         />
         <div className="flex flex-col justify-center items-center mt-12">
           <div>PROJECT NAME:</div>
