@@ -30,7 +30,7 @@ const DaosInfo = ({ daosData }: Props) => {
       >
         <div className="flex justify-center items-center">
           {daosData.map((daoData, i) => (
-            <SwiperSlide key={i} >
+            <SwiperSlide key={i}>
               <DaoCard daoData={daoData} />
             </SwiperSlide>
           ))}

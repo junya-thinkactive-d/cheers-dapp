@@ -18,11 +18,11 @@ import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrVal
 
 export interface DaoPoolFactoryInterface extends utils.Interface {
   functions: {
-    "daosData()": FunctionFragment;
-    "newDaoPoolFactory(address,string,string,string)": FunctionFragment;
-    "poolListData()": FunctionFragment;
-    "setDaosData(address)": FunctionFragment;
-    "setPoolListData(address)": FunctionFragment;
+    'daosData()': FunctionFragment;
+    'newDaoPoolFactory(address,string,string,string)': FunctionFragment;
+    'poolListData()': FunctionFragment;
+    'setDaosData(address)': FunctionFragment;
+    'setPoolListData(address)': FunctionFragment;
   };
 
   getFunction(
@@ -31,26 +31,12 @@ export interface DaoPoolFactoryInterface extends utils.Interface {
 
   encodeFunctionData(functionFragment: 'daosData', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "newDaoPoolFactory",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>
-    ]
+    functionFragment: 'newDaoPoolFactory',
+    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>],
   ): string;
-  encodeFunctionData(
-    functionFragment: "poolListData",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setDaosData",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setPoolListData",
-    values: [PromiseOrValue<string>]
-  ): string;
+  encodeFunctionData(functionFragment: 'poolListData', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'setDaosData', values: [PromiseOrValue<string>]): string;
+  encodeFunctionData(functionFragment: 'setPoolListData', values: [PromiseOrValue<string>]): string;
   encodeFunctionData(functionFragment: 'poolListData', values?: undefined): string;
   encodeFunctionData(functionFragment: 'setDaosData', values: [PromiseOrValue<string>]): string;
   encodeFunctionData(functionFragment: 'setPoolListData', values: [PromiseOrValue<string>]): string;

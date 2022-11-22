@@ -39,7 +39,7 @@ const BuyCher = () => {
         {errors?.amount ? (
           <p className="text-cherRed">{errors.amount}</p>
         ) : ( */}
-          <Button buttonName="EXCHANGE FOR CHER!" onClickEvent={onClickEvent} />
+        <Button buttonName="EXCHANGE FOR CHER!" onClickEvent={onClickEvent} />
         {/* )} */}
       </div>
     </div>

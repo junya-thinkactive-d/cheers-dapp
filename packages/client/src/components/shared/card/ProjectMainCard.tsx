@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { DaoPoolToName } from '@/components/shared/parts';
 import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
 import { usePoolListDataContract } from '@/hooks/contracts/data';
+import { useCherContract } from '@/hooks/contracts/useCherContract';
 import { ProjectType } from '@/types/struct';
 
 type Props = {
@@ -19,6 +20,8 @@ const ProjectMainCard = ({ projectData }: Props) => {
   const daoOwnerAddress = myWalletAddress;
   const { userName, userPoolAddress } = useUserPoolContract({ userOwnerAddress });
   const { daoName, daoPoolAddress } = useDaoPoolContract({ daoOwnerAddress });
+  const address = projectData.projectAddress;
+  const { cherBalance } = useCherContract({ address });
 
   const setProjectOwnerName = useCallback(async () => {
     if (userPoolAddress !== '') {
@@ -58,6 +61,7 @@ const ProjectMainCard = ({ projectData }: Props) => {
             <div>{projectData.projectReword}</div>
             <div className="mr-2 text-cherYellow">Created At:</div>{' '}
             <div>{dayjs(projectData.timestamp.toString()).format('YYYY/M/D/H:m:s')}</div>
+            <div className="mr-2 text-cherYellow">Cher Balance:</div> <div>{cherBalance}</div>
           </div>
         </div>
       </div>

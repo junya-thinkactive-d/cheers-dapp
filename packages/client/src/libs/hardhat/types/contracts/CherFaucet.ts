@@ -20,70 +20,49 @@ import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrVal
 
 export interface CherFaucetInterface extends utils.Interface {
   functions: {
-    "CHER_CONTRACT_ADDRESS()": FunctionFragment;
-    "cher()": FunctionFragment;
-    "exchange(uint256)": FunctionFragment;
-    "faucet()": FunctionFragment;
-    "getFaucetBalance()": FunctionFragment;
-    "owner()": FunctionFragment;
-    "setCHER(address)": FunctionFragment;
-    "setOwner(address)": FunctionFragment;
-    "withdraw()": FunctionFragment;
+    'CHER_CONTRACT_ADDRESS()': FunctionFragment;
+    'cher()': FunctionFragment;
+    'exchange(uint256)': FunctionFragment;
+    'faucet()': FunctionFragment;
+    'getFaucetBalance()': FunctionFragment;
+    'owner()': FunctionFragment;
+    'setCHER(address)': FunctionFragment;
+    'setOwner(address)': FunctionFragment;
+    'withdraw()': FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "CHER_CONTRACT_ADDRESS"
-      | "cher"
-      | "exchange"
-      | "faucet"
-      | "getFaucetBalance"
-      | "owner"
-      | "setCHER"
-      | "setOwner"
-      | "withdraw"
+      | 'CHER_CONTRACT_ADDRESS'
+      | 'cher'
+      | 'exchange'
+      | 'faucet'
+      | 'getFaucetBalance'
+      | 'owner'
+      | 'setCHER'
+      | 'setOwner'
+      | 'withdraw',
   ): FunctionFragment;
 
-  encodeFunctionData(
-    functionFragment: "CHER_CONTRACT_ADDRESS",
-    values?: undefined
-  ): string;
-  encodeFunctionData(functionFragment: "cher", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "exchange",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(functionFragment: "faucet", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "getFaucetBalance",
-    values?: undefined
-  ): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "setCHER",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setOwner",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(functionFragment: "withdraw", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'CHER_CONTRACT_ADDRESS', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'cher', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'exchange', values: [PromiseOrValue<BigNumberish>]): string;
+  encodeFunctionData(functionFragment: 'faucet', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getFaucetBalance', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'owner', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'setCHER', values: [PromiseOrValue<string>]): string;
+  encodeFunctionData(functionFragment: 'setOwner', values: [PromiseOrValue<string>]): string;
+  encodeFunctionData(functionFragment: 'withdraw', values?: undefined): string;
 
-  decodeFunctionResult(
-    functionFragment: "CHER_CONTRACT_ADDRESS",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "cher", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "exchange", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "faucet", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "getFaucetBalance",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "setCHER", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "setOwner", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'CHER_CONTRACT_ADDRESS', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'cher', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'exchange', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'faucet', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getFaucetBalance', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'owner', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'setCHER', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'setOwner', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'withdraw', data: BytesLike): Result;
 
   events: {};
 }
@@ -117,12 +96,10 @@ export interface CherFaucet extends BaseContract {
 
     exchange(
       cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
-    faucet(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
+    faucet(overrides?: PayableOverrides & { from?: PromiseOrValue<string> }): Promise<ContractTransaction>;
 
     getFaucetBalance(overrides?: CallOverrides): Promise<[BigNumber]>;
 
@@ -147,12 +124,10 @@ export interface CherFaucet extends BaseContract {
 
   exchange(
     cherAmount: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
-  faucet(
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
+  faucet(overrides?: PayableOverrides & { from?: PromiseOrValue<string> }): Promise<ContractTransaction>;
 
   getFaucetBalance(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -175,10 +150,7 @@ export interface CherFaucet extends BaseContract {
 
     cher(overrides?: CallOverrides): Promise<string>;
 
-    exchange(
-      cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    exchange(cherAmount: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
 
     faucet(overrides?: CallOverrides): Promise<void>;
 
@@ -202,12 +174,10 @@ export interface CherFaucet extends BaseContract {
 
     exchange(
       cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
-    faucet(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
+    faucet(overrides?: PayableOverrides & { from?: PromiseOrValue<string> }): Promise<BigNumber>;
 
     getFaucetBalance(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -233,12 +203,10 @@ export interface CherFaucet extends BaseContract {
 
     exchange(
       cherAmount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
-    faucet(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
+    faucet(overrides?: PayableOverrides & { from?: PromiseOrValue<string> }): Promise<PopulatedTransaction>;
 
     getFaucetBalance(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

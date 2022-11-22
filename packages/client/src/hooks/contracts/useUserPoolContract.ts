@@ -192,7 +192,10 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     async (projectAddress: string, amount: number) => {
       try {
         if (!userPoolContract) return;
-        const approveCheerToProjectPool = await userPoolContract.approveCherToProjectPool(projectAddress, ethers.utils.parseEther(`${amount}`));
+        const approveCheerToProjectPool = await userPoolContract.approveCherToProjectPool(
+          projectAddress,
+          ethers.utils.parseEther(`${amount}`),
+        );
         setMining(true);
         await approveCheerToProjectPool.wait();
         setMining(false);

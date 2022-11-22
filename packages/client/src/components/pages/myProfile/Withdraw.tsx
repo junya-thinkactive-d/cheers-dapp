@@ -55,7 +55,7 @@ const Withdraw = ({ ownerAddress }: Props) => {
           <p className="text-cherRed">{errors.amount}</p>
         ) : (
           <Button buttonName="WITHDRAW CHER!" onClickEvent={onClickEvent} />
-         )}
+        )}
       </div>
     </div>
   );

@@ -18,11 +18,11 @@ import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrVal
 
 export interface UserPoolFactoryInterface extends utils.Interface {
   functions: {
-    "newUserPoolFactory(address,string,string,string)": FunctionFragment;
-    "poolListData()": FunctionFragment;
-    "setPoolListData(address)": FunctionFragment;
-    "setUsersData(address)": FunctionFragment;
-    "usersData()": FunctionFragment;
+    'newUserPoolFactory(address,string,string,string)': FunctionFragment;
+    'poolListData()': FunctionFragment;
+    'setPoolListData(address)': FunctionFragment;
+    'setUsersData(address)': FunctionFragment;
+    'usersData()': FunctionFragment;
   };
 
   getFunction(
@@ -30,13 +30,8 @@ export interface UserPoolFactoryInterface extends utils.Interface {
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: "newUserPoolFactory",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>
-    ]
+    functionFragment: 'newUserPoolFactory',
+    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<string>],
   ): string;
   encodeFunctionData(functionFragment: 'poolListData', values?: undefined): string;
   encodeFunctionData(functionFragment: 'setPoolListData', values: [PromiseOrValue<string>]): string;
