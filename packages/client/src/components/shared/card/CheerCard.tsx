@@ -42,7 +42,7 @@ const CheerCard = ({ cheerData }: Props) => {
   },[handleSetNameAndSetIcon])
 
   return (
-    <>
+    <div className='mx-2 my-4'>
       <Link href={`/projectContents/${projectPoolAddress}`}>
         <div className="flex  flex-col w-80 p-4 mx-4 rounded-lg bg-secondary cursor-pointer mb-6">
           <div className="grid grid-cols-4">
@@ -83,7 +83,7 @@ const CheerCard = ({ cheerData }: Props) => {
           </div>
         </div>
       </Link>
-    </>
+    </div>
   );
 };
 

@@ -1,32 +1,33 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { Mining } from '@/components/shared/layouts';
-import { Button } from '@/components/shared/parts';
+import { Button, InputNumber } from '@/components/shared/parts';
 import { useCherFaucetContract } from '@/hooks/contracts';
+import { Form, FormErrors } from '@/types/form';
 
 const BuyCher = () => {
   const { mining, handleFaucet } = useCherFaucetContract({});
 
-  // const [errors, setErrors] = useState<FormErrors>();
-  // const [form, setForm] = useState<Form>({
-  //   amount: 0,
-  // });
+  const [errors, setErrors] = useState<FormErrors>();
+  const [form, setForm] = useState<Form>({
+    amount: 0,
+  });
 
-  // const handleChangeAmount = (value: number) => {
-  //   setErrors({});
-  //   setForm({ amount: value });
-  // };
+  const handleChangeAmount = (value: number) => {
+    setErrors({});
+    setForm({ amount: value });
+  };
 
-  // const handleInvalidAmount = (_value: string) => {
-  //   setErrors({ amount: '数値のみを入力してください' });
-  // };
+  const handleInvalidAmount = (_value: string) => {
+    setErrors({ amount: '数値のみを入力してください' });
+  };
 
   const onClickEvent = useCallback(async () => {
     try {
-      handleFaucet();
-      // setForm({ amount: 0 });
+      handleFaucet(form.amount);
+      setForm({ amount: 0 });
     } catch (error) {}
-  }, [handleFaucet]);
+  }, [form.amount, handleFaucet]);
 
   return (
     <div className="flex flex-col justify-center items-start">
@@ -35,12 +36,12 @@ const BuyCher = () => {
         CHERに交換する <span className="text-sm text-cherYellow">Exchange for CHER</span>
       </div>
       <div className="flex justify-center items-center">
-        {/* <InputNumber value={form.amount} onChange={handleChangeAmount} onInvalidNumber={handleInvalidAmount} />
+        <InputNumber value={form.amount} onChange={handleChangeAmount} onInvalidNumber={handleInvalidAmount} />
         {errors?.amount ? (
           <p className="text-cherRed">{errors.amount}</p>
-        ) : ( */}
-        <Button buttonName="EXCHANGE FOR CHER!" onClickEvent={onClickEvent} />
-        {/* )} */}
+        ) : (
+          <Button buttonName="EXCHANGE FOR CHER!" onClickEvent={onClickEvent} />
+        )}
       </div>
     </div>
   );

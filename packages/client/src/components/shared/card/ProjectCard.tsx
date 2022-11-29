@@ -17,7 +17,7 @@ const ProjectCard = ({ project }: Props) => {
   const { totalCher } = useProjectPoolContract({ projectPoolAddress });
 
   return (
-    <>
+    <div className='mx-2 my-4'>
       <Link href={`/projectContents/${address}`}>
         <div className="min-w-72 w-72 p-4 my-4 rounded-lg bg-secondary cursor-pointer">
           <div className="flex items-center text-xs mb-2">
@@ -37,7 +37,7 @@ const ProjectCard = ({ project }: Props) => {
           </div>
         </div>
       </Link>
-    </>
+    </div>
   );
 };
 
